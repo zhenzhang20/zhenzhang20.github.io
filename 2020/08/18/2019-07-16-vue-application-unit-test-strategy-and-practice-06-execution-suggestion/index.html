@@ -5,15 +5,33 @@
   
 
   
-  <title>Hexo</title>
+  <title>Vue 应用单元测试的策略与实践 06 - 如何落地的几点建议 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="本文的目标 在 Vue 项目中如何推动整个团队循序渐进地采取单元测试策略？逐步提高代码质量和测试覆盖率？  1234567&#x2F;&#x2F; Given一个需要在团队中推行测试策略的 Tech Lead👨‍💻‍&#x2F;&#x2F; When当他 🚶 阅读本文的 Vue 应用测试策略落地部分&#x2F;&#x2F; Then他能够在团队中循序渐进地推行测试策略，他能够找到单元测试的反馈机制，追求技术卓越  Vue 应用测试策略的落地1. 利用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue 应用单元测试的策略与实践 06 - 如何落地的几点建议">
+<meta property="og:url" content="http://yoursite.com/2020/08/18/2019-07-16-vue-application-unit-test-strategy-and-practice-06-execution-suggestion/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文的目标 在 Vue 项目中如何推动整个团队循序渐进地采取单元测试策略？逐步提高代码质量和测试覆盖率？  1234567&#x2F;&#x2F; Given一个需要在团队中推行测试策略的 Tech Lead👨‍💻‍&#x2F;&#x2F; When当他 🚶 阅读本文的 Vue 应用测试策略落地部分&#x2F;&#x2F; Then他能够在团队中循序渐进地推行测试策略，他能够找到单元测试的反馈机制，追求技术卓越  Vue 应用测试策略的落地1. 利用">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-4ebecd1fbcc4274dd531c802f226484b_hd.png">
+<meta property="og:image" content="https://camo.githubusercontent.com/7992f05135785019d3696e57aca343ee8e376f52/68747470733a2f2f776f756e6465726f2e66696c65732e776f726470726573732e636f6d2f323031332f30322f6536616638666535613461396539383362646536616639346535383938646534623838306535613461396539383062326536616461356534623838306539626239656539626239652e6a7067">
+<meta property="og:image" content="https://jimmylv.github.io/images/2019/20190219135917.png">
+<meta property="og:image" content="https://www.objectstyle.com/f/blog_posts/XP-feedback.png">
+<meta property="og:image" content="https://i2.wp.com/blog.knoldus.com/wp-content/uploads/2018/12/tdd.jpg?fit=810,479&ssl=1">
+<meta property="article:published_time" content="2020-08-18T15:29:09.925Z">
+<meta property="article:modified_time" content="2020-08-18T10:10:28.994Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Tutorial">
+<meta property="article:tag" content="UnitTest">
+<meta property="article:tag" content="Team">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Vuex">
+<meta property="article:tag" content="Jest">
+<meta property="article:tag" content="CQRS">
+<meta property="article:tag" content="TDD">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-4ebecd1fbcc4274dd531c802f226484b_hd.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -62,198 +80,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-2020-08-19-Use_Github_Create_Blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/19/2020-08-19-Use_Github_Create_Blog/" class="article-date">
-  <time datetime="2020-08-19T14:37:54.000Z" itemprop="datePublished">2020-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/19/2020-08-19-Use_Github_Create_Blog/">使用Github搭建属于自己的博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="使用Github搭建属于自己的博客"><a href="#使用Github搭建属于自己的博客" class="headerlink" title="使用Github搭建属于自己的博客"></a>使用Github搭建属于自己的博客</h2><p>记录使用 GitHub Pages建立个人主页。框架使用Hexo。</p>
-<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ol>
-<li>安装Node.js和配置好Node.js环境。下载链接如下：Node.js下载<br><a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></li>
-</ol>
-<p><img src="2020_08_19_nodejs_download.png" alt="image"></p>
-<p>下载完之后按照默认安装，环境变量会自动配置。安装完成后，打开cmd命令行，成功界面如下。<br><img src="2020_08_19_nodejs_install.png" alt="image"></p>
-<ol start="2">
-<li>安装Git和配置好Git环境，安装成功的象征就是在电脑上任何位置鼠标右键能够出现如下两个选择。<br><img src="2020_08_19_git_install.png" alt="image"></li>
-</ol>
-<p>配置环境变量，成功配置的界面如图：<br><img src="2020_08_19_git_config.png" alt="image"></p>
-<ol start="3">
-<li>注册并登陆Github。在GitHub新建仓库，仓库名称是 username.github.io<br><img src="2020_08_19_create_reposiorty.png" alt="image"></li>
-</ol>
-<p>在建好的项目中创建一个新的文件：readme.md<br><img src="2020_08_19_create_new_file.png" alt="image"><br><img src="2020_08_19_commit_new_file.png" alt="image"></p>
-<p>通过浏览器访问username.github.io将看到readme.md中的内容<br><img src="2020_08_19_default_blog.png" alt="image"></p>
-<ol start="4">
-<li>安装Hexo<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-输入 hexo -v 出现一系列的版本号就是安装成功啦，就像下面这样：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;hexo -v</span><br><span class="line">hexo-cli: 4.2.0</span><br><span class="line">os: Windows_NT 6.1.7601 win32 x64</span><br><span class="line">node: 12.17.0</span><br><span class="line">v8: 7.8.279.23-node.37</span><br><span class="line">uv: 1.37.0</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">brotli: 1.0.7</span><br><span class="line">ares: 1.16.0</span><br><span class="line">modules: 72</span><br><span class="line">nghttp2: 1.40.0</span><br><span class="line">napi: 6</span><br><span class="line">llhttp: 2.0.4</span><br><span class="line">http_parser: 2.9.3</span><br><span class="line">openssl: 1.1.1g</span><br><span class="line">cldr: 37.0</span><br><span class="line">icu: 67.1</span><br><span class="line">tz: 2019c</span><br><span class="line">unicode: 13.0</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="生成博客"><a href="#生成博客" class="headerlink" title="生成博客"></a>生成博客</h2><ol start="5">
-<li>Hexo 初始化。在自己认为合适的地方创建文件夹，然后通过命令行进入到该文件夹下执行初始化命令。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<p>初始化完成后，会有一个默认主题以及一个hello-word的默认文章。</p>
-<ol start="6">
-<li>生成博客（默认会有hello world的博客）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate  &#x2F;&#x2F;可以简写成 hexo g</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="7">
-<li><p>开启服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server  &#x2F;&#x2F;可以简写成 hexo s</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开本地网页进行查看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:4000</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="远程部署"><a href="#远程部署" class="headerlink" title="远程部署"></a>远程部署</h3><ol start="9">
-<li><p>安装部署到github.io的依赖:hexo-deployer-git</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装好hexo-deployer-git后，修改博客目录配置文件”_config.yml”中的deploy字段：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:zhenzhang20&#x2F;zhenzhang20.github.io.git #修改成自己的项目地址</span><br><span class="line">  branch: master</span><br><span class="line">  message: 自定义提交说明，这个字段可以没有</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>推送到github.io</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy &#x2F;&#x2F;可以简写成 hexo d</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>访问网站，可以看到和之前本地网页内容：<a target="_blank" rel="noopener" href="https://zhenzhang20.github.io/">https://zhenzhang20.github.io/</a></p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/19/2020-08-19-Use_Github_Create_Blog/" data-id="cke02jnpc000024ove57r0ady" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Use_Github_Create_Blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/19/Use_Github_Create_Blog/" class="article-date">
-  <time datetime="2020-08-19T14:37:54.000Z" itemprop="datePublished">2020-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/19/Use_Github_Create_Blog/">使用Github搭建属于自己的博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="使用Github搭建属于自己的博客"><a href="#使用Github搭建属于自己的博客" class="headerlink" title="使用Github搭建属于自己的博客"></a>使用Github搭建属于自己的博客</h2><p>记录使用 GitHub Pages建立个人主页。框架使用Hexo。</p>
-<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ol>
-<li>安装Node.js和配置好Node.js环境。下载链接如下：Node.js下载<br><a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></li>
-</ol>
-<p><img src="2020_08_19_nodejs_download.png" alt="image"></p>
-<p>下载完之后按照默认安装，环境变量会自动配置。安装完成后，打开cmd命令行，成功界面如下。<br><img src="2020_08_19_nodejs_install.png" alt="image"></p>
-<ol start="2">
-<li>安装Git和配置好Git环境，安装成功的象征就是在电脑上任何位置鼠标右键能够出现如下两个选择。<br><img src="2020_08_19_git_install.png" alt="image"></li>
-</ol>
-<p>配置环境变量，成功配置的界面如图：<br><img src="2020_08_19_git_config.png" alt="image"></p>
-<ol start="3">
-<li>注册并登陆Github。在GitHub新建仓库，仓库名称是 username.github.io<br><img src="2020_08_19_create_reposiorty.png" alt="image"></li>
-</ol>
-<p>在建好的项目中创建一个新的文件：readme.md<br><img src="2020_08_19_create_new_file.png" alt="image"><br><img src="2020_08_19_commit_new_file.png" alt="image"></p>
-<p>通过浏览器访问username.github.io将看到readme.md中的内容<br><img src="2020_08_19_default_blog.png" alt="image"></p>
-<ol start="4">
-<li>安装Hexo<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-输入 hexo -v 出现一系列的版本号就是安装成功啦，就像下面这样：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">E:\&gt;hexo -v</span><br><span class="line">hexo-cli: 4.2.0</span><br><span class="line">os: Windows_NT 6.1.7601 win32 x64</span><br><span class="line">node: 12.17.0</span><br><span class="line">v8: 7.8.279.23-node.37</span><br><span class="line">uv: 1.37.0</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">brotli: 1.0.7</span><br><span class="line">ares: 1.16.0</span><br><span class="line">modules: 72</span><br><span class="line">nghttp2: 1.40.0</span><br><span class="line">napi: 6</span><br><span class="line">llhttp: 2.0.4</span><br><span class="line">http_parser: 2.9.3</span><br><span class="line">openssl: 1.1.1g</span><br><span class="line">cldr: 37.0</span><br><span class="line">icu: 67.1</span><br><span class="line">tz: 2019c</span><br><span class="line">unicode: 13.0</span><br></pre></td></tr></table></figure>
-
-<h2 id="生成博客"><a href="#生成博客" class="headerlink" title="生成博客"></a>生成博客</h2><ol start="5">
-<li>Hexo 初始化。在自己认为合适的地方创建文件夹，然后通过命令行进入到该文件夹下执行初始化命令。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-
-<p>初始化完成后，会有一个默认主题以及一个hello-word的默认文章。</p>
-<ol start="6">
-<li>生成博客（默认会有hello world的博客）</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate  &#x2F;&#x2F;可以简写成 hexo g</span><br></pre></td></tr></table></figure>
-
-
-<ol start="7">
-<li><p>开启服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server  &#x2F;&#x2F;可以简写成 hexo s</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开本地网页进行查看</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:4000</span><br></pre></td></tr></table></figure>
-
-<h3 id="远程部署"><a href="#远程部署" class="headerlink" title="远程部署"></a>远程部署</h3><ol start="8">
-<li>安装部署到github.io的依赖:hexo-deployer-git</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<ol start="9">
-<li>安装好hexo-deployer-git后，修改博客目录配置文件”_config.yml”中的deploy字段：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:zhenzhang20&#x2F;zhenzhang20.github.io.git #修改成自己的项目地址</span><br><span class="line">  branch: master</span><br><span class="line">  message: 自定义提交说明，这个字段可以没有</span><br></pre></td></tr></table></figure>
-
-<ol start="10">
-<li>推送到github.io</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy &#x2F;&#x2F;可以简写成 hexo d</span><br></pre></td></tr></table></figure>
-
-<ol start="11">
-<li>访问网站，可以看到和之前本地网页内容：<a target="_blank" rel="noopener" href="https://zhenzhang20.github.io/">https://zhenzhang20.github.io/</a></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/19/Use_Github_Create_Blog/" data-id="cke039wcm0000mkovf51w9cu0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2019-07-16-vue-application-unit-test-strategy-and-practice-06-execution-suggestion" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2019-07-16-vue-application-unit-test-strategy-and-practice-06-execution-suggestion" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/18/2019-07-16-vue-application-unit-test-strategy-and-practice-06-execution-suggestion/" class="article-date">
   <time datetime="2020-08-18T15:29:09.925Z" itemprop="datePublished">2020-08-18</time>
@@ -270,8 +97,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/18/2019-07-16-vue-application-unit-test-strategy-and-practice-06-execution-suggestion/">Vue 应用单元测试的策略与实践 06 - 如何落地的几点建议</a>
+    <h1 class="article-title" itemprop="name">
+      Vue 应用单元测试的策略与实践 06 - 如何落地的几点建议
     </h1>
   
 
@@ -377,11 +204,23 @@
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/19/Use_Github_Create_Blog/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用Github搭建属于自己的博客
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
-
+</article>
 
 </section>
         
