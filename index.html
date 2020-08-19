@@ -253,6 +253,83 @@
 
 
   
+    <article id="post-Use_Github_Create_Blog3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/19/Use_Github_Create_Blog3/" class="article-date">
+  <time datetime="2020-08-19T14:37:54.000Z" itemprop="datePublished">2020-08-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/19/Use_Github_Create_Blog3/">使用Github搭建属于自己的博客222</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="使用Github搭建属于自己的博客222"><a href="#使用Github搭建属于自己的博客222" class="headerlink" title="使用Github搭建属于自己的博客222"></a>使用Github搭建属于自己的博客222</h2><p>记录使用 GitHub Pages建立个人主页。框架使用Hexo。</p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ol>
+<li>安装Node.js和配置好Node.js环境。下载链接如下：Node.js下载<br><a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></li>
+</ol>
+<p><img src="Use_Github_Create_Blog3/2020_08_19_nodejs_download.png" alt="image"></p>
+<p>下载完之后按照默认安装，环境变量会自动配置。安装完成后，打开cmd命令行，成功界面如下。<br><img src="Use_Github_Create_Blog3/2020_08_19_nodejs_install.png" alt="image"></p>
+<ol start="2">
+<li>安装Git和配置好Git环境，安装成功的象征就是在电脑上任何位置鼠标右键能够出现如下两个选择。<br><img src="2020_08_19_git_install.png" alt="image"></li>
+</ol>
+<p>配置环境变量，成功配置的界面如图：<br><img src="2020_08_19_git_config.png" alt="image"></p>
+<ol start="3">
+<li>注册并登陆Github。在GitHub新建仓库，仓库名称是 username.github.io<br><img src="2020_08_19_create_reposiorty.png" alt="image"></li>
+</ol>
+<p>在建好的项目中创建一个新的文件：readme.md<br><img src="2020_08_19_create_new_file.png" alt="image"><br><img src="2020_08_19_commit_new_file.png" alt="image"></p>
+<p>通过浏览器访问username.github.io将看到readme.md中的内容<br><img src="2020_08_19_default_blog.png" alt="image"></p>
+<ol start="4">
+<li>安装Hexo<br>​<code> npm install -g hexo-cli ​</code><br>输入 hexo -v 出现一系列的版本号就是安装成功啦，就像下面这样：<br>​<code> E:\&gt;hexo -v hexo-cli: 4.2.0 os: Windows_NT 6.1.7601 win32 x64 node: 12.17.0 v8: 7.8.279.23-node.37 uv: 1.37.0 zlib: 1.2.11 brotli: 1.0.7 ares: 1.16.0 modules: 72 nghttp2: 1.40.0 napi: 6 llhttp: 2.0.4 http_parser: 2.9.3 openssl: 1.1.1g cldr: 37.0 icu: 67.1 tz: 2019c unicode: 13.0 ​</code></li>
+</ol>
+<h2 id="生成博客"><a href="#生成博客" class="headerlink" title="生成博客"></a>生成博客</h2><ol start="5">
+<li>Hexo 初始化。在自己认为合适的地方创建文件夹，然后通过命令行进入到该文件夹下执行初始化命令。<br>​<code> hexo init ​</code></li>
+</ol>
+<p>初始化完成后，会有一个默认主题以及一个hello-word的默认文章。</p>
+<ol start="6">
+<li>生成博客（默认会有hello world的博客）<br>​<code> hexo generate  //可以简写成 hexo g ​</code></li>
+</ol>
+<ol start="7">
+<li><p>开启服务<br>​<code> hexo server  //可以简写成 hexo s ​</code></p>
+</li>
+<li><p>打开本地网页进行查看<br>​<code> localhost:4000 ​</code></p>
+</li>
+</ol>
+<h3 id="远程部署"><a href="#远程部署" class="headerlink" title="远程部署"></a>远程部署</h3><ol start="9">
+<li><p>安装部署到github.io的依赖:hexo-deployer-git<br>​<code> npm install hexo-deployer-git --save ​</code></p>
+</li>
+<li><p>安装好hexo-deployer-git后，修改博客目录配置文件”_config.yml”中的deploy字段：<br>​<code> deploy: type: git repo: git@github.com:zhenzhang20/zhenzhang20.github.io.git #修改成自己的项目地址 branch: master message: 自定义提交说明，这个字段可以没有 ​</code></p>
+</li>
+<li><p>推送到github.io<br>​<code> hexo deploy //可以简写成 hexo d ​</code></p>
+</li>
+<li><p>访问网站，可以看到和之前本地网页内容：<a target="_blank" rel="noopener" href="https://zhenzhang20.github.io/">https://zhenzhang20.github.io/</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/19/Use_Github_Create_Blog3/" data-id="cke0srnej0000jcovg47o689c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
 </section>
@@ -289,6 +366,10 @@
         
           <li>
             <a href="/2020/08/19/Use_Github_Create_Blog/">使用Github搭建属于自己的博客</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/19/Use_Github_Create_Blog3/">使用Github搭建属于自己的博客222</a>
           </li>
         
       </ul>
