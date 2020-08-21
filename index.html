@@ -1,23 +1,868 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Hexo</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content index posts-expand">
+          
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/22/2020-08-20-Hexo_Method_AddContent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/22/2020-08-20-Hexo_Method_AddContent/" class="post-title-link" itemprop="url">Hexo使用攻略-添加目录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-22 19:41:40" itemprop="dateCreated datePublished" datetime="2020-08-22T19:41:40+08:00">2020-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-20 21:10:20" itemprop="dateModified" datetime="2020-08-20T21:10:20+08:00">2020-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#1-an-zhuang">1. 安装</a></li>
+<li><a href="#2-pei-zhi">2. 配置</a></li>
+<li><a href="#3-shi-yong">3. 使用</a></li>
+<li><a href="#4-xiao-guo">4. 效果</a></li>
+<li><a href="#5-yi-ban-shi-yong">5. 一般使用</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+
+
+<h3><span id="1-an-zhuang">1. 安装</span><a href="#1-an-zhuang" class="header-anchor"></a></h3><p>首先，安装一个<a target="_blank" rel="noopener" href="https://github.com/bubkoo/hexo-toc/">hexo-toc</a>的插件，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-toc --save</span><br></pre></td></tr></table></figure>
+
+<h3><span id="2-pei-zhi">2. 配置</span><a href="#2-pei-zhi" class="header-anchor"></a></h3><p>配置一下站点配置文件_config.yml:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">toc:</span><br><span class="line">  maxdepth: 3</span><br><span class="line">  class: toc</span><br><span class="line">  slugify: transliteration</span><br><span class="line">  decodeEntities: false</span><br><span class="line">  anchor:</span><br><span class="line">    position: after</span><br><span class="line">    symbol: &#39;#&#39;</span><br><span class="line">    style: header-anchor</span><br></pre></td></tr></table></figure>
+
+<h3><span id="3-shi-yong">3. 使用</span><a href="#3-shi-yong" class="header-anchor"></a></h3><p>在Markdown文章中加入TOC的占位符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="4-xiao-guo">4. 效果</span><a href="#4-xiao-guo" class="header-anchor"></a></h3><img src="/2020/08/22/2020-08-20-Hexo_Method_AddContent/2020_08_20_hexo_content_demo.png" class title="hexo_content_demo">
+
+
+
+<h3><span id="5-yi-ban-shi-yong">5. 一般使用</span><a href="#5-yi-ban-shi-yong" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">toc:</span><br><span class="line">  maxdepth: 3</span><br><span class="line">  class: false</span><br><span class="line">  slugify: transliteration</span><br><span class="line">  decodeEntities: false</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/2020-08-21-Python37_Create_Venv/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/21/2020-08-21-Python37_Create_Venv/" class="post-title-link" itemprop="url">如何在windows下创建Python虚拟环境?</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-21 21:12:56" itemprop="dateCreated datePublished" datetime="2020-08-21T21:12:56+08:00">2020-08-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-20 21:40:03" itemprop="dateModified" datetime="2020-08-20T21:40:03+08:00">2020-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#jian-jie">简介</a></li>
+<li><a href="#chuang-jian-xu-ni-huan-jing">创建虚拟环境</a></li>
+<li><a href="#ru-he-zai-pycharm-zhong-shi-yong-pei-zhi-hao-de-virtualenv-huan-jing">如何在pycharm中使用配置好的virtualenv环境</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+
+
+<h3><span id="jian-jie">简介</span><a href="#jian-jie" class="header-anchor"></a></h3><p>Python3.7的版本可以通过venv模块创建虚拟环境。 venv模块提供了创建轻量级“虚拟环境”，提供与系统Python的隔离支持。每一个虚拟环境都有其自己的Python二进制（允许有不同的Python版本创作环境），并且可以拥有自己独立的一套Python包。</p>
+<h3><span id="chuang-jian-xu-ni-huan-jing">创建虚拟环境</span><a href="#chuang-jian-xu-ni-huan-jing" class="header-anchor"></a></h3><ul>
+<li>在当前目录创建虚拟环境：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python -m venv .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>激活虚拟环境</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&lt;venvpath&gt;&#x2F;Scripts&#x2F;activate.bat</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>退出虚拟环境</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&lt;venvpath&gt;&#x2F;Scripts&#x2F;deactivate.bat</span><br></pre></td></tr></table></figure>
+
+<h3><span id="ru-he-zai-pycharm-zhong-shi-yong-pei-zhi-hao-de-virtualenv-huan-jing">如何在pycharm中使用配置好的virtualenv环境</span><a href="#ru-he-zai-pycharm-zhong-shi-yong-pei-zhi-hao-de-virtualenv-huan-jing" class="header-anchor"></a></h3><ul>
+<li>打开setting添加本地python环境</li>
+</ul>
+<img src="/2020/08/21/2020-08-21-Python37_Create_Venv/2020_08_21_pycharm_venv_setting.png" class title="pycharm_venv_setting">
+
+<ul>
+<li>选择刚刚创建的虚拟环境</li>
+</ul>
+<img src="/2020/08/21/2020-08-21-Python37_Create_Venv/2020_08_21_pycharm_venv_setting_select.png" class title="pycharm_venv_setting_select">
+
+<ul>
+<li>设置完成后</li>
+</ul>
+<img src="/2020/08/21/2020-08-21-Python37_Create_Venv/2020_08_21_pycharm_venv_setting_use.png" class title="pycharm_venv_setting_use">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/2020-08-20-Hexo_Method_AddCategory_AddTag/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/21/2020-08-20-Hexo_Method_AddCategory_AddTag/" class="post-title-link" itemprop="url">Hexo使用攻略-添加分类及标签</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-21 18:47:40" itemprop="dateCreated datePublished" datetime="2020-08-21T18:47:40+08:00">2020-08-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-20 20:32:13" itemprop="dateModified" datetime="2020-08-20T20:32:13+08:00">2020-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3><span id="1-chuang-jian-ye-mian">1. 创建页面</span><a href="#1-chuang-jian-ye-mian" class="header-anchor"></a></h3><p>进入博客目录，执行命令下方命令，生成“分类”页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<h3><span id="2-bian-ji-ye-mian">2. 编辑页面</span><a href="#2-bian-ji-ye-mian" class="header-anchor"></a></h3><p>编辑新生成的页面文件：source/categories/index.md，打开后默认内容是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"> title: categories</span><br><span class="line"> date: 2019-04-22 14:47:40</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>添加 type: “categories” 到内容中，添加后是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date: 2017-05-27 13:47:40</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h3><span id="3-wen-zhang-fen-lei">3. 文章分类</span><a href="#3-wen-zhang-fen-lei" class="header-anchor"></a></h3><p>打开需要添加分类的文章，为其添加categories属性。下方的categories: WEB。表示这篇文章添加到到“WEB”这个分类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 题目</span><br><span class="line">date: 2020-08-21 18:47:40</span><br><span class="line">categories: WEB</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>注意：一篇文章只会添加到一个分类中，如果是多个，会放到第一个分类中。</p>
+<h3><span id="4-xian-shi-fen-lei-zai-cai-dan-zhong-tian-jia-lian-jie">4. 显示分类（在菜单中添加链接）</span><a href="#4-xian-shi-fen-lei-zai-cai-dan-zhong-tian-jia-lian-jie" class="header-anchor"></a></h3><p>编辑主题目录（不是根目录）下的 _config.yml ，将 menu 中的 categories: /categories 注释去掉（去掉#），如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F;</span><br><span class="line">  categories: &#x2F;categories</span><br><span class="line">  archives: &#x2F;archives</span><br><span class="line">  #tags: &#x2F;tags</span><br></pre></td></tr></table></figure>
+
+<h3><span id="5-tian-jia-category-map-ying-she">5. 添加category map映射</span><a href="#5-tian-jia-category-map-ying-she" class="header-anchor"></a></h3><p>修改 Hexo 的_configy.yml (不是模板主题里面的 _config.yml)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Category &amp; Tag</span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">  WEB: web</span><br><span class="line">  MySQL: mysql</span><br><span class="line">  中文名称: english_link_name</span><br><span class="line">  md 中分类名: web_access_link_name </span><br><span class="line">tag_map:</span><br></pre></td></tr></table></figure>
+
+<p>举例说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">md 中分类名: web_access_link_name</span><br></pre></td></tr></table></figure>
+
+<p>“md 中分类名”为md文件中的分类名称，“web_access_link_name ”为访问时的链接地址路径</p>
+<h3><span id="6-tian-jia-xiu-gai-tags">6. 添加修改tags</span><a href="#6-tian-jia-xiu-gai-tags" class="header-anchor"></a></h3><p>同样方法可以添加修改tags，区别是每个文章可以添加多个tag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 题目</span><br><span class="line">date: 2020-08-21 18:47:40</span><br><span class="line">categories: WEB</span><br><span class="line">tags: [WEB, HEXO]</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/20/2020-08-20-Hexo_Typora_Show_Picture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/20/2020-08-20-Hexo_Typora_Show_Picture/" class="post-title-link" itemprop="url">Hexo 与Typora同时显示图片</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-20 18:00:00 / Modified: 21:04:01" itemprop="dateCreated datePublished" datetime="2020-08-20T18:00:00+08:00">2020-08-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Hexo默认无法自动处理文章插入本地图片，需要通过扩展插件支持。</p>
+<h3><span id="xiu-gai-hexo-pei-zhi-wen-jian">修改Hexo 配置文件</span><a href="#xiu-gai-hexo-pei-zhi-wen-jian" class="header-anchor"></a></h3><ol>
+<li>修改配置文件 将配置文件_config.yml里面的post_asset_folder:false这个选项设置为true。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
+
+<h3><span id="an-zhuang-cha-jian">安装插件</span><a href="#an-zhuang-cha-jian" class="header-anchor"></a></h3><ol>
+<li>使用<a target="_blank" rel="noopener" href="https://github.com/xcodebuild/hexo-asset-image/">hexo-asset-image插件</a></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https:&#x2F;&#x2F;github.com&#x2F;xcodebuild&#x2F;hexo-asset-image  --save</span><br></pre></td></tr></table></figure>
+
+<p>说明： 不能使用下面的命令进行安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+<p>原因：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/hexo-asset-image-fork/">npm库中保存的是v1.0.0版本hexo-asset-image</a>,但v1.0.0与Hexo高版本<a target="_blank" rel="noopener" href="https://github.com/xcodebuild/hexo-asset-image/issues/51/">不兼容</a>，需要使用<a target="_blank" rel="noopener" href="https://github.com/xcodebuild/hexo-asset-image/">v0.0.5版本hexo-asset-image</a>。</li>
+</ul>
+<ol>
+<li>使用<a target="_blank" rel="noopener" href="https://github.com/cocowool/hexo-image-link/">hexo-image-link插件</a>（目前2020-08官方推荐）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-image-link  --save</span><br></pre></td></tr></table></figure>
+
+<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><ol>
+<li>在md文章中插入图片</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![demo_picture](2020-08-19-Use_Github_Create_Blog&#x2F;2020_08_19_commit_new_file.png)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>使用hexo g生成静态网页中的图片路径会自动更新为：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img alt&#x3D;&quot;image&quot; src&#x3D;&quot;&#x2F;2020&#x2F;08&#x2F;19&#x2F;2020-08-19-Use_Github_Create_Blog&#x2F;2020_08_19_commit_new_file.png&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中文件夹路径是hexo根据new_post_name参数自动生成。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/19/2020-08-19-Use_Github_Create_Blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/19/2020-08-19-Use_Github_Create_Blog/" class="post-title-link" itemprop="url">使用Github搭建属于自己的博客</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-19 22:37:54" itemprop="dateCreated datePublished" datetime="2020-08-19T22:37:54+08:00">2020-08-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-20 20:33:22" itemprop="dateModified" datetime="2020-08-20T20:33:22+08:00">2020-08-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2><span id></span><a href="#" class="header-anchor"></a></h2><p>记录使用 GitHub Pages建立个人主页。框架使用Hexo。</p>
+<h2><span id="an-zhuang-huan-jing">安装环境</span><a href="#an-zhuang-huan-jing" class="header-anchor"></a></h2><ol>
+<li>安装Node.js和配置好Node.js环境。下载链接如下：<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">Node.js下载</a></li>
+</ol>
+<img src="/2020/08/19/2020-08-19-Use_Github_Create_Blog/2020_08_19_nodejs_download.png" class title="image">
+
+<p>下载完之后按照默认安装，环境变量会自动配置。安装完成后，打开批处理命令行，成功界面如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\ZZ&gt;node -v</span><br><span class="line">v12.17.0</span><br><span class="line"></span><br><span class="line">C:\Users\ZZ&gt;npm -v</span><br><span class="line">6.14.4</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>安装Git和配置好Git环境，安装成功的象征就是在电脑上任何位置鼠标右键能够出现如下两个选择。<img src="/2020/08/19/2020-08-19-Use_Github_Create_Blog/2020_08_19_git_install.png" class title="image">
+
+</li>
+</ol>
+<p>在批处理界面可以查询git版本表明安装成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\ZZ&gt;git --version</span><br><span class="line">git version 2.26.2.windows.1</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>注册并登陆Github。在GitHub新建仓库，仓库名称是 username.github.io<img src="/2020/08/19/2020-08-19-Use_Github_Create_Blog/2020_08_19_create_reposiorty.png" class title="image">
+
+</li>
+</ol>
+<p>在建好的项目中创建一个新的文件：readme.md</p>
+<img src="/2020/08/19/2020-08-19-Use_Github_Create_Blog/2020_08_19_create_new_file.png" class title="image">
+<img src="/2020/08/19/2020-08-19-Use_Github_Create_Blog/2020_08_19_commit_new_file.png" class title="image">
+
+<p>通过浏览器访问username.github.io将看到readme.md中的内容</p>
+<img src="/2020/08/19/2020-08-19-Use_Github_Create_Blog/2020_08_19_default_blog.png" class title="image">
+
+<ol start="4">
+<li><p>安装Hexo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入 hexo -v 进行查看Hexo安装结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">E: hexo -v</span><br><span class="line">hexo-cli: 4.2.0</span><br><span class="line">os: Windows_NT 6.1.7601 win32 x64</span><br><span class="line">node: 12.17.0</span><br><span class="line">v8: 7.8.279.23-node.37</span><br><span class="line">uv: 1.37.0</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">brotli: 1.0.7</span><br><span class="line">ares: 1.16.0</span><br><span class="line">modules: 72</span><br><span class="line">nghttp2: 1.40.0</span><br><span class="line">napi: 6</span><br><span class="line">llhttp: 2.0.4</span><br><span class="line">http_parser: 2.9.3</span><br><span class="line">openssl: 1.1.1g</span><br><span class="line">cldr: 37.0</span><br><span class="line">icu: 67.1</span><br><span class="line">tz: 2019c</span><br><span class="line">unicode: 13.0</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>出现一系列的版本号就是安装成功</p>
+<h2><span id="sheng-cheng-bo-ke">生成博客</span><a href="#sheng-cheng-bo-ke" class="header-anchor"></a></h2><ol start="6">
+<li>Hexo 初始化。在自己认为合适的地方创建文件夹，然后通过命令行进入到该文件夹下执行初始化命令。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<p>初始化完成后，会有一个默认主题以及一个hello-word的默认文章。</p>
+<ol start="7">
+<li>生成博客（默认会有hello world的博客）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate  &#x2F;&#x2F;可以简写成 hexo g</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="8">
+<li><p>开启服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server  &#x2F;&#x2F;可以简写成 hexo s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开本地网页进行查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:4000</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3><span id="yuan-cheng-bu-shu">远程部署</span><a href="#yuan-cheng-bu-shu" class="header-anchor"></a></h3><ol start="10">
+<li><p>安装部署到github.io的依赖:hexo-deployer-git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装好hexo-deployer-git后，修改博客目录配置文件”_config.yml”中的deploy字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: git@github.com:zhenzhang20&#x2F;zhenzhang20.github.io.git #修改成自己的项目地址</span><br><span class="line">    branch: master</span><br><span class="line">    message: 自定义提交说明，这个字段可以没有</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>推送到github.io</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy &#x2F;&#x2F;可以简写成 hexo d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问网站，可以看到和之前本地网页相同内容表明安装成功。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
