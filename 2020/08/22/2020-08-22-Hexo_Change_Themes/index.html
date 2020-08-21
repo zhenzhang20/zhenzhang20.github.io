@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="卸甲山">
   <meta name="keywords" content="">
-  <title>Hexo与Typora同时显示图片 - </title>
+  <title>Hexo更换主题 - </title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -160,8 +160,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-20 18:00" pubdate>
-      2020年8月20日 晚上
+    <time datetime="2020-08-22 20:00" pubdate>
+      2020年8月22日 晚上
     </time>
   </div>
 
@@ -171,7 +171,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      236 字
+      416 字
     </span>
   
 
@@ -181,7 +181,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        分钟
     </span>
   
@@ -219,43 +219,87 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Hexo与Typora同时显示图片</h1>
+            <h1 style="display: none">Hexo更换主题</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>Hexo默认无法自动处理文章插入本地图片，需要通过扩展插件支持。</p>
-<h3><span id="xiu-gai-hexo-pei-zhi-wen-jian">修改Hexo 配置文件</span><a href="#xiu-gai-hexo-pei-zhi-wen-jian" class="header-anchor"></a></h3><ol>
-<li>修改配置文件 将配置文件_config.yml里面的post_asset_folder:false这个选项设置为true。</li>
+              <h2><span id="huo-qu-kai-yuan-de-hexo-zhu-ti">获取开源的 Hexo 主题</span><a href="#huo-qu-kai-yuan-de-hexo-zhu-ti" class="header-anchor"></a></h2><p>我们可以根据不同风格的网站设置不同的主题。<a target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo的主题官网</a>提供丰富的主题，比较流行的有：Next、Yilia等。 我选用的是<a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a>。原因： </p>
+<ol>
+<li>持续更新中</li>
+<li>非常详细的说明文档</li>
+<li>有微信群随时讨论</li>
 </ol>
-<pre><code class="hljs yaml"><span class="hljs-attr">post_asset_folder:</span> <span class="hljs-literal">true</span></code></pre>
+<h3><span id="an-zhuang-zhu-ti">安装主题</span><a href="#an-zhuang-zhu-ti" class="header-anchor"></a></h3><p>首先进入到你的本地博客目录下，克隆你选择的主题的GitHub仓库到本地。</p>
+<pre><code class="hljs awk">$ cd &lt;博客目录&gt;
+$ git clone https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/fluid-dev/</span>hexo-theme-fluid themes/fluid</code></pre>
 
-<h3><span id="an-zhuang-cha-jian">安装插件</span><a href="#an-zhuang-cha-jian" class="header-anchor"></a></h3><ol>
-<li>使用<a target="_blank" rel="noopener" href="https://github.com/xcodebuild/hexo-asset-image/">hexo-asset-image插件</a></li>
+<h3><span id="shi-yong-zhu-ti">使用主题</span><a href="#shi-yong-zhu-ti" class="header-anchor"></a></h3><p>打开博客目录下的 _config.yml，将主题修改为 fluid</p>
+<pre><code class="hljs avrasm"><span class="hljs-symbol">theme:</span> fluid</code></pre>
+
+<h3><span id="bu-shu-dao-fu-wu-qi">部署到服务器</span><a href="#bu-shu-dao-fu-wu-qi" class="header-anchor"></a></h3><p>使用hexo命令重新更新使主题生效。</p>
+<h3><span id="wo-de-she-zhi">我的设置</span><a href="#wo-de-she-zhi" class="header-anchor"></a></h3><ol>
+<li>为避免更新主题使个人设置被覆盖，在 _data 目录下创建 fluid_config.yml 文件，将 /theme/fluid/_config.yml 中全部配置复制到 fluid_config.yml。后续修改全部基于_data/fluid_config.yml 。</li>
+<li>我的网站修改的设置清单：</li>
 </ol>
-<pre><code class="hljs awk">npm install https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/xcodebuild/</span>hexo-asset-image  --save</code></pre>
-
-<p>说明： 不能使用下面的命令进行安装</p>
-<pre><code class="hljs maxima">npm install hexo-asset-<span class="hljs-built_in">image</span> --<span class="hljs-built_in">save</span></code></pre>
-
-<p>原因：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/hexo-asset-image-fork/">npm库中保存的是v1.0.0版本hexo-asset-image</a>,但v1.0.0与Hexo高版本<a target="_blank" rel="noopener" href="https://github.com/xcodebuild/hexo-asset-image/issues/51/">不兼容</a>，需要使用<a target="_blank" rel="noopener" href="https://github.com/xcodebuild/hexo-asset-image/">v0.0.5版本hexo-asset-image</a>。</li>
+<li>启用leancloud 做阅读量统计</li>
+<li>更改字体大小、博客标题、博客标语</li>
+<li>添加评论功能</li>
+<li>更改”about”中个人设置</li>
 </ul>
-<ol>
-<li>使用<a target="_blank" rel="noopener" href="https://github.com/cocowool/hexo-image-link/">hexo-image-link插件</a>（目前2020-08官方推荐）</li>
+<table>
+<thead>
+<tr>
+<th align="left">默认设置</th>
+<th align="left">修改后设置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">font_size: 16px</td>
+<td align="left">font_size: 18px</td>
+</tr>
+<tr>
+<td align="left">web_analytics:<br>enable: false</td>
+<td align="left">web_analytics:<br>enable: true</td>
+</tr>
+<tr>
+<td align="left">blog_title: Fluid</td>
+<td align="left">blog_title: ‘’</td>
+</tr>
+<tr>
+<td align="left">footer: <br>statistics: <br>enable: false <br>source: “busuanzi”</td>
+<td align="left">footer: <br>statistics: <br>enable: true <br>source: “leancloud”</td>
+</tr>
+<tr>
+<td align="left">banner_img_height: 100</td>
+<td align="left">banner_img_height: 70</td>
+</tr>
+<tr>
+<td align="left">slogan: <br>enable: true</td>
+<td align="left">slogan: <br>enable: false</td>
+</tr>
+<tr>
+<td align="left">views: <br>enable: false <br>source: “busuanzi”</td>
+<td align="left">views: <br>enable: true <br>source: “leancloud”</td>
+</tr>
+<tr>
+<td align="left">comments: <br>enable: false <br>type: disqus</td>
+<td align="left">comments: <br>enable: true <br>type: valine</td>
+</tr>
+<tr>
+<td align="left">about: <br>name: myname <br>introduce: ‘一句简短的介绍’</td>
+<td align="left">about: <br>name: 卸甲山 <br>introduce: ‘半导体从业者/程序员’</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>其他修改</li>
 </ol>
-<pre><code class="hljs sql">npm <span class="hljs-keyword">install</span> hexo-image-<span class="hljs-keyword">link</span>  <span class="hljs-comment">--save</span></code></pre>
-
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><ol>
-<li>在md文章中插入图片</li>
-</ol>
-<pre><code class="hljs markdown">![<span class="hljs-string">demo_picture</span>](<span class="hljs-link">2020-08-19-Use_Github_Create_Blog/2020_08_19_commit_new_file.png</span>)</code></pre>
-
-<ol>
-<li>使用hexo g生成静态网页中的图片路径会自动更新为：</li>
-</ol>
-<pre><code class="hljs routeros">&lt;img <span class="hljs-attribute">alt</span>=<span class="hljs-string">&quot;image&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-string">&quot;/2020/08/19/2020-08-19-Use_Github_Create_Blog/2020_08_19_commit_new_file.png&quot;</span>&gt;</code></pre>
-
-<p>其中文件夹路径是hexo根据new_post_name参数自动生成。</p>
+<ul>
+<li>修改主题目录~fluid\source\img中的默认图片为合适的图片内容</li>
+<li>创建about页面并增加相应的内容</li>
+</ul>
+<h3><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/">fluid配置指南</a></p>
+</blockquote>
 
             </div>
             <hr>
@@ -288,18 +332,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/21/2020-08-20-Hexo_Method_AddCategory_AddTag/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo使用攻略-添加分类及标签</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/08/19/2020-08-19-Use_Github_Create_Blog/">
-                        <span class="hidden-mobile">使用Github搭建属于自己的博客</span>
+                      <a href="/2020/08/22/2020-08-20-Hexo_Method_AddContent/">
+                        <span class="hidden-mobile">Hexo使用攻略-添加目录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -581,7 +619,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/08/20/2020-08-20-Hexo_Typora_Show_Picture/');
+          var target = decodeURI('/2020/08/22/2020-08-22-Hexo_Change_Themes/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -675,7 +713,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Hexo与Typora同时显示图片&nbsp;",
+        "Hexo更换主题&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

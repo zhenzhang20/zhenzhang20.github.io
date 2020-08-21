@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Hexo更换主题</title>
+    <link href="/2020/08/22/2020-08-22-Hexo_Change_Themes/"/>
+    <url>/2020/08/22/2020-08-22-Hexo_Change_Themes/</url>
+    
+    <content type="html"><![CDATA[<h2><span id="huo-qu-kai-yuan-de-hexo-zhu-ti">获取开源的 Hexo 主题</span><a href="#huo-qu-kai-yuan-de-hexo-zhu-ti" class="header-anchor"></a></h2><p>我们可以根据不同风格的网站设置不同的主题。<a href="https://hexo.io/themes/">Hexo的主题官网</a>提供丰富的主题，比较流行的有：Next、Yilia等。 我选用的是<a href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a>。原因： </p><ol><li>持续更新中</li><li>非常详细的说明文档</li><li>有微信群随时讨论</li></ol><h3><span id="an-zhuang-zhu-ti">安装主题</span><a href="#an-zhuang-zhu-ti" class="header-anchor"></a></h3><p>首先进入到你的本地博客目录下，克隆你选择的主题的GitHub仓库到本地。</p><pre><code class="hljs awk">$ cd &lt;博客目录&gt;$ git clone https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/fluid-dev/</span>hexo-theme-fluid themes/fluid</code></pre><h3><span id="shi-yong-zhu-ti">使用主题</span><a href="#shi-yong-zhu-ti" class="header-anchor"></a></h3><p>打开博客目录下的 _config.yml，将主题修改为 fluid</p><pre><code class="hljs avrasm"><span class="hljs-symbol">theme:</span> fluid</code></pre><h3><span id="bu-shu-dao-fu-wu-qi">部署到服务器</span><a href="#bu-shu-dao-fu-wu-qi" class="header-anchor"></a></h3><p>使用hexo命令重新更新使主题生效。</p><h3><span id="wo-de-she-zhi">我的设置</span><a href="#wo-de-she-zhi" class="header-anchor"></a></h3><ol><li>为避免更新主题使个人设置被覆盖，在 _data 目录下创建 fluid_config.yml 文件，将 /theme/fluid/_config.yml 中全部配置复制到 fluid_config.yml。后续修改全部基于_data/fluid_config.yml 。</li><li>我的网站修改的设置清单：</li></ol><ul><li>启用leancloud 做阅读量统计</li><li>更改字体大小、博客标题、博客标语</li><li>添加评论功能</li><li>更改”about”中个人设置</li></ul><table><thead><tr><th align="left">默认设置</th><th align="left">修改后设置</th></tr></thead><tbody><tr><td align="left">font_size: 16px</td><td align="left">font_size: 18px</td></tr><tr><td align="left">web_analytics:<br>enable: false</td><td align="left">web_analytics:<br>enable: true</td></tr><tr><td align="left">blog_title: Fluid</td><td align="left">blog_title: ‘’</td></tr><tr><td align="left">footer: <br>statistics: <br>enable: false <br>source: “busuanzi”</td><td align="left">footer: <br>statistics: <br>enable: true <br>source: “leancloud”</td></tr><tr><td align="left">banner_img_height: 100</td><td align="left">banner_img_height: 70</td></tr><tr><td align="left">slogan: <br>enable: true</td><td align="left">slogan: <br>enable: false</td></tr><tr><td align="left">views: <br>enable: false <br>source: “busuanzi”</td><td align="left">views: <br>enable: true <br>source: “leancloud”</td></tr><tr><td align="left">comments: <br>enable: false <br>type: disqus</td><td align="left">comments: <br>enable: true <br>type: valine</td></tr><tr><td align="left">about: <br>name: myname <br>introduce: ‘一句简短的介绍’</td><td align="left">about: <br>name: 卸甲山 <br>introduce: ‘半导体从业者/程序员’</td></tr></tbody></table><ol start="3"><li>其他修改</li></ol><ul><li>修改主题目录~fluid\source\img中的默认图片为合适的图片内容</li><li>创建about页面并增加相应的内容</li></ul><h3><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h3><blockquote><p><a href="https://hexo.fluid-dev.com/docs/">fluid配置指南</a></p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Web</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Web</tag>
+      
+      <tag>Hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hexo使用攻略-添加目录</title>
     <link href="/2020/08/22/2020-08-20-Hexo_Method_AddContent/"/>
     <url>/2020/08/22/2020-08-20-Hexo_Method_AddContent/</url>
@@ -85,7 +112,7 @@
   
   
   <entry>
-    <title>Hexo 与Typora同时显示图片</title>
+    <title>Hexo与Typora同时显示图片</title>
     <link href="/2020/08/20/2020-08-20-Hexo_Typora_Show_Picture/"/>
     <url>/2020/08/20/2020-08-20-Hexo_Typora_Show_Picture/</url>
     
