@@ -17,10 +17,20 @@
   <meta name="description" content="">
   <meta name="author" content="卸甲山">
   <meta name="keywords" content="">
-  <title>标签 - Hexo - </title>
+  <title>2020-08-23-Hexo_Change_Domain - </title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +53,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,6 +157,48 @@
             </span>
 
             
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-22 12:22" pubdate>
+      2020年8月22日 中午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      638 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -157,67 +209,211 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 6 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/08/22/2020-08-22-Hexo_Change_Themes/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo使用攻略-更换主题</span>
-      <time style="float: right;">08-22</time>
-    </a>
-  
-    
-    <a href="/2020/08/22/2020-08-20-Hexo_Method_AddContent/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo使用攻略-添加目录</span>
-      <time style="float: right;">08-22</time>
-    </a>
-  
-    
-    <a href="/2020/08/22/2020-08-23-Hexo-Change-Domain/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">2020-08-23-Hexo_Change_Domain</span>
-      <time style="float: right;">08-22</time>
-    </a>
-  
-    
-    <a href="/2020/08/21/2020-08-20-Hexo_Method_AddCategory_AddTag/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo使用攻略-添加分类及标签</span>
-      <time style="float: right;">08-21</time>
-    </a>
-  
-    
-    <a href="/2020/08/20/2020-08-20-Hexo_Typora_Show_Picture/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo使用攻略-Hexo与Typora同时显示图片</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2020/08/19/2020-08-19-Use_Github_Create_Blog/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">使用Github搭建属于自己的博客</span>
-      <time style="float: right;">08-19</time>
-    </a>
-  
-</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">2020-08-23-Hexo_Change_Domain</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>博客搭建好后，我们可以通过之前设置好的GitHub仓库地址来访问，比如我的：<a target="_blank" rel="noopener" href="http://zhenzhang20.github.io/">http://zhenzhang20.github.io</a>，而且GitHub是免费替我们托管的的。如果我们想要设置自己的域名，我们可以购买域名并进行解析绑定。</p>
+<h3><span id="huo-qu-github-io-ip-di-zhi">获取github.io IP地址</span><a href="#huo-qu-github-io-ip-di-zhi" class="header-anchor"></a></h3><p>获取个人在github.io站点的二级域名IP地址，我获取到的地址是 185.199.108.153 </p>
+<pre><code class="hljs angelscript">C:\Users\Administrator&gt;ping zhenzhang20.github.io <span class="hljs-number">-4</span>
+
+正在 Ping zhenzhang20.github.io [<span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span>] 具有 <span class="hljs-number">32</span> 字节的数据:
+来自 <span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的回复: 字节=<span class="hljs-number">32</span> 时间=<span class="hljs-number">88</span>ms TTL=<span class="hljs-number">45</span>
+来自 <span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的回复: 字节=<span class="hljs-number">32</span> 时间=<span class="hljs-number">89</span>ms TTL=<span class="hljs-number">45</span>
+来自 <span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的回复: 字节=<span class="hljs-number">32</span> 时间=<span class="hljs-number">83</span>ms TTL=<span class="hljs-number">45</span>
+来自 <span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的回复: 字节=<span class="hljs-number">32</span> 时间=<span class="hljs-number">74</span>ms TTL=<span class="hljs-number">45</span>
+
+<span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的 Ping 统计信息:
+    数据包: 已发送 = <span class="hljs-number">4</span>，已接收 = <span class="hljs-number">4</span>，丢失 = <span class="hljs-number">0</span> (<span class="hljs-number">0</span>% 丢失)，
+往返行程的估计时间(以毫秒为单位):
+    最短 = <span class="hljs-number">74</span>ms，最长 = <span class="hljs-number">89</span>ms，平均 = <span class="hljs-number">83</span>ms</code></pre>
 
 
 
-              </div>
+<h3><span id="yu-ming-she-zhi">域名设置</span><a href="#yu-ming-she-zhi" class="header-anchor"></a></h3><p>在域名供应商处购买域名，域名购买成功之后进行实名认证。我是在<a target="_blank" rel="noopener" href="https://www.aliyun.com/">阿里云</a>购买，以下步骤基于阿里云设置。</p>
+<ol>
+<li><p>进入域名控制台，选择一个域名并点击相应的“解析”选项</p>
+<img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain.png" srcset="/img/loading.gif" class>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li>进入域名解析界面，如下：</li>
+</ol>
+<img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_setting.png" srcset="/img/loading.gif" class>
+
+
+
+<ol start="3">
+<li>选择“添加记录”。</li>
+</ol>
+<p>   第一条：记录A型，主机记录为“@”，记录值为上面获取到的IP地址”185.199.108.153”</p>
+<p>   第二条：记录CNAME型，主机记录为“www”，记录值为个人在github.io站点的二级域名”zhenzhang20.github.io”</p>
+<p>   同时添加两条记录可保证无论是否添加www都可以访问到目标地址。</p>
+   <img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_add_record.png" srcset="/img/loading.gif" class>
+
+
+
+
+
+<ol start="4">
+<li>添加完后后内容如下：</li>
+</ol>
+<img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_add_record_finish.png" srcset="/img/loading.gif" class>
+
+
+
+
+
+<ol start="5">
+<li><p>在博客的source 目录下，创建CNAME文件，文件内容为选定的域名地址</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">www</span><span class="hljs-selector-class">.xiejiashan8</span><span class="hljs-selector-class">.com</span></code></pre>
+
+
+
+</li>
+</ol>
+<p>   这一步的目的是：GitHub 会读取你的CNAME 内容，GitHub 服务器会设置xiejiashan8.com 为你的主域名，然后将zhenzhang20.github.io 重定向到xiejiashan8.com。</p>
+<h3><span id="gei-github-xiang-mu-tian-jia">给github项目添加</span><a href="#gei-github-xiang-mu-tian-jia" class="header-anchor"></a></h3><ol start="6">
+<li><p>在项目的Settings中，添加Custom domain到自己的域名</p>
+<img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-github_pages_custom_domain.png" srcset="/img/loading.gif" class>
+
+
+
+
+
+
+
+
+
+</li>
+</ol>
+<h3><span id="can-kao-shuo-ming">参考说明</span><a href="#can-kao-shuo-ming" class="header-anchor"></a></h3><ul>
+<li>A记录：地址记录，用来指定域名的IPv4地址（如：8.8.8.8），如果需要将域名指向一个IP地址，就需要添加A记录。</li>
+<li>CNAME： 如果需要将域名指向另一个域名，再由另一个域名提供ip地址，就需要添加CNAME记录。</li>
+</ul>
+<ul>
+<li><p>www：解析后的域名为<a href="www.zhenzhang20.github.io">www.zhenzhang20.github.io</a></p>
+</li>
+<li><p>@：直接解析主域名 <a target="_blank" rel="noopener" href="https://zhenzhang20.github.io/">zhenzhang20.github.io</a></p>
+</li>
+</ul>
+
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/web/">Web</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Web/">Web</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/22/2020-08-20-Hexo_Method_AddContent/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hexo使用攻略-添加目录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/21/2020-08-21-Python37_Create_Venv/">
+                        <span class="hidden-mobile">如何在windows下创建Python虚拟环境?</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz",
+          app_key: "uHvLSWs7HqeJQ7pNWUgaJ4cL",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://fua79ccb.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -435,10 +631,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/tags/Hexo/index.html');
+          var target = decodeURI('/2020/08/22/2020-08-23-Hexo-Change-Domain/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -500,6 +696,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -507,7 +728,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - Hexo&nbsp;",
+        "2020-08-23-Hexo_Change_Domain&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -522,6 +743,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -535,6 +771,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

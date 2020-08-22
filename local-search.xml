@@ -71,6 +71,33 @@
   
   
   <entry>
+    <title>2020-08-23-Hexo_Change_Domain</title>
+    <link href="/2020/08/22/2020-08-23-Hexo-Change-Domain/"/>
+    <url>/2020/08/22/2020-08-23-Hexo-Change-Domain/</url>
+    
+    <content type="html"><![CDATA[<p>博客搭建好后，我们可以通过之前设置好的GitHub仓库地址来访问，比如我的：<a href="http://zhenzhang20.github.io/">http://zhenzhang20.github.io</a>，而且GitHub是免费替我们托管的的。如果我们想要设置自己的域名，我们可以购买域名并进行解析绑定。</p><h3><span id="huo-qu-github-io-ip-di-zhi">获取github.io IP地址</span><a href="#huo-qu-github-io-ip-di-zhi" class="header-anchor"></a></h3><p>获取个人在github.io站点的二级域名IP地址，我获取到的地址是 185.199.108.153 </p><pre><code class="hljs angelscript">C:\Users\Administrator&gt;ping zhenzhang20.github.io <span class="hljs-number">-4</span>正在 Ping zhenzhang20.github.io [<span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span>] 具有 <span class="hljs-number">32</span> 字节的数据:来自 <span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的回复: 字节=<span class="hljs-number">32</span> 时间=<span class="hljs-number">88</span>ms TTL=<span class="hljs-number">45</span>来自 <span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的回复: 字节=<span class="hljs-number">32</span> 时间=<span class="hljs-number">89</span>ms TTL=<span class="hljs-number">45</span>来自 <span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的回复: 字节=<span class="hljs-number">32</span> 时间=<span class="hljs-number">83</span>ms TTL=<span class="hljs-number">45</span>来自 <span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的回复: 字节=<span class="hljs-number">32</span> 时间=<span class="hljs-number">74</span>ms TTL=<span class="hljs-number">45</span><span class="hljs-number">185.199</span><span class="hljs-number">.108</span><span class="hljs-number">.153</span> 的 Ping 统计信息:    数据包: 已发送 = <span class="hljs-number">4</span>，已接收 = <span class="hljs-number">4</span>，丢失 = <span class="hljs-number">0</span> (<span class="hljs-number">0</span>% 丢失)，往返行程的估计时间(以毫秒为单位):    最短 = <span class="hljs-number">74</span>ms，最长 = <span class="hljs-number">89</span>ms，平均 = <span class="hljs-number">83</span>ms</code></pre><h3><span id="yu-ming-she-zhi">域名设置</span><a href="#yu-ming-she-zhi" class="header-anchor"></a></h3><p>在域名供应商处购买域名，域名购买成功之后进行实名认证。我是在<a href="https://www.aliyun.com/">阿里云</a>购买，以下步骤基于阿里云设置。</p><ol><li><p>进入域名控制台，选择一个域名并点击相应的“解析”选项</p><img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain.png" class></li></ol><ol start="2"><li>进入域名解析界面，如下：</li></ol><img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_setting.png" class><ol start="3"><li>选择“添加记录”。</li></ol><p>   第一条：记录A型，主机记录为“@”，记录值为上面获取到的IP地址”185.199.108.153”</p><p>   第二条：记录CNAME型，主机记录为“www”，记录值为个人在github.io站点的二级域名”zhenzhang20.github.io”</p><p>   同时添加两条记录可保证无论是否添加www都可以访问到目标地址。</p>   <img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_add_record.png" class><ol start="4"><li>添加完后后内容如下：</li></ol><img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_add_record_finish.png" class><ol start="5"><li><p>在博客的source 目录下，创建CNAME文件，文件内容为选定的域名地址</p><pre><code class="hljs css"><span class="hljs-selector-tag">www</span><span class="hljs-selector-class">.xiejiashan8</span><span class="hljs-selector-class">.com</span></code></pre></li></ol><p>   这一步的目的是：GitHub 会读取你的CNAME 内容，GitHub 服务器会设置xiejiashan8.com 为你的主域名，然后将zhenzhang20.github.io 重定向到xiejiashan8.com。</p><h3><span id="gei-github-xiang-mu-tian-jia">给github项目添加</span><a href="#gei-github-xiang-mu-tian-jia" class="header-anchor"></a></h3><ol start="6"><li><p>在项目的Settings中，添加Custom domain到自己的域名</p><img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-github_pages_custom_domain.png" class></li></ol><h3><span id="can-kao-shuo-ming">参考说明</span><a href="#can-kao-shuo-ming" class="header-anchor"></a></h3><ul><li>A记录：地址记录，用来指定域名的IPv4地址（如：8.8.8.8），如果需要将域名指向一个IP地址，就需要添加A记录。</li><li>CNAME： 如果需要将域名指向另一个域名，再由另一个域名提供ip地址，就需要添加CNAME记录。</li></ul><ul><li><p>www：解析后的域名为<a href="www.zhenzhang20.github.io">www.zhenzhang20.github.io</a></p></li><li><p>@：直接解析主域名 <a href="https://zhenzhang20.github.io/">zhenzhang20.github.io</a></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Web</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Web</tag>
+      
+      <tag>Hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>如何在windows下创建Python虚拟环境?</title>
     <link href="/2020/08/21/2020-08-21-Python37_Create_Venv/"/>
     <url>/2020/08/21/2020-08-21-Python37_Create_Venv/</url>
