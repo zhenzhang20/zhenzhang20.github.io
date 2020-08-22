@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="卸甲山">
   <meta name="keywords" content="">
-  <title>2020-08-23-Hexo_Change_Domain - </title>
+  <title>Hexo使用攻略-更换域名 - </title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -160,8 +160,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-22 12:22" pubdate>
-      2020年8月22日 中午
+    <time datetime="2020-08-23 12:22" pubdate>
+      2020年8月23日 中午
     </time>
   </div>
 
@@ -171,7 +171,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      638 字
+      677 字
     </span>
   
 
@@ -181,7 +181,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      8
        分钟
     </span>
   
@@ -219,7 +219,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">2020-08-23-Hexo_Change_Domain</h1>
+            <h1 style="display: none">Hexo使用攻略-更换域名</h1>
             
             <div class="markdown-body" id="post-body">
               <p>博客搭建好后，我们可以通过之前设置好的GitHub仓库地址来访问，比如我的：<a target="_blank" rel="noopener" href="http://zhenzhang20.github.io/">http://zhenzhang20.github.io</a>，而且GitHub是免费替我们托管的的。如果我们想要设置自己的域名，我们可以购买域名并进行解析绑定。</p>
@@ -242,7 +242,7 @@
 <h3><span id="yu-ming-she-zhi">域名设置</span><a href="#yu-ming-she-zhi" class="header-anchor"></a></h3><p>在域名供应商处购买域名，域名购买成功之后进行实名认证。我是在<a target="_blank" rel="noopener" href="https://www.aliyun.com/">阿里云</a>购买，以下步骤基于阿里云设置。</p>
 <ol>
 <li><p>进入域名控制台，选择一个域名并点击相应的“解析”选项</p>
-<img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain.png" srcset="/img/loading.gif" class>
+<img src="/2020/08/23/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain.png" srcset="/img/loading.gif" class>
 
 
 
@@ -251,7 +251,7 @@
 <ol start="2">
 <li>进入域名解析界面，如下：</li>
 </ol>
-<img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_setting.png" srcset="/img/loading.gif" class>
+<img src="/2020/08/23/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_setting.png" srcset="/img/loading.gif" class>
 
 
 
@@ -261,7 +261,7 @@
 <p>   第一条：记录A型，主机记录为“@”，记录值为上面获取到的IP地址”185.199.108.153”</p>
 <p>   第二条：记录CNAME型，主机记录为“www”，记录值为个人在github.io站点的二级域名”zhenzhang20.github.io”</p>
 <p>   同时添加两条记录可保证无论是否添加www都可以访问到目标地址。</p>
-   <img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_add_record.png" srcset="/img/loading.gif" class>
+   <img src="/2020/08/23/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_add_record.png" srcset="/img/loading.gif" class>
 
 
 
@@ -270,7 +270,7 @@
 <ol start="4">
 <li>添加完后后内容如下：</li>
 </ol>
-<img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_add_record_finish.png" srcset="/img/loading.gif" class>
+<img src="/2020/08/23/2020-08-23-Hexo-Change-Domain/2020-08-23-aliyun_domain_add_record_finish.png" srcset="/img/loading.gif" class>
 
 
 
@@ -285,21 +285,21 @@
 </li>
 </ol>
 <p>   这一步的目的是：GitHub 会读取你的CNAME 内容，GitHub 服务器会设置xiejiashan8.com 为你的主域名，然后将zhenzhang20.github.io 重定向到xiejiashan8.com。</p>
-<h3><span id="gei-github-xiang-mu-tian-jia">给github项目添加</span><a href="#gei-github-xiang-mu-tian-jia" class="header-anchor"></a></h3><ol start="6">
+<h3><span id="github-pages-she-zhi">Github Pages 设置</span><a href="#github-pages-she-zhi" class="header-anchor"></a></h3><ol start="6">
 <li><p>在项目的Settings中，添加Custom domain到自己的域名</p>
-<img src="/2020/08/22/2020-08-23-Hexo-Change-Domain/2020-08-23-github_pages_custom_domain.png" srcset="/img/loading.gif" class>
-
-
-
-
-
-
+<img src="/2020/08/23/2020-08-23-Hexo-Change-Domain/2020-08-23-github_pages_custom_domain.png" srcset="/img/loading.gif" class>
 
 
 
 </li>
 </ol>
-<h3><span id="can-kao-shuo-ming">参考说明</span><a href="#can-kao-shuo-ming" class="header-anchor"></a></h3><ul>
+<h3><span id="da-kai-bo-ke">打开博客</span><a href="#da-kai-bo-ke" class="header-anchor"></a></h3><ol start="7">
+<li><p>设置完成后，重新发布自己的博客内容。</p>
+</li>
+<li><p>此时在浏览器打开 zhenzhang20.github.io 会被重定向到 xiejiashan8.com</p>
+</li>
+</ol>
+<h4><span id="yu-ming-jie-xi-shuo-ming">域名解析说明</span><a href="#yu-ming-jie-xi-shuo-ming" class="header-anchor"></a></h4><ul>
 <li>A记录：地址记录，用来指定域名的IPv4地址（如：8.8.8.8），如果需要将域名指向一个IP地址，就需要添加A记录。</li>
 <li>CNAME： 如果需要将域名指向另一个域名，再由另一个域名提供ip地址，就需要添加CNAME记录。</li>
 </ul>
@@ -341,18 +341,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/22/2020-08-20-Hexo_Method_AddContent/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo使用攻略-添加目录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/08/21/2020-08-21-Python37_Create_Venv/">
-                        <span class="hidden-mobile">如何在windows下创建Python虚拟环境?</span>
+                      <a href="/2020/08/22/2020-08-22-Hexo_General_Setting/">
+                        <span class="hidden-mobile">Hexo使用攻略-常用设置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -634,7 +628,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/08/22/2020-08-23-Hexo-Change-Domain/');
+          var target = decodeURI('/2020/08/23/2020-08-23-Hexo-Change-Domain/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -728,7 +722,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "2020-08-23-Hexo_Change_Domain&nbsp;",
+        "Hexo使用攻略-更换域名&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
