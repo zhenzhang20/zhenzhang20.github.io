@@ -112,6 +112,19 @@
   
   
   <entry>
+    <title>2020-08-23-Github_SSH_Setting</title>
+    <link href="/2020/08/22/2020-08-23-Github-SSH-Setting/"/>
+    <url>/2020/08/22/2020-08-23-Github-SSH-Setting/</url>
+    
+    <content type="html"><![CDATA[<p>使用SSH密钥，您可以在每次访问时无需提供用户名或密码即可连接到GitHub。</p><h1><span id="jian-cha-ben-di-shi-fou-cun-zai-ssh-keys">检查本地是否存在SSH keys</span><a href="#jian-cha-ben-di-shi-fou-cun-zai-ssh-keys" class="header-anchor"></a></h1><ol><li>打开Git Bash，输入以下命令：</li></ol><h1><span id="sheng-cheng-yi-ge-xin-de-ssh-key">生成一个新的SSH key</span><a href="#sheng-cheng-yi-ge-xin-de-ssh-key" class="header-anchor"></a></h1><ol><li>打开Git Bash，输入以下命令：</li></ol><pre><code class="hljs bash">ssh-keygen -t rsa -b 4096 -C <span class="hljs-string">&quot;your_email@example.com&quot;</span></code></pre><p>一台电脑只需要一个 SSH key <em>（<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html">SSH 原理与运用</a>）</em></p><p>一个 SSH key 可以访问你的所有仓库，即使你有 1000000 个仓库，都没问题</p><p>如果你新买了电脑，就在新电脑上重新生成一个 SSH key，把这个 key 也上传到 GitHub，它可以和之前的 key 共存在 GitHub 上</p><p>如果你把 key 从电脑上删除了，重新生成一个 key 即可，替换之前的 key</p><p>作者：饥人谷_师叔<br>链接：<a href="https://www.jianshu.com/p/c9aa544a11d3">https://www.jianshu.com/p/c9aa544a11d3</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>如何在windows下创建Python虚拟环境?</title>
     <link href="/2020/08/21/2020-08-21-Python37_Create_Venv/"/>
     <url>/2020/08/21/2020-08-21-Python37_Create_Venv/</url>

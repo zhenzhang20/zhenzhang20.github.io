@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="卸甲山">
   <meta name="keywords" content="">
-  <title>Hexo使用攻略-添加目录 - </title>
+  <title>2020-08-23-Github_SSH_Setting - </title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -160,8 +160,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-22 19:41" pubdate>
-      2020年8月22日 晚上
+    <time datetime="2020-08-22 16:46" pubdate>
+      2020年8月22日 下午
     </time>
   </div>
 
@@ -171,7 +171,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      90 字
+      245 字
     </span>
   
 
@@ -181,7 +181,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      2
        分钟
     </span>
   
@@ -219,58 +219,49 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Hexo使用攻略-添加目录</h1>
+            <h1 style="display: none">2020-08-23-Github_SSH_Setting</h1>
             
             <div class="markdown-body" id="post-body">
-              <h3><span id="1-an-zhuang">1. 安装</span><a href="#1-an-zhuang" class="header-anchor"></a></h3><p>首先，安装一个<a target="_blank" rel="noopener" href="https://github.com/bubkoo/hexo-toc/">hexo-toc</a>的插件，代码如下：</p>
-<pre><code class="hljs sql">npm <span class="hljs-keyword">install</span> hexo-toc <span class="hljs-comment">--save</span></code></pre>
-
-<h3><span id="2-pei-zhi">2. 配置</span><a href="#2-pei-zhi" class="header-anchor"></a></h3><p>配置一下站点配置文件_config.yml:</p>
-<pre><code class="hljs yaml"><span class="hljs-attr">toc:</span>
-  <span class="hljs-attr">maxdepth:</span> <span class="hljs-number">3</span>
-  <span class="hljs-attr">class:</span> <span class="hljs-string">toc</span>
-  <span class="hljs-attr">slugify:</span> <span class="hljs-string">transliteration</span>
-  <span class="hljs-attr">decodeEntities:</span> <span class="hljs-literal">false</span>
-  <span class="hljs-attr">anchor:</span>
-    <span class="hljs-attr">position:</span> <span class="hljs-string">after</span>
-    <span class="hljs-attr">symbol:</span> <span class="hljs-string">&#x27;#&#x27;</span>
-    <span class="hljs-attr">style:</span> <span class="hljs-string">header-anchor</span></code></pre>
-
-<h3><span id="3-shi-yong">3. 使用</span><a href="#3-shi-yong" class="header-anchor"></a></h3><p>在Markdown文章中加入TOC的占位符：</p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- toc --&gt;</span></code></pre>
-
-<h3><span id="4-xiao-guo">4. 效果</span><a href="#4-xiao-guo" class="header-anchor"></a></h3><img src="/2020/08/22/2020-08-20-Hexo_Method_AddContent/2020_08_20_hexo_content_demo.png" srcset="/img/loading.gif" class title="hexo_content_demo">
+              <p>使用SSH密钥，您可以在每次访问时无需提供用户名或密码即可连接到GitHub。</p>
+<h1><span id="jian-cha-ben-di-shi-fou-cun-zai-ssh-keys">检查本地是否存在SSH keys</span><a href="#jian-cha-ben-di-shi-fou-cun-zai-ssh-keys" class="header-anchor"></a></h1><ol>
+<li>打开Git Bash，输入以下命令：</li>
+</ol>
+<h1><span id="sheng-cheng-yi-ge-xin-de-ssh-key">生成一个新的SSH key</span><a href="#sheng-cheng-yi-ge-xin-de-ssh-key" class="header-anchor"></a></h1><ol>
+<li>打开Git Bash，输入以下命令：</li>
+</ol>
+<pre><code class="hljs bash">ssh-keygen -t rsa -b 4096 -C <span class="hljs-string">&quot;your_email@example.com&quot;</span></code></pre>
 
 
 
-<h3><span id="5-yi-ban-shi-yong">5. 一般使用</span><a href="#5-yi-ban-shi-yong" class="header-anchor"></a></h3><pre><code class="hljs yaml"><span class="hljs-attr">toc:</span>
-  <span class="hljs-attr">maxdepth:</span> <span class="hljs-number">3</span>
-  <span class="hljs-attr">class:</span> <span class="hljs-literal">false</span>
-  <span class="hljs-attr">slugify:</span> <span class="hljs-string">transliteration</span>
-  <span class="hljs-attr">decodeEntities:</span> <span class="hljs-literal">false</span></code></pre>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>一台电脑只需要一个 SSH key <em>（<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html">SSH 原理与运用</a>）</em></p>
+<p>一个 SSH key 可以访问你的所有仓库，即使你有 1000000 个仓库，都没问题</p>
+<p>如果你新买了电脑，就在新电脑上重新生成一个 SSH key，把这个 key 也上传到 GitHub，它可以和之前的 key 共存在 GitHub 上</p>
+<p>如果你把 key 从电脑上删除了，重新生成一个 key 即可，替换之前的 key</p>
+<p>作者：饥人谷_师叔<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c9aa544a11d3">https://www.jianshu.com/p/c9aa544a11d3</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/web/">Web</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Web/">Web</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
-                    
-                  </div>
                 
               </div>
               
@@ -281,9 +272,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/22/2020-08-22-Hexo_Change_Themes/">
+                      <a href="/2020/08/22/2020-08-20-Hexo_Method_AddContent/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo使用攻略-更换主题</span>
+                        <span class="hidden-mobile">Hexo使用攻略-添加目录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -291,8 +282,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/08/22/2020-08-23-Github-SSH-Setting/">
-                        <span class="hidden-mobile">2020-08-23-Github_SSH_Setting</span>
+                      <a href="/2020/08/21/2020-08-21-Python37_Create_Venv/">
+                        <span class="hidden-mobile">如何在windows下创建Python虚拟环境?</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -574,7 +565,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/08/22/2020-08-20-Hexo_Method_AddContent/');
+          var target = decodeURI('/2020/08/22/2020-08-23-Github-SSH-Setting/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -668,7 +659,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Hexo使用攻略-添加目录&nbsp;",
+        "2020-08-23-Github_SSH_Setting&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
