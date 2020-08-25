@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="卸甲山">
   <meta name="keywords" content="">
-  <title>通过SSH访问Github设置 - </title>
+  <title>使用Python+Requests从alldatasheet下载指定文件 - </title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -160,8 +160,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-24 23:00" pubdate>
-      2020年8月24日 晚上
+    <time datetime="2020-08-25 21:07" pubdate>
+      2020年8月25日 晚上
     </time>
   </div>
 
@@ -171,7 +171,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      568 字
+      1.2k 字
     </span>
   
 
@@ -181,7 +181,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      18
        分钟
     </span>
   
@@ -219,85 +219,187 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">通过SSH访问Github设置</h1>
+            <h1 style="display: none">使用Python+Requests从alldatasheet下载指定文件</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>使用SSH密钥，您可以在每次访问时无需提供用户名或密码即可连接到GitHub。</p>
-<h3><span id="chang-shi-shi-yong-ssh-fang-wen-github">尝试使用ssh访问Github</span><a href="#chang-shi-shi-yong-ssh-fang-wen-github" class="header-anchor"></a></h3><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -T git<span class="hljs-variable">@github</span>.com</code></pre>
-
-<p>在设置ssh授权之前，会提示：can’t be established.</p>
-<pre><code class="hljs scala"><span class="hljs-type">Administrator</span><span class="hljs-meta">@GOS</span><span class="hljs-number">-01709151419</span> <span class="hljs-type">MINGW64</span> ~/.ssh
-$ ssh -<span class="hljs-type">T</span> git<span class="hljs-meta">@github</span>.com
-<span class="hljs-type">The</span> authenticity of host <span class="hljs-symbol">&#x27;github</span>.com (<span class="hljs-number">13.229</span><span class="hljs-number">.188</span><span class="hljs-number">.59</span>)&#x27; can<span class="hljs-symbol">&#x27;t</span> be established.
-<span class="hljs-type">RSA</span> key fingerprint is <span class="hljs-type">SHA256</span>:nThbg6kXUpJWGl7E1IGOCsiRomTxdCARLviKw6E5SY8.
-<span class="hljs-type">Are</span> you sure you want to <span class="hljs-keyword">continue</span> connecting (yes/no/[fingerprint])? yes
-<span class="hljs-type">Warning</span>: <span class="hljs-type">Permanently</span> added <span class="hljs-symbol">&#x27;github</span>.com,<span class="hljs-number">13.229</span><span class="hljs-number">.188</span><span class="hljs-number">.59</span>&#x27; (<span class="hljs-type">RSA</span>) to the list of known hosts.
-git<span class="hljs-meta">@github</span>.com: <span class="hljs-type">Permission</span> denied (publickey).
-</code></pre>
-
-
-<h3><span id="jian-cha-ben-di-shi-fou-cun-zai-ssh-keys">检查本地是否存在ssh keys</span><a href="#jian-cha-ben-di-shi-fou-cun-zai-ssh-keys" class="header-anchor"></a></h3><ol>
-<li><p>打开Git Bash，输入以下命令：</p>
-<pre><code class="hljs bash">ls -al ~/.ssh</code></pre>
-
-</li>
+              <p>最近需要从<a target="_blank" rel="noopener" href="https://www.alldatasheet.com/">全球电子元器件数据手册库</a> 网上下载一些datasheet文件，手动下载比较耗时，写个下载脚本可以节省很多时间，且可以再需要下载内容更新后重复使用，提高效率。</p>
+<h3><span id="she-ji-dao-de-zhi-shi-dian">涉及到的知识点</span><a href="#she-ji-dao-de-zhi-shi-dian" class="header-anchor"></a></h3><ol>
+<li>Python读写Excel</li>
+<li>Python requests爬虫模块</li>
 </ol>
-<p>如果ssh文件夹内有类似id_rsa.pub的文件，代表你的本地已经拥有了ssh keys，那么你可以直接跳过生成ssh keys的步骤。</p>
-<h3><span id="sheng-cheng-yi-ge-xin-de-ssh-key">生成一个新的ssh key</span><a href="#sheng-cheng-yi-ge-xin-de-ssh-key" class="header-anchor"></a></h3><ol start="2">
-<li>打开Git Bash，输入以下命令：</li>
+<h3><span id="excel-guan-li-biao-ge">Excel管理表格</span><a href="#excel-guan-li-biao-ge" class="header-anchor"></a></h3><p>2020-08-25-datasheet_excel.png</p>
+<h3><span id="xu-qiu">需求</span><a href="#xu-qiu" class="header-anchor"></a></h3><ol>
+<li>根据Excel管理表格中“链接”列内容，下载产品的pdf格式datasheet文件</li>
+<li>下载文件重命名为“型号规格.pdf”</li>
+<li>下载文件存储到“分类”列指定的文件夹中</li>
+<li>下载到pdf文件后，更新“下载”列的No为Yes</li>
 </ol>
-<pre><code class="hljs bash">ssh-keygen -t rsa -b 4096 -C <span class="hljs-string">&quot;your_email@example.com&quot;</span></code></pre>
+<h3><span id="dai-ma">代码</span><a href="#dai-ma" class="header-anchor"></a></h3><p>代码如下：</p>
+<pre><code class="hljs ruby">import openpyxl
+import requests
+import time
+import os
 
-<p>此处需要你填写的邮箱，这个邮箱地址是个注释（标识），没有任何实质作用。建议填写个人邮箱作为注释。</p>
-<p>​    会有三个提示，直接按回车即可。最终信息类似如下：</p>
-<pre><code class="hljs properties"><span class="hljs-meta">Administrator@GOS-11709151419</span> <span class="hljs-string">MINGW64 ~</span>
-<span class="hljs-meta">$</span> <span class="hljs-string">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</span>
-<span class="hljs-attr">Generating</span> <span class="hljs-string">public/private rsa key pair.</span>
-<span class="hljs-attr">Enter</span> <span class="hljs-string">file in which to save the key (/c/Users/Administrator/.ssh/id_rsa):</span>
-<span class="hljs-attr">Enter</span> <span class="hljs-string">passphrase (empty for no passphrase):</span>
-<span class="hljs-attr">Enter</span> <span class="hljs-string">same passphrase again:</span>
-<span class="hljs-attr">Your</span> <span class="hljs-string">identification has been saved in /c/Users/Administrator/.ssh/id_rsa</span>
-<span class="hljs-attr">Your</span> <span class="hljs-string">public key has been saved in /c/Users/Administrator/.ssh/id_rsa.pub</span>
-<span class="hljs-attr">The</span> <span class="hljs-string">key fingerprint is:</span>
-<span class="hljs-attr">SHA256</span>:<span class="hljs-string">UDZ6Tpa1DZgBgCM+rT94d41+tfgFWdAdJcRqcrhAuNU your_email@example.com</span>
-<span class="hljs-attr">The</span> <span class="hljs-string">key&#x27;s randomart image is:</span>
-<span class="hljs-meta">+---[RSA</span> <span class="hljs-string">4096]----+</span>
-<span class="hljs-meta">|</span>   <span class="hljs-string">....o==o..o+.+|</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExcelOp</span>(<span class="hljs-title">object</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, file)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-keyword">self</span>.file = file
+        <span class="hljs-keyword">self</span>.wb = openpyxl.load_workbook(<span class="hljs-keyword">self</span>.file)
+        sheets = <span class="hljs-keyword">self</span>.wb.sheetnames
+        <span class="hljs-keyword">self</span>.sheet = sheets[<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">self</span>.ws = <span class="hljs-keyword">self</span>.wb[<span class="hljs-keyword">self</span>.sheet]
 
-<span class="hljs-attr">+----[SHA256]-----+</span></code></pre>
+    <span class="hljs-comment"># 获取表格的总行数和总列数</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_row_clo_num</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span><span class="hljs-symbol">:</span>
+        rows = <span class="hljs-keyword">self</span>.ws.max_row
+        columns = <span class="hljs-keyword">self</span>.ws.max_column
+        <span class="hljs-keyword">return</span> rows, columns
 
+    <span class="hljs-comment"># 获取某个单元格的值</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_cell_value</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, row, column)</span></span><span class="hljs-symbol">:</span>
+        cell_value = <span class="hljs-keyword">self</span>.ws.cell(row=row, column=column).value
+        <span class="hljs-keyword">return</span> cell_value
 
+    <span class="hljs-comment"># 获取某列的所有值</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_col_value</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, column)</span></span><span class="hljs-symbol">:</span>
+        rows = <span class="hljs-keyword">self</span>.ws.max_row
+        column_data = []
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, rows + <span class="hljs-number">1</span>)<span class="hljs-symbol">:</span>
+            cell_value = <span class="hljs-keyword">self</span>.ws.cell(row=i, column=column).value
+            column_data.append(cell_value)
+        <span class="hljs-keyword">return</span> column_data
 
-<ol start="3">
-<li>复制id_rsa.pub中内容，将作为ssh key粘贴到GitHub上。</li>
+    <span class="hljs-comment"># 获取某行所有值</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_row_value</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, row)</span></span><span class="hljs-symbol">:</span>
+        columns = <span class="hljs-keyword">self</span>.ws.max_column
+        row_data = []
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, columns + <span class="hljs-number">1</span>)<span class="hljs-symbol">:</span>
+            cell_value = <span class="hljs-keyword">self</span>.ws.cell(row=row, column=i).value
+            row_data.append(cell_value)
+        <span class="hljs-keyword">return</span> row_data
+
+    <span class="hljs-comment"># 设置某个单元格的值</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_cell_value</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, row, colunm, cellvalue)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-symbol">try:</span>
+            <span class="hljs-keyword">self</span>.ws.cell(row=row, column=colunm).value = cellvalue
+            <span class="hljs-keyword">self</span>.wb.save(<span class="hljs-keyword">self</span>.file)
+        <span class="hljs-symbol">except:</span>
+            <span class="hljs-keyword">self</span>.ws.cell(row=row, column=colunm).value = <span class="hljs-string">&quot;writefail&quot;</span>
+            <span class="hljs-keyword">self</span>.wb.save(<span class="hljs-keyword">self</span>.file)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Downloader</span>(<span class="hljs-title">object</span>):</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">download_from_alldatasheet</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, filename, url, savefolder=<span class="hljs-string">&quot;&quot;</span>)</span></span><span class="hljs-symbol">:</span>
+        SUCCESS = False
+        filename = filename + <span class="hljs-string">&quot;.pdf&quot;</span>
+        <span class="hljs-comment"># url = &quot;https://pdf1.alldatasheet.com/datasheet-pdf/download/79516/INFINEON/BTS6163D.html&quot;</span>
+        params = &#123;
+            <span class="hljs-string">&quot;tmpinfo1aa&quot;</span>: <span class="hljs-string">&quot;abc&quot;</span>,
+        &#125;
+        <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> <span class="hljs-symbol">SUCCESS:</span>
+            print(<span class="hljs-string">&quot;尝试URL连接中...&quot;</span>)
+            req = requests.request(method=<span class="hljs-string">&#x27;POST&#x27;</span>, url=url, params=params)
+            print(<span class="hljs-string">&quot;获取返回内容信息文本，如果是pdf，比较耗时，请等待...&quot;</span>)
+            text = req.text
+            print(<span class="hljs-string">&quot;获取返回内容信息文本完成。&quot;</span>)
+            <span class="hljs-keyword">if</span> text.find(<span class="hljs-string">&quot;Download is temporarily unavailable&quot;</span>) != -<span class="hljs-number">1</span><span class="hljs-symbol">:</span>
+                print(<span class="hljs-string">&quot;下载太频繁，等待五分钟......，等待中&quot;</span>)
+                time.sleep(<span class="hljs-number">300</span>)
+                continue
+            <span class="hljs-symbol">else:</span>
+                SUCCESS = True
+            <span class="hljs-comment"># print(filename + &quot; : \n&quot;)</span>
+            <span class="hljs-comment"># print(text)</span>
+            data = req.content
+            full_savefolder = os.path.join(os.path.abspath(os.curdir), savefolder)
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(full_savefolder)<span class="hljs-symbol">:</span>
+                os.mkdir(full_savefolder)
+            full_filepath = os.path.join(full_savefolder, filename)
+            print(<span class="hljs-string">&quot;尝试存储文件：&quot;</span> + filename)
+            with open(full_filepath, <span class="hljs-string">&quot;wb&quot;</span>) as <span class="hljs-symbol">code:</span>
+                code.write(data)
+                print(<span class="hljs-string">&quot;存储文件：&quot;</span> + filename + <span class="hljs-string">&quot;完成&quot;</span>)
+                <span class="hljs-keyword">return</span> True
+        <span class="hljs-keyword">return</span> False
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">valid_url</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, url)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-comment"># https://www.alldatasheet.com/datasheet-pdf/pdf/436213/HITTITE/HMC704LP4E.html</span>
+        <span class="hljs-keyword">if</span> str(url).startswith(<span class="hljs-string">&quot;https://www.alldatasheet.com/datasheet-pdf/pdf/&quot;</span>)<span class="hljs-symbol">:</span>
+            <span class="hljs-keyword">return</span> True
+        <span class="hljs-keyword">return</span> False
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_tbd</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, checkstr)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-keyword">if</span> str(checkstr).strip().lower() == <span class="hljs-string">&#x27;no&#x27;</span><span class="hljs-symbol">:</span>
+            <span class="hljs-keyword">return</span> True
+        <span class="hljs-keyword">return</span> False
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transfer_url</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, url)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-comment"># https://www.alldatasheet.com/datasheet-pdf/pdf/436213/HITTITE/HMC704LP4E.html</span>
+        <span class="hljs-comment"># https://pdf1.alldatasheet.com/datasheet-pdf/download/436213/HITTITE/HMC704LP4E.html</span>
+        before = <span class="hljs-string">&quot;https://www.alldatasheet.com/datasheet-pdf/pdf/&quot;</span>
+        after = <span class="hljs-string">&quot;https://pdf1.alldatasheet.com/datasheet-pdf/download/&quot;</span>
+        <span class="hljs-keyword">return</span> str(url).replace(before, after)
+
+<span class="hljs-keyword">if</span> __name_<span class="hljs-number">_</span> == <span class="hljs-string">&quot;__main__&quot;</span><span class="hljs-symbol">:</span>
+    excel_op = ExcelOp(file=<span class="hljs-string">&quot;LIST.xlsx&quot;</span>)
+    downloader = Downloader()
+    <span class="hljs-comment"># 1-&#x27;&#x27;， 4-型号规格, 6-下载, 7-链接</span>
+    need_cols = [<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]
+    rows, columns = excel_op.get_row_clo_num()
+    <span class="hljs-comment"># 从第二行开始解析下载</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>,rows+<span class="hljs-number">1</span>)<span class="hljs-symbol">:</span>
+        need_col_values = []
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-symbol">need_cols:</span>
+            cell_val = excel_op.get_cell_value(i,j)
+            need_col_values.append(cell_val)
+
+        print(need_col_values)
+
+        savefolder = need_col_values[<span class="hljs-number">0</span>]
+        filename = need_col_values[<span class="hljs-number">1</span>]
+        str_TBD = need_col_values[<span class="hljs-number">2</span>]
+        url = need_col_values[<span class="hljs-number">3</span>]
+
+        <span class="hljs-keyword">if</span> downloader.is_tbd(str_TBD) <span class="hljs-keyword">and</span> downloader.valid_url(url)<span class="hljs-symbol">:</span>
+            url = downloader.transfer_url(url)
+            res = downloader.download_from_alldatasheet(filename, url, savefolder)
+            <span class="hljs-keyword">if</span> <span class="hljs-symbol">res:</span>
+                excel_op.set_cell_value(i, <span class="hljs-number">6</span>, <span class="hljs-string">&#x27;Yes&#x27;</span>)</code></pre>
+
+<h3><span id="yun-xing-guo-cheng">运行过程</span><a href="#yun-xing-guo-cheng" class="header-anchor"></a></h3><p>在命令行运行结果示例：</p>
+<pre><code class="hljs routeros">C:\Users\Administrator\Download&gt;python download.py
+[<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;ADG201AKR&#x27;</span>, <span class="hljs-string">&#x27;No&#x27;</span>, <span class="hljs-string">&#x27;https://www.alldatasheet.com/datasheet-pdf/pdf/48648/AD/ADG201AKR.html&#x27;</span>]
+尝试URL连接中<span class="hljs-built_in">..</span>.
+获取返回内容信息文本，如果是pdf，比较耗时，请等待<span class="hljs-built_in">..</span>.
+获取返回内容信息文本完成。
+尝试存储文件：ADG201AKR.pdf
+存储文件：ADG201AKR.pdf完成
+<span class="hljs-built_in">..</span><span class="hljs-built_in">..</span><span class="hljs-built_in">..</span>
+[<span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;TPS5450DDA&#x27;</span>, <span class="hljs-string">&#x27;No&#x27;</span>, <span class="hljs-string">&#x27;https://www.alldatasheet.com/datasheet-pdf/pdf/180875/TI/TPS5450DDA.html&#x27;</span>]
+尝试URL连接中<span class="hljs-built_in">..</span>.
+获取返回内容信息文本，如果是pdf，比较耗时，请等待<span class="hljs-built_in">..</span>.
+获取返回内容信息文本完成。
+下载太频繁，等待五分钟<span class="hljs-built_in">..</span><span class="hljs-built_in">..</span><span class="hljs-built_in">..</span>，等待中
+尝试URL连接中<span class="hljs-built_in">..</span>.
+获取返回内容信息文本，如果是pdf，比较耗时，请等待<span class="hljs-built_in">..</span>.
+获取返回内容信息文本完成。
+尝试存储文件：TPS5450DDA.pdf
+存储文件：TPS5450DDA.pdf完成
+[<span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;DCP010512BP&#x27;</span>, <span class="hljs-string">&#x27;No&#x27;</span>, <span class="hljs-string">&#x27;https://www.alldatasheet.com/datasheet-pdf/pdf/527520/TI1/DCP010512BP-U.html&#x27;</span>]
+尝试URL连接中<span class="hljs-built_in">..</span>.
+获取返回内容信息文本，如果是pdf，比较耗时，请等待<span class="hljs-built_in">..</span>.
+获取返回内容信息文本完成。
+尝试存储文件：DCP010512BP.pdf
+存储文件：DCP010512BP.pdf完成</code></pre>
+
+<h3><span id="shuo-ming">说明</span><a href="#shuo-ming" class="header-anchor"></a></h3><ol>
+<li>连续下载10个pdf后，网站会提示输入验证码，网页中含有信息“Download is temporarily unavailable”。观察发现，在遇到提示后，等待几分钟，便可以继续下载。程序中：在遇到下载失败后，会等待了5分钟，然后继续下载。</li>
+<li>本程序唯一难点是在分析网页时，要能找到post的参数：</li>
 </ol>
-<h3><span id="jiang-ssh-mi-yao-jia-ru-ni-de-github-zhang-hu-zhong">将SSH密钥加入你的GitHub账户中</span><a href="#jiang-ssh-mi-yao-jia-ru-ni-de-github-zhang-hu-zhong" class="header-anchor"></a></h3><ol start="4">
-<li>登录GitHub，点击右上角的头像图标，点击settings，再点击左侧栏里面的<strong>SSH and GPG keys</strong>，然后点击右侧“New SSH key”</li>
-</ol>
-<ol start="5">
-<li>把复制的id_rsa.pub中内容粘贴到Key中。Title为标识，可以任意填写。如：</li>
-</ol>
+<pre><code class="hljs crmsh"><span class="hljs-keyword">params</span> = &#123;
+    <span class="hljs-string">&quot;tmpinfo1aa&quot;</span>: <span class="hljs-string">&quot;abc&quot;</span>,
+&#125;</code></pre>
 
-
-
-
-
-
-<ol start="6">
-<li>添加后，再次尝试使用ssh访问GitHub则显示为：</li>
-</ol>
-<pre><code class="hljs vhdl">Administrator@GOS-<span class="hljs-number">01709151419</span> MINGW64 ~/.ssh
-$ ssh -T git@github.com
-The authenticity <span class="hljs-keyword">of</span> host <span class="hljs-symbol">&#x27;github</span>.com (<span class="hljs-number">13.250</span>.<span class="hljs-number">177.223</span>)&#x27; can<span class="hljs-symbol">&#x27;t</span> be established.
-RSA key fingerprint <span class="hljs-keyword">is</span> SHA256:nThbg6kXUpJWGl7E1IGOCsiRomTxdCARLviKw6E5SY8.
-Are you sure you want <span class="hljs-keyword">to</span> continue connecting (yes/no/[fingerprint])? yes
-<span class="hljs-literal">Warning</span>: Permanently added <span class="hljs-symbol">&#x27;github</span>.com,<span class="hljs-number">13.250</span>.<span class="hljs-number">177.223</span>&#x27; (RSA) <span class="hljs-keyword">to</span> the list <span class="hljs-keyword">of</span> known hosts.
-Hi YourGitHubName! You<span class="hljs-symbol">&#x27;ve</span> successfully authenticated, but GitHub does <span class="hljs-keyword">not</span> provide shell <span class="hljs-keyword">access</span>.
-</code></pre>
-
-
-
-<p>此时，完成SSH访问GitHub设置</p>
+<p>查找位置如下： 2020-08-25-alldatasheet_download_post.png</p>
 
             </div>
             <hr>
@@ -307,7 +409,7 @@ Hi YourGitHubName! You<span class="hljs-symbol">&#x27;ve</span> successfully aut
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/web/">Web</a>
+                      <a class="hover-with-bg" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
                     
                   </div>
                 
@@ -315,11 +417,11 @@ Hi YourGitHubName! You<span class="hljs-symbol">&#x27;ve</span> successfully aut
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Web/">Web</a>
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
                     
-                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
+                      <a class="hover-with-bg" href="/tags/Requests/">Requests</a>
                     
-                      <a class="hover-with-bg" href="/tags/SSH/">SSH</a>
+                      <a class="hover-with-bg" href="/tags/alldatasheet/">alldatasheet</a>
                     
                   </div>
                 
@@ -332,18 +434,12 @@ Hi YourGitHubName! You<span class="hljs-symbol">&#x27;ve</span> successfully aut
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/25/2020-08-25-Use-Python-Requests-Download-Alldatasheet/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">使用Python+Requests从alldatasheet下载指定文件</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/08/23/2020-08-23-Hexo-Change-Domain/">
-                        <span class="hidden-mobile">Hexo使用攻略-更换域名</span>
+                      <a href="/2020/08/24/2020-08-24-SSH-Github-Setting/">
+                        <span class="hidden-mobile">通过SSH访问Github设置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -625,7 +721,7 @@ Hi YourGitHubName! You<span class="hljs-symbol">&#x27;ve</span> successfully aut
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/08/24/2020-08-24-SSH-Github-Setting/');
+          var target = decodeURI('/2020/08/25/2020-08-25-Use-Python-Requests-Download-Alldatasheet/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -719,7 +815,7 @@ Hi YourGitHubName! You<span class="hljs-symbol">&#x27;ve</span> successfully aut
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "通过SSH访问Github设置&nbsp;",
+        "使用Python+Requests从alldatasheet下载指定文件&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
