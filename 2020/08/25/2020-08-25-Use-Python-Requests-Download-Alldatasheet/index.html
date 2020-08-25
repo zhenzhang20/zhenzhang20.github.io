@@ -181,7 +181,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      17
        分钟
     </span>
   
@@ -222,12 +222,13 @@
             <h1 style="display: none">使用Python+Requests从alldatasheet下载指定文件</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>最近需要从<a target="_blank" rel="noopener" href="https://www.alldatasheet.com/">全球电子元器件数据手册库</a> 网上下载一些datasheet文件，手动下载比较耗时，写个下载脚本可以节省很多时间，且可以再需要下载内容更新后重复使用，提高效率。</p>
+              <p>最近需要从<a target="_blank" rel="noopener" href="https://www.alldatasheet.com/">全球电子元器件数据手册库</a> 网上下载一些datasheet文件，手动下载比较耗时，写个下载脚本可以节省很多时间，且可以在需要下载内容更新后重复使用，提高效率。</p>
 <h3><span id="she-ji-dao-de-zhi-shi-dian">涉及到的知识点</span><a href="#she-ji-dao-de-zhi-shi-dian" class="header-anchor"></a></h3><ol>
 <li>Python读写Excel</li>
-<li>Python requests爬虫模块</li>
+<li>Python requests 模块</li>
 </ol>
-<h3><span id="excel-guan-li-biao-ge">Excel管理表格</span><a href="#excel-guan-li-biao-ge" class="header-anchor"></a></h3><p>2020-08-25-datasheet_excel.png</p>
+<h3><span id="excel-guan-li-biao-ge">Excel管理表格</span><a href="#excel-guan-li-biao-ge" class="header-anchor"></a></h3><img src="/2020/08/25/2020-08-25-Use-Python-Requests-Download-Alldatasheet/2020-08-25-datasheet_excel.png" srcset="/img/loading.gif" class title="datasheet_excel">
+
 <h3><span id="xu-qiu">需求</span><a href="#xu-qiu" class="header-anchor"></a></h3><ol>
 <li>根据Excel管理表格中“链接”列内容，下载产品的pdf格式datasheet文件</li>
 <li>下载文件重命名为“型号规格.pdf”</li>
@@ -291,7 +292,7 @@ import os
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">download_from_alldatasheet</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, filename, url, savefolder=<span class="hljs-string">&quot;&quot;</span>)</span></span><span class="hljs-symbol">:</span>
         SUCCESS = False
         filename = filename + <span class="hljs-string">&quot;.pdf&quot;</span>
-        <span class="hljs-comment"># url = &quot;https://pdf1.alldatasheet.com/datasheet-pdf/download/79516/INFINEON/BTS6163D.html&quot;</span>
+
         params = &#123;
             <span class="hljs-string">&quot;tmpinfo1aa&quot;</span>: <span class="hljs-string">&quot;abc&quot;</span>,
         &#125;
@@ -334,7 +335,6 @@ import os
 
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transfer_url</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, url)</span></span><span class="hljs-symbol">:</span>
         <span class="hljs-comment"># https://www.alldatasheet.com/datasheet-pdf/pdf/436213/HITTITE/HMC704LP4E.html</span>
-        <span class="hljs-comment"># https://pdf1.alldatasheet.com/datasheet-pdf/download/436213/HITTITE/HMC704LP4E.html</span>
         before = <span class="hljs-string">&quot;https://www.alldatasheet.com/datasheet-pdf/pdf/&quot;</span>
         after = <span class="hljs-string">&quot;https://pdf1.alldatasheet.com/datasheet-pdf/download/&quot;</span>
         <span class="hljs-keyword">return</span> str(url).replace(before, after)
@@ -399,8 +399,10 @@ import os
     <span class="hljs-string">&quot;tmpinfo1aa&quot;</span>: <span class="hljs-string">&quot;abc&quot;</span>,
 &#125;</code></pre>
 
-<p>查找位置如下： 2020-08-25-alldatasheet_download_post.png</p>
 
+
+<p>查找位置如下： </p>
+<img src="/2020/08/25/2020-08-25-Use-Python-Requests-Download-Alldatasheet/2020-08-25-alldatasheet_download_post.png" srcset="/img/loading.gif" class title="alldatasheet_download_post">
             </div>
             <hr>
             <div>
