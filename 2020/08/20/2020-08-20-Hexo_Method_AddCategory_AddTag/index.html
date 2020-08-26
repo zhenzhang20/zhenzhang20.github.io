@@ -160,8 +160,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-08-21 18:47" pubdate>
-      2020年8月21日 晚上
+    <time datetime="2020-08-20 18:47" pubdate>
+      2020年8月20日 晚上
     </time>
   </div>
 
@@ -228,20 +228,20 @@
 <h3><span id="2-bian-ji-ye-mian">2. 编辑页面</span><a href="#2-bian-ji-ye-mian" class="header-anchor"></a></h3><p>编辑新生成的页面文件：source/categories/index.md，打开后默认内容是这样的：</p>
 <pre><code class="hljs yaml"><span class="hljs-meta">---</span>
  <span class="hljs-attr">title:</span> <span class="hljs-string">categories</span>
- <span class="hljs-attr">date:</span> <span class="hljs-number">2019-04-22 14:47:40</span>
+ <span class="hljs-attr">date:</span> <span class="hljs-number">2020-08-20 18:47:40</span>
 <span class="hljs-meta">---</span></code></pre>
 
 <p>添加 type: “categories” 到内容中，添加后是这样的：</p>
 <pre><code class="hljs yaml"><span class="hljs-meta">---</span>
 <span class="hljs-attr">title:</span> <span class="hljs-string">文章分类</span>
-<span class="hljs-attr">date:</span> <span class="hljs-number">2017-05-27 13:47:40</span>
+<span class="hljs-attr">date:</span> <span class="hljs-number">2020-08-20 18:47:40</span>
 <span class="hljs-attr">type:</span> <span class="hljs-string">&quot;categories&quot;</span>
 <span class="hljs-meta">---</span></code></pre>
 
 <h3><span id="3-wen-zhang-fen-lei">3. 文章分类</span><a href="#3-wen-zhang-fen-lei" class="header-anchor"></a></h3><p>打开需要添加分类的文章，为其添加categories属性。下方的categories: WEB。表示这篇文章添加到到“WEB”这个分类。</p>
 <pre><code class="hljs yaml"><span class="hljs-meta">---</span>
 <span class="hljs-attr">title:</span> <span class="hljs-string">题目</span>
-<span class="hljs-attr">date:</span> <span class="hljs-number">2020-08-21 18:47:40</span>
+<span class="hljs-attr">date:</span> <span class="hljs-number">2020-08-20 18:47:40</span>
 <span class="hljs-attr">categories:</span> <span class="hljs-string">WEB</span>
 <span class="hljs-meta">---</span></code></pre>
 
@@ -270,7 +270,7 @@
 <h3><span id="6-tian-jia-xiu-gai-tags">6. 添加修改tags</span><a href="#6-tian-jia-xiu-gai-tags" class="header-anchor"></a></h3><p>同样方法可以添加修改tags，区别是每个文章可以添加多个tag</p>
 <pre><code class="hljs yaml"><span class="hljs-meta">---</span>
 <span class="hljs-attr">title:</span> <span class="hljs-string">题目</span>
-<span class="hljs-attr">date:</span> <span class="hljs-number">2020-08-21 18:47:40</span>
+<span class="hljs-attr">date:</span> <span class="hljs-number">2020-08-20 18:47:40</span>
 <span class="hljs-attr">categories:</span> <span class="hljs-string">WEB</span>
 <span class="hljs-attr">tags:</span> [<span class="hljs-string">WEB</span>, <span class="hljs-string">HEXO</span>]
 <span class="hljs-meta">---</span></code></pre>
@@ -598,7 +598,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/08/21/2020-08-20-Hexo_Method_AddCategory_AddTag/');
+          var target = decodeURI('/2020/08/20/2020-08-20-Hexo_Method_AddCategory_AddTag/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
