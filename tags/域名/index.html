@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="卸甲山">
   <meta name="keywords" content="">
-  <title>归档 - </title>
+  <title>标签 - 域名 - </title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -43,7 +43,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -167,43 +167,19 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 13 篇文章</p>
+  <p class="h4">共计 1 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2020</p>
     
-    <a href="/2020/08/20/2020-08-20-Hexo_Method_AddCategory_AddTag/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo使用攻略-添加分类及标签</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2020/08/20/2020-08-20-Hexo_Typora_Show_Picture/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo使用攻略-Hexo与Typora同时显示图片</span>
-      <time style="float: right;">08-20</time>
-    </a>
-  
-    
-    <a href="/2020/08/19/2020-08-19-Use_Github_Create_Blog/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">使用Github搭建属于自己的博客</span>
-      <time style="float: right;">08-19</time>
+    <a href="/2020/08/28/2020-08-28-Coding_Deploy/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Hexo使用攻略-Coding GitHub双解析</span>
+      <time style="float: right;">08-28</time>
     </a>
   
 </div>
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
 
 
 
@@ -432,7 +408,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/page/2/index.html');
+          var target = decodeURI('/tags/%E5%9F%9F%E5%90%8D/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -501,7 +477,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "标签 - 域名&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
