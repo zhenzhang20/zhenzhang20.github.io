@@ -171,7 +171,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.5k 字
     </span>
   
 
@@ -181,7 +181,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      21
        分钟
     </span>
   
@@ -230,11 +230,24 @@
 <h3><span id="excel-guan-li-biao-ge">Excel管理表格</span><a href="#excel-guan-li-biao-ge" class="header-anchor"></a></h3><img src="/2020/08/25/2020-08-25-Use-Python-Requests-Download-Alldatasheet/2020-08-25-datasheet_excel.png" srcset="/img/loading.gif" class title="datasheet_excel">
 
 <h3><span id="xu-qiu">需求</span><a href="#xu-qiu" class="header-anchor"></a></h3><ol>
-<li>根据Excel管理表格中“链接”列内容，下载产品的pdf格式datasheet文件</li>
-<li>下载文件重命名为“型号规格.pdf”</li>
-<li>下载文件存储到“分类”列指定的文件夹中</li>
-<li>下载到pdf文件后，更新“下载”列的No为Yes</li>
+<li>根据“分类”创建文件夹，即不同分类对应的下载后的pdf文件放在不同文件夹中。</li>
+<li>根据“型号规格”命名文件，即下载后，把文件名命名为“型号规格.pdf”，如”ADG201AKR.pdf”。</li>
+<li>根据“是否已经下载”来判断该行内容是否需要下载。如果为“Yes”，则表明已经下载过；如果为“No”则需要下载，同时下载后需要把标记改为“Yes”。</li>
+<li>根据“链接”下载该行对应的pdf文件。即不需要搜索，直接用此链接下载。</li>
+<li>“分类”“型号规格”“是否已经下载”“链接”在Excel中的列位置固定，下载程序中按位置查找（可以升级为按名称查找）</li>
 </ol>
+<h3><span id="guan-cha-xia-zai-guo-cheng-cha-zhao-zhen-shi-xia-zai-lian-jie">观察下载过程，查找真实下载链接</span><a href="#guan-cha-xia-zai-guo-cheng-cha-zhao-zhen-shi-xia-zai-lian-jie" class="header-anchor"></a></h3><ol>
+<li>在网页中打开给定的下载链接，如：<a target="_blank" rel="noopener" href="https://www.alldatasheet.com/datasheet-pdf/pdf/79516/INFINEON/BTS6163D.html">https://www.alldatasheet.com/datasheet-pdf/pdf/79516/INFINEON/BTS6163D.html</a></li>
+<li>点击“Download”后，发现下载链接会变化为：<a target="_blank" rel="noopener" href="https://pdf1.alldatasheet.com/datasheet-pdf/download/79516/INFINEON/BTS6163D.html%E3%80%82">https://pdf1.alldatasheet.com/datasheet-pdf/download/79516/INFINEON/BTS6163D.html。</a><br>该链接为真正的下载链接。</li>
+</ol>
+<h3><span id="huo-qu-xia-zai-fang-shi-ji-can-shu">获取下载方式及参数</span><a href="#huo-qu-xia-zai-fang-shi-ji-can-shu" class="header-anchor"></a></h3><ol>
+<li>打开网址 <a target="_blank" rel="noopener" href="https://www.alldatasheet.com/">https://www.alldatasheet.com/</a></li>
+<li>搜索关键字，如 BTS6163D。也可以直接打开Excel中给定的下载链接</li>
+<li>选择查看方式中的Download。结果如下图：<br><img src="alldatasheet_download_webpage.png" srcset="/img/loading.gif" alt="alldatasheet_download_webpage"></li>
+<li>在下面的”Download”按钮上右键，并选择弹出菜单中的”查看元素”（如果是Chrome浏览器，则对应选项”检查”），可以查看到该按钮的响应为一个==Post==请求。注意，该post请求有一个参数：</li>
+</ol>
+<pre><code class="hljs pgsql">&lt;<span class="hljs-keyword">input</span> <span class="hljs-type">name</span>=&quot;tmpinfo1aa&quot; <span class="hljs-keyword">type</span>=&quot;hidden&quot; <span class="hljs-keyword">value</span>=&quot;abc&quot;&gt;</code></pre>
+<p><img src="alldatasheet_download_webpage_find_submit.png" srcset="/img/loading.gif" alt="alldatasheet_download_webpage_find_submit"></p>
 <h3><span id="dai-ma">代码</span><a href="#dai-ma" class="header-anchor"></a></h3><p>代码如下：</p>
 <pre><code class="hljs ruby">import openpyxl
 import requests
@@ -391,21 +404,7 @@ import os
 尝试存储文件：DCP010512BP.pdf
 存储文件：DCP010512BP.pdf完成</code></pre>
 
-<h3><span id="shuo-ming">说明</span><a href="#shuo-ming" class="header-anchor"></a></h3><ol>
-<li>连续下载10个pdf后，网站会提示输入验证码，网页中含有信息“Download is temporarily unavailable”。观察发现，在遇到提示后，等待几分钟，便可以继续下载。程序中：在遇到下载失败后，会等待了5分钟，然后继续下载。</li>
-<li>本程序唯一难点是在分析网页时，要能找到post的参数：</li>
-</ol>
-<pre><code class="hljs crmsh"><span class="hljs-keyword">params</span> = &#123;
-    <span class="hljs-string">&quot;tmpinfo1aa&quot;</span>: <span class="hljs-string">&quot;abc&quot;</span>,
-&#125;</code></pre>
-
-
-
-<p>查找位置如下： </p>
-<img src="/2020/08/25/2020-08-25-Use-Python-Requests-Download-Alldatasheet/2020-08-25-alldatasheet_download_post.png" srcset="/img/loading.gif" class title="alldatasheet_download_post">
-
-
-
+<h3><span id="shuo-ming">说明</span><a href="#shuo-ming" class="header-anchor"></a></h3><p>连续下载10个pdf后，网站会提示输入验证码，网页中含有信息“Download is temporarily unavailable”。观察发现，在遇到提示后，等待几分钟，便可以继续下载。程序中：在遇到下载失败后，会等待了5分钟，然后继续下载。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/zhenzhang20/Alldatasheet">Fork/Star on Github</a></p>
 
             </div>
