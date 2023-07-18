@@ -1,0 +1,923 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="卸甲山">
+  <meta name="keywords" content="">
+  <title>使用Python+Requests从alldatasheet下载指定文件 - </title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong></strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-25 21:07" pubdate>
+      2020年8月25日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">使用Python+Requests从alldatasheet下载指定文件</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>最近需要从<a target="_blank" rel="noopener" href="https://www.alldatasheet.com/">全球电子元器件数据手册库</a> 网上下载一些datasheet文件，手动下载比较耗时，写个下载脚本可以节省很多时间，且可以在需要下载内容更新后重复使用，提高效率。</p>
+<h3><span id="she-ji-dao-de-zhi-shi-dian">涉及到的知识点</span><a href="#she-ji-dao-de-zhi-shi-dian" class="header-anchor"></a></h3><ol>
+<li>Python读写Excel</li>
+<li>Python requests 模块</li>
+</ol>
+<h3><span id="excel-guan-li-biao-ge">Excel管理表格</span><a href="#excel-guan-li-biao-ge" class="header-anchor"></a></h3><img src="/2020/08/25/2020-08-25-Use-Python-Requests-Download-Alldatasheet/2020-08-25-datasheet_excel.png" srcset="/img/loading.gif" class title="datasheet_excel">
+
+<h3><span id="xu-qiu">需求</span><a href="#xu-qiu" class="header-anchor"></a></h3><ol>
+<li>根据“分类”创建文件夹，即不同分类对应的下载后的pdf文件放在不同文件夹中。</li>
+<li>根据“型号规格”命名文件，即下载后，把文件名命名为“型号规格.pdf”，如”ADG201AKR.pdf”。</li>
+<li>根据“是否已经下载”来判断该行内容是否需要下载。如果为“Yes”，则表明已经下载过；如果为“No”则需要下载，同时下载后需要把标记改为“Yes”。</li>
+<li>根据“链接”下载该行对应的pdf文件。即不需要搜索，直接用此链接下载。</li>
+<li>“分类”“型号规格”“是否已经下载”“链接”在Excel中的列位置固定，下载程序中按位置查找（可以升级为按名称查找）</li>
+</ol>
+<h3><span id="guan-cha-xia-zai-guo-cheng-cha-zhao-zhen-shi-xia-zai-lian-jie">观察下载过程，查找真实下载链接</span><a href="#guan-cha-xia-zai-guo-cheng-cha-zhao-zhen-shi-xia-zai-lian-jie" class="header-anchor"></a></h3><ol>
+<li>在网页中打开给定的下载链接，如：<a target="_blank" rel="noopener" href="https://www.alldatasheet.com/datasheet-pdf/pdf/79516/INFINEON/BTS6163D.html">https://www.alldatasheet.com/datasheet-pdf/pdf/79516/INFINEON/BTS6163D.html</a></li>
+<li>点击“Download”后，发现下载链接会变化为：<a target="_blank" rel="noopener" href="https://pdf1.alldatasheet.com/datasheet-pdf/download/79516/INFINEON/BTS6163D.html%E3%80%82">https://pdf1.alldatasheet.com/datasheet-pdf/download/79516/INFINEON/BTS6163D.html。</a><br>该链接为真正的下载链接。</li>
+</ol>
+<h3><span id="huo-qu-xia-zai-fang-shi-ji-can-shu">获取下载方式及参数</span><a href="#huo-qu-xia-zai-fang-shi-ji-can-shu" class="header-anchor"></a></h3><ol>
+<li>打开网址 <a target="_blank" rel="noopener" href="https://www.alldatasheet.com/">https://www.alldatasheet.com/</a></li>
+<li>搜索关键字，如 BTS6163D。也可以直接打开Excel中给定的下载链接</li>
+<li>选择查看方式中的Download。结果如下图：<br><img src="alldatasheet_download_webpage.png" srcset="/img/loading.gif" alt="alldatasheet_download_webpage"></li>
+<li>在下面的”Download”按钮上右键，并选择弹出菜单中的”查看元素”（如果是Chrome浏览器，则对应选项”检查”），可以查看到该按钮的响应为一个==Post==请求。注意，该post请求有一个参数：</li>
+</ol>
+<pre><code class="hljs pgsql">&lt;<span class="hljs-keyword">input</span> <span class="hljs-type">name</span>=&quot;tmpinfo1aa&quot; <span class="hljs-keyword">type</span>=&quot;hidden&quot; <span class="hljs-keyword">value</span>=&quot;abc&quot;&gt;</code></pre>
+<p><img src="alldatasheet_download_webpage_find_submit.png" srcset="/img/loading.gif" alt="alldatasheet_download_webpage_find_submit"></p>
+<h3><span id="dai-ma">代码</span><a href="#dai-ma" class="header-anchor"></a></h3><p>代码如下：</p>
+<pre><code class="hljs ruby">import openpyxl
+import requests
+import time
+import os
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExcelOp</span>(<span class="hljs-title">object</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, file)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-keyword">self</span>.file = file
+        <span class="hljs-keyword">self</span>.wb = openpyxl.load_workbook(<span class="hljs-keyword">self</span>.file)
+        sheets = <span class="hljs-keyword">self</span>.wb.sheetnames
+        <span class="hljs-keyword">self</span>.sheet = sheets[<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">self</span>.ws = <span class="hljs-keyword">self</span>.wb[<span class="hljs-keyword">self</span>.sheet]
+
+    <span class="hljs-comment"># 获取表格的总行数和总列数</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_row_clo_num</span><span class="hljs-params">(<span class="hljs-keyword">self</span>)</span></span><span class="hljs-symbol">:</span>
+        rows = <span class="hljs-keyword">self</span>.ws.max_row
+        columns = <span class="hljs-keyword">self</span>.ws.max_column
+        <span class="hljs-keyword">return</span> rows, columns
+
+    <span class="hljs-comment"># 获取某个单元格的值</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_cell_value</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, row, column)</span></span><span class="hljs-symbol">:</span>
+        cell_value = <span class="hljs-keyword">self</span>.ws.cell(row=row, column=column).value
+        <span class="hljs-keyword">return</span> cell_value
+
+    <span class="hljs-comment"># 获取某列的所有值</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_col_value</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, column)</span></span><span class="hljs-symbol">:</span>
+        rows = <span class="hljs-keyword">self</span>.ws.max_row
+        column_data = []
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, rows + <span class="hljs-number">1</span>)<span class="hljs-symbol">:</span>
+            cell_value = <span class="hljs-keyword">self</span>.ws.cell(row=i, column=column).value
+            column_data.append(cell_value)
+        <span class="hljs-keyword">return</span> column_data
+
+    <span class="hljs-comment"># 获取某行所有值</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_row_value</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, row)</span></span><span class="hljs-symbol">:</span>
+        columns = <span class="hljs-keyword">self</span>.ws.max_column
+        row_data = []
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, columns + <span class="hljs-number">1</span>)<span class="hljs-symbol">:</span>
+            cell_value = <span class="hljs-keyword">self</span>.ws.cell(row=row, column=i).value
+            row_data.append(cell_value)
+        <span class="hljs-keyword">return</span> row_data
+
+    <span class="hljs-comment"># 设置某个单元格的值</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_cell_value</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, row, colunm, cellvalue)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-symbol">try:</span>
+            <span class="hljs-keyword">self</span>.ws.cell(row=row, column=colunm).value = cellvalue
+            <span class="hljs-keyword">self</span>.wb.save(<span class="hljs-keyword">self</span>.file)
+        <span class="hljs-symbol">except:</span>
+            <span class="hljs-keyword">self</span>.ws.cell(row=row, column=colunm).value = <span class="hljs-string">&quot;writefail&quot;</span>
+            <span class="hljs-keyword">self</span>.wb.save(<span class="hljs-keyword">self</span>.file)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Downloader</span>(<span class="hljs-title">object</span>):</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">download_from_alldatasheet</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, filename, url, savefolder=<span class="hljs-string">&quot;&quot;</span>)</span></span><span class="hljs-symbol">:</span>
+        SUCCESS = False
+        filename = filename + <span class="hljs-string">&quot;.pdf&quot;</span>
+
+        params = &#123;
+            <span class="hljs-string">&quot;tmpinfo1aa&quot;</span>: <span class="hljs-string">&quot;abc&quot;</span>,
+        &#125;
+        <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> <span class="hljs-symbol">SUCCESS:</span>
+            print(<span class="hljs-string">&quot;尝试URL连接中...&quot;</span>)
+            req = requests.request(method=<span class="hljs-string">&#x27;POST&#x27;</span>, url=url, params=params)
+            print(<span class="hljs-string">&quot;获取返回内容信息文本，如果是pdf，比较耗时，请等待...&quot;</span>)
+            text = req.text
+            print(<span class="hljs-string">&quot;获取返回内容信息文本完成。&quot;</span>)
+            <span class="hljs-keyword">if</span> text.find(<span class="hljs-string">&quot;Download is temporarily unavailable&quot;</span>) != -<span class="hljs-number">1</span><span class="hljs-symbol">:</span>
+                print(<span class="hljs-string">&quot;下载太频繁，等待五分钟......，等待中&quot;</span>)
+                time.sleep(<span class="hljs-number">300</span>)
+                continue
+            <span class="hljs-symbol">else:</span>
+                SUCCESS = True
+            <span class="hljs-comment"># print(filename + &quot; : \n&quot;)</span>
+            <span class="hljs-comment"># print(text)</span>
+            data = req.content
+            full_savefolder = os.path.join(os.path.abspath(os.curdir), savefolder)
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(full_savefolder)<span class="hljs-symbol">:</span>
+                os.mkdir(full_savefolder)
+            full_filepath = os.path.join(full_savefolder, filename)
+            print(<span class="hljs-string">&quot;尝试存储文件：&quot;</span> + filename)
+            with open(full_filepath, <span class="hljs-string">&quot;wb&quot;</span>) as <span class="hljs-symbol">code:</span>
+                code.write(data)
+                print(<span class="hljs-string">&quot;存储文件：&quot;</span> + filename + <span class="hljs-string">&quot;完成&quot;</span>)
+                <span class="hljs-keyword">return</span> True
+        <span class="hljs-keyword">return</span> False
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">valid_url</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, url)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-comment"># https://www.alldatasheet.com/datasheet-pdf/pdf/436213/HITTITE/HMC704LP4E.html</span>
+        <span class="hljs-keyword">if</span> str(url).startswith(<span class="hljs-string">&quot;https://www.alldatasheet.com/datasheet-pdf/pdf/&quot;</span>)<span class="hljs-symbol">:</span>
+            <span class="hljs-keyword">return</span> True
+        <span class="hljs-keyword">return</span> False
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_tbd</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, checkstr)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-keyword">if</span> str(checkstr).strip().lower() == <span class="hljs-string">&#x27;no&#x27;</span><span class="hljs-symbol">:</span>
+            <span class="hljs-keyword">return</span> True
+        <span class="hljs-keyword">return</span> False
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">transfer_url</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, url)</span></span><span class="hljs-symbol">:</span>
+        <span class="hljs-comment"># https://www.alldatasheet.com/datasheet-pdf/pdf/436213/HITTITE/HMC704LP4E.html</span>
+        before = <span class="hljs-string">&quot;https://www.alldatasheet.com/datasheet-pdf/pdf/&quot;</span>
+        after = <span class="hljs-string">&quot;https://pdf1.alldatasheet.com/datasheet-pdf/download/&quot;</span>
+        <span class="hljs-keyword">return</span> str(url).replace(before, after)
+
+<span class="hljs-keyword">if</span> __name_<span class="hljs-number">_</span> == <span class="hljs-string">&quot;__main__&quot;</span><span class="hljs-symbol">:</span>
+    excel_op = ExcelOp(file=<span class="hljs-string">&quot;LIST.xlsx&quot;</span>)
+    downloader = Downloader()
+    <span class="hljs-comment"># 1-&#x27;&#x27;， 4-型号规格, 6-下载, 7-链接</span>
+    need_cols = [<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]
+    rows, columns = excel_op.get_row_clo_num()
+    <span class="hljs-comment"># 从第二行开始解析下载</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>,rows+<span class="hljs-number">1</span>)<span class="hljs-symbol">:</span>
+        need_col_values = []
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-symbol">need_cols:</span>
+            cell_val = excel_op.get_cell_value(i,j)
+            need_col_values.append(cell_val)
+
+        print(need_col_values)
+
+        savefolder = need_col_values[<span class="hljs-number">0</span>]
+        filename = need_col_values[<span class="hljs-number">1</span>]
+        str_TBD = need_col_values[<span class="hljs-number">2</span>]
+        url = need_col_values[<span class="hljs-number">3</span>]
+
+        <span class="hljs-keyword">if</span> downloader.is_tbd(str_TBD) <span class="hljs-keyword">and</span> downloader.valid_url(url)<span class="hljs-symbol">:</span>
+            url = downloader.transfer_url(url)
+            res = downloader.download_from_alldatasheet(filename, url, savefolder)
+            <span class="hljs-keyword">if</span> <span class="hljs-symbol">res:</span>
+                excel_op.set_cell_value(i, <span class="hljs-number">6</span>, <span class="hljs-string">&#x27;Yes&#x27;</span>)</code></pre>
+
+<h3><span id="yun-xing-guo-cheng">运行过程</span><a href="#yun-xing-guo-cheng" class="header-anchor"></a></h3><p>在命令行运行结果示例：</p>
+<pre><code class="hljs routeros">C:\Users\Administrator\Download&gt;python download.py
+[<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;ADG201AKR&#x27;</span>, <span class="hljs-string">&#x27;No&#x27;</span>, <span class="hljs-string">&#x27;https://www.alldatasheet.com/datasheet-pdf/pdf/48648/AD/ADG201AKR.html&#x27;</span>]
+尝试URL连接中<span class="hljs-built_in">..</span>.
+获取返回内容信息文本，如果是pdf，比较耗时，请等待<span class="hljs-built_in">..</span>.
+获取返回内容信息文本完成。
+尝试存储文件：ADG201AKR.pdf
+存储文件：ADG201AKR.pdf完成
+<span class="hljs-built_in">..</span><span class="hljs-built_in">..</span><span class="hljs-built_in">..</span>
+[<span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;TPS5450DDA&#x27;</span>, <span class="hljs-string">&#x27;No&#x27;</span>, <span class="hljs-string">&#x27;https://www.alldatasheet.com/datasheet-pdf/pdf/180875/TI/TPS5450DDA.html&#x27;</span>]
+尝试URL连接中<span class="hljs-built_in">..</span>.
+获取返回内容信息文本，如果是pdf，比较耗时，请等待<span class="hljs-built_in">..</span>.
+获取返回内容信息文本完成。
+下载太频繁，等待五分钟<span class="hljs-built_in">..</span><span class="hljs-built_in">..</span><span class="hljs-built_in">..</span>，等待中
+尝试URL连接中<span class="hljs-built_in">..</span>.
+获取返回内容信息文本，如果是pdf，比较耗时，请等待<span class="hljs-built_in">..</span>.
+获取返回内容信息文本完成。
+尝试存储文件：TPS5450DDA.pdf
+存储文件：TPS5450DDA.pdf完成
+[<span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;DCP010512BP&#x27;</span>, <span class="hljs-string">&#x27;No&#x27;</span>, <span class="hljs-string">&#x27;https://www.alldatasheet.com/datasheet-pdf/pdf/527520/TI1/DCP010512BP-U.html&#x27;</span>]
+尝试URL连接中<span class="hljs-built_in">..</span>.
+获取返回内容信息文本，如果是pdf，比较耗时，请等待<span class="hljs-built_in">..</span>.
+获取返回内容信息文本完成。
+尝试存储文件：DCP010512BP.pdf
+存储文件：DCP010512BP.pdf完成</code></pre>
+
+<h3><span id="shuo-ming">说明</span><a href="#shuo-ming" class="header-anchor"></a></h3><p>连续下载10个pdf后，网站会提示输入验证码，网页中含有信息“Download is temporarily unavailable”。观察发现，在遇到提示后，等待几分钟，便可以继续下载。程序中：在遇到下载失败后，会等待了5分钟，然后继续下载。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zhenzhang20/Alldatasheet">Fork/Star on Github</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Requests/">Requests</a>
+                    
+                      <a class="hover-with-bg" href="/tags/alldatasheet/">alldatasheet</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/25/2020-08-25-Douyin-Downloader/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">抖音视频下载器_v2020.2.0</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/24/2020-08-24-SSH-Github-Setting/">
+                        <span class="hidden-mobile">通过SSH访问Github设置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz",
+          app_key: "uHvLSWs7HqeJQ7pNWUgaJ4cL",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://fua79ccb.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2020/08/25/2020-08-25-Use-Python-Requests-Download-Alldatasheet/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz'
+    var app_key = 'uHvLSWs7HqeJQ7pNWUgaJ4cL'
+    var server_url = 'https://fua79ccb.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "使用Python+Requests从alldatasheet下载指定文件&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

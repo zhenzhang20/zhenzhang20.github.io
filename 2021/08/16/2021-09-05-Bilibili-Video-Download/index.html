@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="卸甲山">
+  <meta name="keywords" content="">
+  <title>Bilibili网站（B站）下载视频 - </title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong></strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-08-16 20:45" pubdate>
+      2021年8月16日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      701 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Bilibili网站（B站）下载视频</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>为了能把视频放到不联网的电视中观看，需要先下载视频到电脑，通过U盘连接电脑观看。</p>
+<h4><span id="xia-zai-zhun-bei">下载准备：</span><a href="#xia-zai-zhun-bei" class="header-anchor"></a></h4><ol>
+<li><p>电脑中安装<a target="_blank" rel="noopener" href="https://www.python.org/">python</a>软件。安装后运行 ‘python –version’ 进行检查安装是否正常</p>
+<img src="/2021/08/16/2021-09-05-Bilibili-Video-Download/2021-09-05-python_install_check.png" srcset="/img/loading.gif" class title="python_install_check">
+</li>
+<li><p>通过python安装<a href>you-get </a>软件。安装后运行 ‘you-get –version’ 进行检查安装是否正常</p>
+<pre><code class="hljs sql">pip3 <span class="hljs-keyword">install</span> you-<span class="hljs-keyword">get</span></code></pre>
+
+<img src="/2021/08/16/2021-09-05-Bilibili-Video-Download/2021-09-05-youget_install_check.png" srcset="/img/loading.gif" class title="youget_install_check">
+</li>
+<li><p>安装<a target="_blank" rel="noopener" href="https://ffmpeg.org/">FFMpeg</a>软件。安装后运行 ‘ffmpeg -version’ 进行检查安装是否正常</p>
+<img src="/2021/08/16/2021-09-05-Bilibili-Video-Download/2021-09-05-ffmpeg_install_check.png" srcset="/img/loading.gif" class title="ffmpeg_install_check">
+
+
+
+</li>
+</ol>
+<h4><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h4><ol>
+<li><p>在B站找到需要下载的视频连接，如 【500集全】美国中小学精选课程 的连接为 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1c7411Z78e">https://www.bilibili.com/video/BV1c7411Z78e</a></p>
+</li>
+<li><p>在批处理窗口运行you-get -i 命令查看所需视频有哪些可以选择的格式（清晰度）</p>
+<pre><code class="hljs awk">you-get -i https:<span class="hljs-regexp">//</span>www.bilibili.com<span class="hljs-regexp">/video/</span>BV1c7411Z78e</code></pre>
+
+<p>显示结果如下：</p>
+<img src="/2021/08/16/2021-09-05-Bilibili-Video-Download/2021-09-05-check_video_format.png" srcset="/img/loading.gif" class title="check_video_format">
+
+</li>
+</ol>
+<p>​       这里可以看到有高清视频源可以下载，对应参数为“dash-flv720”</p>
+<ol start="3">
+<li><p>创建批处理下载文件并进行下载</p>
+<p>&lt;!–hexoPostRenderEscape:<pre><code class="hljs dos">@<span class="hljs-built_in">echo</span> off</code></pre></p>
+</li>
+</ol>
+<p><span class="hljs-built_in">set</span> KEY=BV1c7411Z78e<br><span class="hljs-built_in">set</span> RESOLUTION=&quot;–<span class="hljs-built_in">format</span>=dash-flv720&quot; </p>
+<p><span class="hljs-built_in">mkdir</span> <span class="hljs-variable">%KEY%</span><br><span class="hljs-built_in">pushd</span> <span class="hljs-variable">%KEY%</span></p>
+<p>you-get -o . <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/">https://www.bilibili.com/video/</a><span class="hljs-variable">%KEY%</span>?p=<span class="hljs-number">1</span> -l  <span class="hljs-variable">%RESOLUTION%</span></p>
+<p><span class="hljs-built_in">pause</span>:hexoPostRenderEscape–&gt;</p>
+<h4><span id="xia-zai-hou-chu-li">下载后处理</span><a href="#xia-zai-hou-chu-li" class="header-anchor"></a></h4><ol>
+<li><p>下载后，每个视频包含3个文件，B站下载的文件中视频和音频被分开。</p>
+<img src="/2021/08/16/2021-09-05-Bilibili-Video-Download/2021-09-05-downloaded_videos.png" srcset="/img/loading.gif" class title="downloaded_videos">
+
+</li>
+</ol>
+<p>​        其中：</p>
+<p>​        xml格式为弹幕，可以删除</p>
+<p>​        *00*.mp4 为视频文件</p>
+<p>​        *01*.mp4 为音频文件</p>
+<ol start="2">
+<li>通过ffmpeg命令合并视频文件：</li>
+</ol>
+<pre><code class="hljs css"><span class="hljs-selector-tag">ffmpeg</span> <span class="hljs-selector-tag">-i</span> &quot;【500集全】美国中小学精选课程 (<span class="hljs-selector-tag">P1</span>. 【001】自然科学 <span class="hljs-selector-tag">Parts</span> <span class="hljs-selector-tag">of</span> <span class="hljs-selector-tag">Plants</span>)<span class="hljs-selector-attr">[01]</span><span class="hljs-selector-class">.mp4</span>&quot; <span class="hljs-selector-tag">-i</span> &quot;【500集全】美国中小学精选课程 (<span class="hljs-selector-tag">P1</span>. 【001】自然科学 <span class="hljs-selector-tag">Parts</span> <span class="hljs-selector-tag">of</span> <span class="hljs-selector-tag">Plants</span>)<span class="hljs-selector-attr">[00]</span><span class="hljs-selector-class">.mp4</span>&quot; <span class="hljs-selector-tag">-c</span> <span class="hljs-selector-tag">copy</span> &quot;【500集全】美国中小学精选课程 (<span class="hljs-selector-tag">P1</span>. 【001】自然科学 <span class="hljs-selector-tag">Parts</span> <span class="hljs-selector-tag">of</span> <span class="hljs-selector-tag">Plants</span>)<span class="hljs-selector-class">.mp4</span>&quot;</code></pre>
+
+<p>​        其语法为：</p>
+<pre><code class="hljs stylus">ffmpeg -<span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">audio</span><span class="hljs-selector-class">.mp4</span> -<span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">video</span><span class="hljs-selector-class">.mp4</span> -c copy output.mp4</code></pre>
+
+<p>​        合并后结果为：</p>
+  <img src="/2021/08/16/2021-09-05-Bilibili-Video-Download/2021-09-05-merged_videos.png" srcset="/img/loading.gif" class title="merged_videos">
+
+<h4><span id="xia-zai-hou-pi-liang-chu-li">下载后批量处理</span><a href="#xia-zai-hou-pi-liang-chu-li" class="header-anchor"></a></h4><p>下载后，通过下面的python脚本来删除弹幕、合并文件</p>
+<pre><code class="hljs routeros">import os, subprocess
+<span class="hljs-comment">###  bilibili下载的视频会自动分离视频和音频，通过该脚本合并视频及音频，合并后删除原视频、音频</span>
+
+def merge_video_audio(video_path, audio_path, out_path):
+    cmd_str = f<span class="hljs-string">&#x27;ffmpeg -i &quot;&#123;video_path&#125;&quot; -i &quot;&#123;audio_path&#125;&quot; -c copy &quot;&#123;out_path&#125;&quot; -y&#x27;</span>
+    subprocess.<span class="hljs-builtin-name">run</span>(cmd_str, <span class="hljs-attribute">encoding</span>=<span class="hljs-string">&quot;utf-8&quot;</span> , <span class="hljs-attribute">shell</span>=<span class="hljs-literal">True</span>)
+    # <span class="hljs-builtin-name">print</span>(cmd_str)
+    <span class="hljs-builtin-name">print</span>(<span class="hljs-string">&#x27;视频转化完成！！！&#x27;</span>)
+
+def handle_bilibili_download_merge(basefloder):
+    # 循环遍历文件夹
+    listfiles = os.listdir(basefloder)
+    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> listfiles:
+        filename = str(item)
+        <span class="hljs-keyword">if</span> filename.<span class="hljs-builtin-name">find</span>(<span class="hljs-string">&quot;[00].mp4&quot;</span>) != -1:
+            #<span class="hljs-builtin-name">print</span>(<span class="hljs-string">&quot;find :&quot;</span> + filename)
+            # 找到[00].mp4 及[01].mp4的项
+            corresponding = filename.replace(<span class="hljs-string">&quot;[00]&quot;</span>,<span class="hljs-string">&quot;[01]&quot;</span>)
+
+            <span class="hljs-keyword">if</span> corresponding <span class="hljs-keyword">in</span> listfiles:
+                <span class="hljs-builtin-name">print</span>(<span class="hljs-string">&quot;find one&quot;</span> + corresponding)
+                output = filename.replace(<span class="hljs-string">&quot;[00]&quot;</span>,<span class="hljs-string">&quot;&quot;</span>)
+                # 合并
+                video_path = os.path.join(basefloder, filename)
+                audio_path = os.path.join(basefloder, corresponding)
+                out_path = os.path.join(basefloder, output)
+                merge_video_audio(video_path, audio_path, out_path)
+                os.<span class="hljs-builtin-name">remove</span>(video_path)
+                os.<span class="hljs-builtin-name">remove</span>(audio_path)
+        elif item.<span class="hljs-builtin-name">find</span>(<span class="hljs-string">&quot;cmt.xml&quot;</span>) != -1:
+            #<span class="hljs-builtin-name">print</span>(<span class="hljs-string">&quot;------------delete :&quot;</span> +   filename)
+            file_path = os.path.join(basefloder, filename)
+            os.<span class="hljs-builtin-name">remove</span>(file_path)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    <span class="hljs-attribute">BASE_FOLDER</span>=<span class="hljs-string">&quot;C:\\Users\\ZZ\\Desktop\\download&quot;</span>
+    handle_bilibili_download_merge(BASE_FOLDER)</code></pre>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Bilibili/">Bilibili</a>
+                    
+                      <a class="hover-with-bg" href="/tags/B%E7%AB%99/">B站</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/16/2021-08-16-Laragon-Basic-Using/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Laragon基本使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/16/2021-08-16-Laragon-Install/">
+                        <span class="hidden-mobile">Laragon安装</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz",
+          app_key: "uHvLSWs7HqeJQ7pNWUgaJ4cL",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://fua79ccb.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2021/08/16/2021-09-05-Bilibili-Video-Download/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz'
+    var app_key = 'uHvLSWs7HqeJQ7pNWUgaJ4cL'
+    var server_url = 'https://fua79ccb.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Bilibili网站（B站）下载视频&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

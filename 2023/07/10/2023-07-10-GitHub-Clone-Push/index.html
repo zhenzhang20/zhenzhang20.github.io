@@ -1,0 +1,844 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="卸甲山">
+  <meta name="keywords" content="">
+  <title>GitHub Clone and Push - </title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong></strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2023-07-10 22:45" pubdate>
+      2023年7月10日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      849 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">GitHub Clone and Push</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>GitHub Clone and Push</p>
+<h2><span id="zai-github-chuang-jian-si-you-cang-ku-blog">在Github创建私有仓库“blog”</span><a href="#zai-github-chuang-jian-si-you-cang-ku-blog" class="header-anchor"></a></h2><p>*登陆Github后，直接点New repository来创建一个新的私有仓库，比如：我创建了一个blog的仓库。</p>
+<img src="/2023/07/10/2023-07-10-GitHub-Clone-Push/2023-07-10-Create_Blog_Repository_On_Github.png" srcset="/img/loading.gif" class title="image">
+
+<h2><span id="clone-dai-ma-dao-ben-di-dian-nao">clone代码到本地电脑</span><a href="#clone-dai-ma-dao-ben-di-dian-nao" class="header-anchor"></a></h2><p>在本地电脑，打开Git命令行，进入希望放置blog的目录，运行“git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#105;&#116;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:zhenzhang20/blog.git” 来clone代码到本地。其中clone的地址可以在仓库中看到：</p>
+<img src="/2023/07/10/2023-07-10-GitHub-Clone-Push/2023-07-10-Github_Clone_Link.png" srcset="/img/loading.gif" class title="image">
+
+<ul>
+<li>过程中可能遇到报错：</li>
+</ul>
+<pre><code class="hljs routeros">zz@Zhen MINGW64 /d/develop/www
+$ git clone git@github.com:zhenzhang20/blog.git
+Cloning into <span class="hljs-string">&#x27;blog&#x27;</span><span class="hljs-built_in">..</span>.
+ssh: connect <span class="hljs-keyword">to</span> host github.com<span class="hljs-built_in"> port </span>22:<span class="hljs-built_in"> Connection </span>refused
+fatal: Could <span class="hljs-keyword">not</span> read <span class="hljs-keyword">from</span> remote repository.
+
+Please make sure you have the correct access rights
+<span class="hljs-keyword">and</span> the repository exists.</code></pre>
+
+<ul>
+<li>遇到22端口报错，可能是网络原因，先运行“ssh -T -p 22 <a href="mailto:&#x67;&#105;&#116;&#x40;&#x73;&#x73;&#104;&#x2e;&#103;&#x69;&#x74;&#104;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#105;&#116;&#x40;&#x73;&#x73;&#104;&#x2e;&#103;&#x69;&#x74;&#104;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;</a>”检查22端口是否可以使用（默认是22端口，则可以使用“ssh -T <a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a>”）：<pre><code class="hljs routeros">$ ssh -T git@github.com
+ssh: connect <span class="hljs-keyword">to</span> host github.com<span class="hljs-built_in"> port </span>22:<span class="hljs-built_in"> Connection </span>refused
+</code></pre>
+<!--<img src="/2023/07/10/2023-07-10-GitHub-Clone-Push/2023-07-10-SSH_GitHub_Refuse_Port22.png" srcset="/img/loading.gif" class="" title="image"> -->
+
+
+</li>
+</ul>
+<ul>
+<li><p>如果22端口报“Connection refused”，则可以尝试修改使用433端口，依旧先检查433端口是否可以使用，运行“ ssh -T -p 443 <a href="mailto:&#x67;&#105;&#116;&#x40;&#x73;&#115;&#x68;&#x2e;&#103;&#105;&#x74;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#116;&#x40;&#x73;&#115;&#x68;&#x2e;&#103;&#105;&#x74;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#x6d;</a>” 检查433端口是否可用：</p>
+<pre><code class="hljs inform7">zz@Zhen MINGW64 /
+$ ssh -T -p 443 git@ssh.github.com
+The authenticity <span class="hljs-keyword">of</span> host &#x27;<span class="hljs-comment">[ssh.github.com]</span>:443 (<span class="hljs-comment">[20.205.243.160]</span>:443)&#x27; can&#x27;t be established.
+ED25519 key fingerprint <span class="hljs-keyword">is</span> SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This host key <span class="hljs-keyword">is</span> known by the following other names/addresses:
+  ~/.ssh/known_hosts:1: github.com
+<span class="hljs-keyword">Are</span> you sure you want to continue connecting (yes/no/<span class="hljs-comment">[fingerprint]</span>)?</code></pre>
+<!--<img src="/2023/07/10/2023-07-10-GitHub-Clone-Push/2023-07-10-SSH_GitHub_Check_Port433.png" srcset="/img/loading.gif" class="" title="image"> -->
+</li>
+<li><p>若433端口可用，则在.ssh 目录创建文件：config，并编辑：~/.ssh/config, 文件内容为：</p>
+<pre><code class="hljs routeros">Host github.com
+Hostname ssh.github.com
+<span class="hljs-built_in"> Port </span>443</code></pre>
+</li>
+<li><p>遇到“Failed to connect to <strong>**</strong> after 2243 ms: Couldn’t connect to server”报错一般为网络问题，需要检查是否能正常访问Github：</p>
+<pre><code class="hljs vim">zz@Zhen MINGW64 /d/develop/www
+$ git clone &lt;http<span class="hljs-variable">s:</span>//github.<span class="hljs-keyword">com</span>/zhenzhang20/blog.git&gt;
+Cloning into <span class="hljs-string">&#x27;blog&#x27;</span>...
+fata<span class="hljs-variable">l:</span> unable <span class="hljs-keyword">to</span> access <span class="hljs-string">&#x27;&lt;https://github.com/zhenzhang20/blog.git/&gt;&#x27;</span>: Failed <span class="hljs-keyword">to</span> connect <span class="hljs-keyword">to</span> github.<span class="hljs-keyword">com</span> port <span class="hljs-number">443</span> after <span class="hljs-number">2243</span> <span class="hljs-keyword">m</span><span class="hljs-variable">s:</span> Couldn<span class="hljs-string">&#x27;t connect to server</span></code></pre>
+
+
+</li>
+</ul>
+<ul>
+<li><p>再次运行“ssh -T <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#x74;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#111;&#109;</a>” 检查是否可以连接成功。显示内容包括“You’ve successfully authenticated”则表示成功。</p>
+<pre><code class="hljs applescript">zz@Zhen MINGW64 /
+$ ssh -T git@github.com
+The authenticity <span class="hljs-keyword">of</span> host &#x27;[ssh.github.com]:<span class="hljs-number">443</span> ([<span class="hljs-number">20.205</span><span class="hljs-number">.243</span><span class="hljs-number">.160</span>]:<span class="hljs-number">443</span>)&#x27; can&#x27;t be established.
+ED25519 key fingerprint <span class="hljs-keyword">is</span> SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This host key <span class="hljs-keyword">is</span> known <span class="hljs-keyword">by</span> <span class="hljs-keyword">the</span> following other names/addresses:
+  ~/.ssh/known_hosts:<span class="hljs-number">1</span>: github.com
+Are you sure you want <span class="hljs-keyword">to</span> <span class="hljs-keyword">continue</span> connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added &#x27;[ssh.github.com]:<span class="hljs-number">443</span>&#x27; (ED25519) <span class="hljs-keyword">to</span> <span class="hljs-keyword">the</span> <span class="hljs-built_in">list</span> <span class="hljs-keyword">of</span> known hosts.
+Hi zhenzhang20! You&#x27;ve successfully authenticated, <span class="hljs-keyword">but</span> GitHub <span class="hljs-keyword">does</span> <span class="hljs-keyword">not</span> provide shell access.</code></pre>
+<img src="/2023/07/10/2023-07-10-GitHub-Clone-Push/2023-07-10-SSH_GitHub_Connect_Port433.png" srcset="/img/loading.gif" class title="image">
+</li>
+<li><p>可以成功连接后，进行clone代码到本地：</p>
+<pre><code class="hljs angelscript"><span class="hljs-symbol">zz@</span>Zhen MINGW64 /d/develop/www
+$ git clone <span class="hljs-symbol">git@</span>github.com:zhenzhang20/blog.git
+Cloning <span class="hljs-built_in">int</span>o <span class="hljs-string">&#x27;blog&#x27;</span>...
+remote: Enumerating objects: <span class="hljs-number">8</span>, done.
+remote: Counting objects: <span class="hljs-number">100</span>% (<span class="hljs-number">8</span>/<span class="hljs-number">8</span>), done.
+remote: Compressing objects: <span class="hljs-number">100</span>% (<span class="hljs-number">4</span>/<span class="hljs-number">4</span>), done.
+remote: Total <span class="hljs-number">8</span> (delta <span class="hljs-number">0</span>), reused <span class="hljs-number">5</span> (delta <span class="hljs-number">0</span>), pack-reused <span class="hljs-number">0</span>
+Receiving objects: <span class="hljs-number">100</span>% (<span class="hljs-number">8</span>/<span class="hljs-number">8</span>), done.</code></pre>
+<!--<img src="/2023/07/10/2023-07-10-GitHub-Clone-Push/2023-07-10-Github_Clone_To_Local.png" srcset="/img/loading.gif" class="" title="image"> -->
+
+
+
+
+</li>
+</ul>
+<h2><span id="zai-xia-zai-de-blog-mu-lu-zhong-tian-jia-yi-ge-add-md-wen-jian-bing-chang-shi-ti-jiao-dao-github-cang-ku">在下载的blog目录中添加一个“add.md”文件，并尝试提交到Github仓库</span><a href="#zai-xia-zai-de-blog-mu-lu-zhong-tian-jia-yi-ge-add-md-wen-jian-bing-chang-shi-ti-jiao-dao-github-cang-ku" class="header-anchor"></a></h2><ul>
+<li>进入blog目录，会自动显示当前仓库的branch为main<img src="/2023/07/10/2023-07-10-GitHub-Clone-Push/2023-07-10-Default_Clone_Branch_Main.png" srcset="/img/loading.gif" class title="image">
+
+
+</li>
+</ul>
+<ul>
+<li>添加新增的文件、增加提交注释、提交到远程仓库<pre><code class="hljs dockerfile">git <span class="hljs-keyword">add</span><span class="bash"> .</span>
+git commit -m <span class="hljs-string">&#x27;initial&#x27;</span>
+git push origin main</code></pre>
+<img src="/2023/07/10/2023-07-10-GitHub-Clone-Push/2023-07-10-Git_To_Github_Add_Commit_Push.png" srcset="/img/loading.gif" class title="image">
+
+
+</li>
+</ul>
+<ul>
+<li>过程中可能报错：<pre><code class="hljs routeros">git push origin main
+fatal: unable <span class="hljs-keyword">to</span> access <span class="hljs-string">&#x27;https://github.com.zhenzhang20/blog.git/&#x27;</span>: Recv failure:<span class="hljs-built_in"> Connection </span>was reset</code></pre></li>
+<li>解决方法,运行：<pre><code class="hljs routeros">git<span class="hljs-built_in"> config </span>--global --unset http.proxy
+git<span class="hljs-built_in"> config </span>--global --unset https.proxy</code></pre>
+
+</li>
+</ul>
+<!-- <img src="/2023/07/10/2023-07-10-GitHub-Clone-Push/2023-07-10-Git_Push.png" srcset="/img/loading.gif" class="" title="image"> -->
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Github/">Github</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Clone/">Clone</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Push/">Push</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/07/13/2023-07-13-Hexo_Blog_CI_by_GitHub_Action/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hexo Blog CI by GitHub Action</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/31/2021-10-30-MiniProgram-Study-And-Practice-02/">
+                        <span class="hidden-mobile">小程序开发学习与实践-02</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz",
+          app_key: "uHvLSWs7HqeJQ7pNWUgaJ4cL",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://fua79ccb.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2023/07/10/2023-07-10-GitHub-Clone-Push/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz'
+    var app_key = 'uHvLSWs7HqeJQ7pNWUgaJ4cL'
+    var server_url = 'https://fua79ccb.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "GitHub Clone and Push&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="卸甲山">
+  <meta name="keywords" content="">
+  <title>通过SSH访问Coding设置 - </title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong></strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-27 22:16" pubdate>
+      2020年8月27日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      658 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">通过SSH访问Coding设置</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>使用SSH密钥，您可以在每次访问时无需提供用户名或密码即可连接到Coding网站。</p>
+<h3><span id="zai-coding-chuang-jian-gong-kai-xiang-mu">在Coding创建公开项目</span><a href="#zai-coding-chuang-jian-gong-kai-xiang-mu" class="header-anchor"></a></h3><p>首先我们先要创建一个coding账号并且在coding上创建一个项目,必须要是公开项目，项目名称可以随意选用 </p>
+<ol>
+<li>项目模板选择“代码托管项目”</li>
+</ol>
+<img src="/2020/08/27/2020-08-27-Coding-SSH-Setting/2020-08-27-coding_template_code.png" srcset="/img/loading.gif" class title="coding_template_code">
+
+<ol start="2">
+<li>项目名称根据需求填写，没有要求</li>
+</ol>
+<img src="/2020/08/27/2020-08-27-Coding-SSH-Setting/2020-08-27-coding_create_project.png" srcset="/img/loading.gif" class title="coding_create_project">
+
+<h3><span id="chang-shi-shi-yong-ssh-fang-wen-coding">尝试使用ssh访问Coding</span><a href="#chang-shi-shi-yong-ssh-fang-wen-coding" class="header-anchor"></a></h3><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -T git<span class="hljs-variable">@coding</span>.net</code></pre>
+
+<p>在设置ssh授权之前，会提示：can’t be established.</p>
+<pre><code class="hljs scala"><span class="hljs-type">Administrator</span><span class="hljs-meta">@GOS</span><span class="hljs-number">-01709151419</span> <span class="hljs-type">MINGW64</span> ~/.ssh
+$ ssh -<span class="hljs-type">T</span> git<span class="hljs-meta">@coding</span>.net
+<span class="hljs-type">The</span> authenticity of host <span class="hljs-symbol">&#x27;coding</span>.net (<span class="hljs-number">118.126</span><span class="hljs-number">.70</span><span class="hljs-number">.252</span>)&#x27; can<span class="hljs-symbol">&#x27;t</span> be established.
+<span class="hljs-type">RSA</span> key fingerprint is <span class="hljs-type">SHA256</span>:jok3FH7q5LJ6qvE7iPNehBgXRw51ErE77S0Dn+<span class="hljs-type">Vg</span>/<span class="hljs-type">Ik</span>.
+<span class="hljs-type">Are</span> you sure you want to <span class="hljs-keyword">continue</span> connecting (yes/no/[fingerprint])? yes
+<span class="hljs-type">Warning</span>: <span class="hljs-type">Permanently</span> added <span class="hljs-symbol">&#x27;coding</span>.net,<span class="hljs-number">118.126</span><span class="hljs-number">.70</span><span class="hljs-number">.252</span>&#x27; (<span class="hljs-type">RSA</span>) to the list of known hosts.
+git<span class="hljs-meta">@coding</span>.net: <span class="hljs-type">Permission</span> denied (publickey).</code></pre>
+
+
+<h3><span id="jian-cha-ben-di-shi-fou-cun-zai-ssh-keys">检查本地是否存在ssh keys</span><a href="#jian-cha-ben-di-shi-fou-cun-zai-ssh-keys" class="header-anchor"></a></h3><ol start="3">
+<li><p>打开Git Bash，输入以下命令：</p>
+<pre><code class="hljs bash">ls -al ~/.ssh</code></pre>
+
+</li>
+</ol>
+<p>如果ssh文件夹内有类似id_rsa.pub的文件，代表你的本地已经拥有了ssh keys，那么你可以直接跳过生成ssh keys的步骤。</p>
+<h3><span id="sheng-cheng-yi-ge-xin-de-ssh-key">生成一个新的ssh key</span><a href="#sheng-cheng-yi-ge-xin-de-ssh-key" class="header-anchor"></a></h3><ol start="4">
+<li>打开Git Bash，输入以下命令：</li>
+</ol>
+<pre><code class="hljs bash">ssh-keygen -t rsa -b 4096 -C <span class="hljs-string">&quot;your_email@example.com&quot;</span></code></pre>
+
+<p>此处需要你填写的邮箱，这个邮箱地址是个注释（标识），没有任何实质作用。建议填写个人邮箱作为注释。</p>
+<pre><code>会有三个提示，直接按回车即可。最终信息类似如下：</code></pre>
+<pre><code class="hljs properties"><span class="hljs-meta">Administrator@GOS-11709151419</span> <span class="hljs-string">MINGW64 ~</span>
+<span class="hljs-meta">$</span> <span class="hljs-string">ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</span>
+<span class="hljs-attr">Generating</span> <span class="hljs-string">public/private rsa key pair.</span>
+<span class="hljs-attr">Enter</span> <span class="hljs-string">file in which to save the key (/c/Users/Administrator/.ssh/id_rsa):</span>
+<span class="hljs-attr">Enter</span> <span class="hljs-string">passphrase (empty for no passphrase):</span>
+<span class="hljs-attr">Enter</span> <span class="hljs-string">same passphrase again:</span>
+<span class="hljs-attr">Your</span> <span class="hljs-string">identification has been saved in /c/Users/Administrator/.ssh/id_rsa</span>
+<span class="hljs-attr">Your</span> <span class="hljs-string">public key has been saved in /c/Users/Administrator/.ssh/id_rsa.pub</span>
+<span class="hljs-attr">The</span> <span class="hljs-string">key fingerprint is:</span>
+<span class="hljs-attr">SHA256</span>:<span class="hljs-string">UDZ6Tpa1DZgBgCM+rT94d41+tfgFWdAdJcRqcrhAuNU your_email@example.com</span>
+<span class="hljs-attr">The</span> <span class="hljs-string">key&#x27;s randomart image is:</span>
+<span class="hljs-meta">+---[RSA</span> <span class="hljs-string">4096]----+</span>
+<span class="hljs-meta">|</span>   <span class="hljs-string">....o==o..o+.+|</span>
+
+<span class="hljs-attr">+----[SHA256]-----+</span></code></pre>
+
+
+
+<ol start="5">
+<li>复制id_rsa.pub中内容，将作为ssh key粘贴到Coding上。</li>
+</ol>
+<h3><span id="jiang-ssh-mi-yao-jia-ru-ni-de-coding-zhang-hu-zhong">将SSH密钥加入你的Coding账户中</span><a href="#jiang-ssh-mi-yao-jia-ru-ni-de-coding-zhang-hu-zhong" class="header-anchor"></a></h3><ol start="6">
+<li>登录Coding账号，点击右上角的头像图标，点击”个人账户设置”，再点击左侧栏里面的<strong>SSH公钥</strong>，然后点击右侧“新增公钥”</li>
+</ol>
+<ol start="7">
+<li>把复制的id_rsa.pub中内容粘贴到“公钥内容”栏中。“公钥名称”为标识，可以任意填写。如：</li>
+</ol>
+<img src="/2020/08/27/2020-08-27-Coding-SSH-Setting/2020-08-27-coding_add_ssh_key.png" srcset="/img/loading.gif" class title="coding_add_ssh_key">
+
+
+
+
+<ol start="6">
+<li>添加后，再次尝试使用ssh访问Coding则显示为：</li>
+</ol>
+<pre><code class="hljs reasonml">Administrator@GOS-<span class="hljs-number">01709151419</span> MINGW64 ~/.ssh
+$ ssh -T git@coding.net
+Coding 提示: Hello YourAccountName, You&#x27;ve connected <span class="hljs-keyword">to</span> <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Coding</span>.</span></span>net via SSH. This is a personal key.
+YourAccountName，你好，你已经通过 SSH 协议认证 <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Coding</span>.</span></span>net 服务，这是一个个人公钥.
+公钥指纹：af:<span class="hljs-number">2</span>a:ba:fc:<span class="hljs-number">51</span>:d2:ad:<span class="hljs-number">03</span>:eb:f6:<span class="hljs-number">87</span>:<span class="hljs-number">55</span>:<span class="hljs-number">58</span>:<span class="hljs-number">8</span>b:<span class="hljs-number">29</span>:c5
+</code></pre>
+
+
+
+<p>此时，完成SSH访问Coding设置</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/web/">Web</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Web/">Web</a>
+                    
+                      <a class="hover-with-bg" href="/tags/SSH/">SSH</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Coding/">Coding</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/28/2020-08-28-Coding_Deploy/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hexo使用攻略-Coding GitHub双解析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/25/2020-08-25-Douyin-Downloader/">
+                        <span class="hidden-mobile">抖音视频下载器_v2020.2.0</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz",
+          app_key: "uHvLSWs7HqeJQ7pNWUgaJ4cL",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://fua79ccb.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2020/08/27/2020-08-27-Coding-SSH-Setting/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz'
+    var app_key = 'uHvLSWs7HqeJQ7pNWUgaJ4cL'
+    var server_url = 'https://fua79ccb.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "通过SSH访问Coding设置&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

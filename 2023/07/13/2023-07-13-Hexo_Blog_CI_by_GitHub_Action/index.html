@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="卸甲山">
+  <meta name="keywords" content="">
+  <title>Hexo Blog CI by GitHub Action - </title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong></strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2023-07-13 22:45" pubdate>
+      2023年7月13日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      973 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Hexo Blog CI by GitHub Action</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>本地修改代码提交Github时自动触发Hexo代码更新</p>
+<p>静态博客简单，但是发布博文时稍显麻烦，一般需要下面两步：</p>
+<h2><span id="github-action-hexo-ci-cd">GitHub Action - Hexo CI/CD</span><a href="#github-action-hexo-ci-cd" class="header-anchor"></a></h2><h3><span id="bu-zou-yi-wei-cang-ku-she-zhi-fang-wen-mi-yao">步骤一：为仓库设置访问密钥</span><a href="#bu-zou-yi-wei-cang-ku-she-zhi-fang-wen-mi-yao" class="header-anchor"></a></h3><ol>
+<li>生成密钥</li>
+</ol>
+<p>打开命令行并生成一组密钥</p>
+<pre><code class="hljs lsl">ssh-keygen -f github-deploy-<span class="hljs-type">key</span> -C <span class="hljs-string">&quot;HEXO CD&quot;</span></code></pre>
+
+<p>记得跳过密码啥的，这里连按回车就好</p>
+<p>您将获得 2 个文件：</p>
+<pre><code class="hljs lsl">github-deploy-<span class="hljs-type">key</span>.pub    是公钥
+
+github-deploy-<span class="hljs-type">key</span>    是私钥</code></pre>
+
+<ol start="2">
+<li>上传公钥：</li>
+</ol>
+<p><strong>博客源码</strong>存储库(<a target="_blank" rel="noopener" href="https://github.com/zhenzhang20/zhenzhang20.github.io">https://github.com/zhenzhang20/zhenzhang20.github.io</a>) 中进行设置，转到Deploy Keys并使用Allow write access添加您的公钥 github-deploy-key.pub，name写为HEXO_DEPLOY_PUB，指定用途，方便后面维护，内容为 github-deploy-key.pub文件内的所有内容。记得勾选允许写入权限</p>
+<img src="/2023/07/13/2023-07-13-Hexo_Blog_CI_by_GitHub_Action/2023-07-13-GithubPages_Deploy_Keys_BeforeAdd.png" srcset="/img/loading.gif" class title="image">
+
+<img src="/2023/07/13/2023-07-13-Hexo_Blog_CI_by_GitHub_Action/2023-07-13-GithubPages_Deploy_Keys_Add.png" srcset="/img/loading.gif" class title="image">
+
+<img src="/2023/07/13/2023-07-13-Hexo_Blog_CI_by_GitHub_Action/2023-07-13-GithubPages_Deploy_Keys_FinishAdd.png" srcset="/img/loading.gif" class title="image">
+
+
+
+<ol start="3">
+<li>上传私钥：</li>
+</ol>
+<p>转到<strong>源码</strong>存储库(<a target="_blank" rel="noopener" href="https://github.com/zhenzhang20/blog">https://github.com/zhenzhang20/blog</a>) 中进行设置，github blog仓库地址 → Settings → Secrets and variables → action  → New repository secret，name写为HEXO_DEPLOY_PRI，内容为 github-deploy-key文件内的所有内容</p>
+<img src="/2023/07/13/2023-07-13-Hexo_Blog_CI_by_GitHub_Action/2023-07-13-BlogSource_Deploy_Keys_BeforeAdd.png" srcset="/img/loading.gif" class title="image">
+<img src="/2023/07/13/2023-07-13-Hexo_Blog_CI_by_GitHub_Action/2023-07-13-BlogSource_Deploy_Keys_Add.png" srcset="/img/loading.gif" class title="image">
+<img src="/2023/07/13/2023-07-13-Hexo_Blog_CI_by_GitHub_Action/2023-07-13-BlogSource_Deploy_Keys_FinishAdd.png" srcset="/img/loading.gif" class title="image">
+
+<ol start="4">
+<li>如果在github上删除了已经上传的密钥，则需要重新生产新的密钥进行上传。</li>
+</ol>
+<p><strong>不要轻易透露你的私钥</strong></p>
+<h3><span id="bu-zou-er-pei-zhi-github-workflows">步骤二：配置Github Workflows</span><a href="#bu-zou-er-pei-zhi-github-workflows" class="header-anchor"></a></h3><p>配置github action</p>
+<p>在本地 blog 根目录下创建 .github/workflows/deploy.yml 文件，目录结构如下</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">blog</span> (<span class="hljs-selector-tag">repository</span>)  
+└── <span class="hljs-selector-class">.github</span>  
+└── <span class="hljs-selector-tag">workflows</span>  
+└── <span class="hljs-selector-tag">deploy</span><span class="hljs-selector-class">.yml</span></code></pre>
+
+<p>deploy.yml 的内容如下</p>
+<pre><code class="hljs yaml"><span class="hljs-comment"># workflow name</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">Hexo</span> <span class="hljs-string">Blog</span> <span class="hljs-string">CI</span>
+
+<span class="hljs-comment"># main branch on push, auto run</span>
+<span class="hljs-attr">on:</span> 
+  <span class="hljs-attr">push:</span>
+    <span class="hljs-attr">branches:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">main</span>
+
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">build:</span> 
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span> 
+
+    <span class="hljs-attr">steps:</span>
+    <span class="hljs-comment"># check it to your workflow can access it</span>
+    <span class="hljs-comment"># from: https://github.com/actions/checkout</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span> <span class="hljs-string">Repository</span> <span class="hljs-string">main</span> <span class="hljs-string">branch</span>
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@main</span> 
+
+    <span class="hljs-comment"># from: https://github.com/actions/setup-node  </span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Node.js</span> <span class="hljs-number">12.</span><span class="hljs-string">x</span> 
+      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-node@main</span>
+      <span class="hljs-attr">with:</span>
+        <span class="hljs-attr">node-version:</span> <span class="hljs-string">&quot;12.x&quot;</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Hexo</span> <span class="hljs-string">Dependencies</span>
+      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span>
+        <span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">hexo-cli</span> <span class="hljs-string">-g</span>
+        <span class="hljs-string">npm</span> <span class="hljs-string">install</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">Private</span> <span class="hljs-string">Key</span>
+      <span class="hljs-attr">env:</span>
+        <span class="hljs-attr">HEXO_DEPLOY_PRIVATE_KEY:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.HEXO_DEPLOY_PRIVATE_KEY</span> <span class="hljs-string">&#125;&#125;</span>
+      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span>
+        <span class="hljs-string">mkdir</span> <span class="hljs-string">-p</span> <span class="hljs-string">~/.ssh/</span>
+        <span class="hljs-string">echo</span> <span class="hljs-string">&quot;$HEXO_DEPLOY_PRIVATE_KEY&quot;</span> <span class="hljs-string">&gt;</span> <span class="hljs-string">~/.ssh/id_rsa</span> 
+        <span class="hljs-string">chmod</span> <span class="hljs-number">600</span> <span class="hljs-string">~/.ssh/id_rsa</span>
+        <span class="hljs-string">ssh-keyscan</span> <span class="hljs-string">github.com</span> <span class="hljs-string">&gt;&gt;</span> <span class="hljs-string">~/.ssh/known_hosts</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Git</span> <span class="hljs-string">Infomation</span>
+      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span> 
+        <span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-string">--global</span> <span class="hljs-string">user.name</span> <span class="hljs-string">&#x27;zhen_zhang20&#x27;</span> 
+        <span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-string">--global</span> <span class="hljs-string">user.email</span> <span class="hljs-string">&#x27;zhen_zhang20@163.com&#x27;</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">Hexo</span> 
+      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span>
+        <span class="hljs-string">hexo</span> <span class="hljs-string">clean</span>
+        <span class="hljs-string">hexo</span> <span class="hljs-string">generate</span> 
+        <span class="hljs-string">hexo</span> <span class="hljs-string">deploy</span>
+
+</code></pre>
+<ul>
+<li>可能遇到报错：<pre><code class="hljs crystal">INFO  Copying files from <span class="hljs-keyword">extend</span> dirs...
+<span class="hljs-symbol">fatal:</span> in unpopulated submodule <span class="hljs-string">&#x27;.deploy_git&#x27;</span>
+FATAL &#123;
+<span class="hljs-symbol">err:</span> <span class="hljs-symbol">Error:</span> Spawn failed
+    at ChildProcess.&lt;anonymous&gt; (<span class="hljs-regexp">/home/runner</span><span class="hljs-regexp">/work/blog</span><span class="hljs-regexp">/blog/node</span>_modules/hexo-deployer-git/node_modules/hexo-util/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">spawn</span>.<span class="hljs-title">js</span>:51:21)</span>
+    at ChildProcess.emit (events.<span class="hljs-symbol">js:</span><span class="hljs-number">314</span>:<span class="hljs-number">20</span>)
+    at Process.ChildProcess._handle.onexit (internal/child_process.<span class="hljs-symbol">js:</span><span class="hljs-number">276</span>:<span class="hljs-number">12</span>) &#123;
+  <span class="hljs-symbol">code:</span> <span class="hljs-number">128</span>
+&#125;
+&#125; Something<span class="hljs-string">&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span>
+<span class="hljs-string">Error: Process completed with exit code 2.</span></code></pre>
+
+</li>
+</ul>
+<pre><code class="hljs crystal">INFO  Copying files from <span class="hljs-keyword">extend</span> dirs...
+<span class="hljs-symbol">fatal:</span> in unpopulated submodule <span class="hljs-string">&#x27;.deploy_git&#x27;</span>
+FATAL &#123;
+  <span class="hljs-symbol">err:</span> <span class="hljs-symbol">Error:</span> Spawn failed
+      at ChildProcess.&lt;anonymous&gt; (<span class="hljs-regexp">/home/runner</span><span class="hljs-regexp">/work/blog</span><span class="hljs-regexp">/blog/node</span>_modules/hexo-deployer-git/node_modules/hexo-util/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">spawn</span>.<span class="hljs-title">js</span>:51:21)</span>
+      at ChildProcess.emit (events.<span class="hljs-symbol">js:</span><span class="hljs-number">314</span>:<span class="hljs-number">20</span>)
+      at Process.ChildProcess._handle.onexit (internal/child_process.<span class="hljs-symbol">js:</span><span class="hljs-number">276</span>:<span class="hljs-number">12</span>) &#123;
+    <span class="hljs-symbol">code:</span> <span class="hljs-number">128</span>
+  &#125;
+&#125; Something<span class="hljs-string">&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span>
+<span class="hljs-string">Error: Process completed with exit code 2.</span></code></pre>
+
+<p>解决方法：可能是没有权限进行 <em>删除/更新 “.deploy_git”</em>。增加“rm -rf .deploy_git” 来解决。</p>
+<pre><code class="hljs properties"><span class="hljs-meta">-</span> <span class="hljs-string">name: Deploy Hexo </span>
+  <span class="hljs-attr">run</span>: <span class="hljs-string">|</span>
+    <span class="hljs-attr">rm</span> <span class="hljs-string">-rf .deploy_git</span>
+    <span class="hljs-attr">hexo</span> <span class="hljs-string">clean</span>
+    <span class="hljs-attr">hexo</span> <span class="hljs-string">generate </span>
+    <span class="hljs-attr">hexo</span> <span class="hljs-string">deploy</span></code></pre>
+
+
+<ul>
+<li>可能遇到报错：<pre><code class="hljs properties"><span class="hljs-attr">To</span> <span class="hljs-string">github.com:zhenzhang20/zhenzhang20.github.io.git</span>
+<span class="hljs-meta">+</span> <span class="hljs-string">78f5aeb...8311e98 HEAD -&gt; main (forced update)</span>
+<span class="hljs-attr">branch</span> <span class="hljs-string">&#x27;master&#x27; set up to track &#x27;git@github.com:zhenzhang20/zhenzhang20.github.io.git/main&#x27;.</span>
+<span class="hljs-attr">On</span> <span class="hljs-string">branch master</span>
+<span class="hljs-attr">nothing</span> <span class="hljs-string">to commit, working tree clean</span>
+<span class="hljs-attr">Host</span> <span class="hljs-string">key verification failed.</span>
+<span class="hljs-attr">fatal</span>: <span class="hljs-string">Could not read from remote repository.</span>
+<span class="hljs-attr">Please</span> <span class="hljs-string">make sure you have the correct access rights</span>
+<span class="hljs-attr">and</span> <span class="hljs-string">the repository exists.</span>
+<span class="hljs-attr">FATAL</span> <span class="hljs-string">&#123;</span>
+<span class="hljs-attr">err</span>: <span class="hljs-string">Error: Spawn failed</span>
+    <span class="hljs-attr">at</span> <span class="hljs-string">ChildProcess.&lt;anonymous&gt; (/home/runner/work/blog/blog/node_modules/hexo-deployer-git/node_modules/hexo-util/lib/spawn.js:51:21)</span>
+    <span class="hljs-attr">at</span> <span class="hljs-string">ChildProcess.emit (events.js:314:20)</span>
+    <span class="hljs-attr">at</span> <span class="hljs-string">Process.ChildProcess._handle.onexit (internal/child_process.js:276:12) &#123;</span>
+  <span class="hljs-attr">code</span>: <span class="hljs-string">128</span>
+<span class="hljs-attr">&#125;</span>
+<span class="hljs-meta">&#125;</span> <span class="hljs-string">Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span>
+<span class="hljs-attr">Error</span>: <span class="hljs-string">Process completed with exit code 2.</span></code></pre>
+
+</li>
+</ul>
+<p>解决方法：先主动提交一次 <strong>博客源码</strong>，之后再用持续集成方式提交</p>
+<!--  -->
+
+
+
+
+<h3><span id="bu-zou-san-ti-jiao-blog-dai-ma">步骤三：提交Blog代码</span><a href="#bu-zou-san-ti-jiao-blog-dai-ma" class="header-anchor"></a></h3><p>在Git Bash下，转到本地 blog 目录，运行下述命令提交代码</p>
+<pre><code class="hljs dockerfile">git <span class="hljs-keyword">add</span><span class="bash"> .</span>
+git commit -m <span class="hljs-string">&#x27;initial&#x27;</span>
+git push origin main</code></pre>
+
+<p>提交后，检查<a target="_blank" rel="noopener" href="https://github.com/zhenzhang20/blog/">github.com/zhenzhang20/blog</a>仓库是否被更新，同时检查blog下的<a target="_blank" rel="noopener" href="https://github.com/zhenzhang20/blog/actions/">action</a> 是否有正常运行，再检查<a target="_blank" rel="noopener" href="https://github.com/zhenzhang20/zhenzhang20.github.io">博客仓库</a>是否被自动更新</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Github/">Github</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Github-Action/">Github Action</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Github%EF%BC%8C%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%EF%BC%8CHexo-Blog-CI/">Github，持续集成，Hexo Blog CI</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/10/2023-07-10-GitHub-Clone-Push/">
+                        <span class="hidden-mobile">GitHub Clone and Push</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz",
+          app_key: "uHvLSWs7HqeJQ7pNWUgaJ4cL",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://fua79ccb.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2023/07/13/2023-07-13-Hexo_Blog_CI_by_GitHub_Action/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz'
+    var app_key = 'uHvLSWs7HqeJQ7pNWUgaJ4cL'
+    var server_url = 'https://fua79ccb.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Hexo Blog CI by GitHub Action&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

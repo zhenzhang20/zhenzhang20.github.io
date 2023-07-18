@@ -1,0 +1,1113 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="卸甲山">
+  <meta name="keywords" content="">
+  <title>爬取七麦(Qimai)网应用下载量数据 - </title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong></strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-09-17 19:45" pubdate>
+      2020年9月17日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      52
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">爬取七麦(Qimai)网应用下载量数据</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>通过python写脚本抓取七麦数据上Android应用在各大应用平台的下载量。</p>
+<h3><span id="huo-qu-js-dai-ma">获取js代码</span><a href="#huo-qu-js-dai-ma" class="header-anchor"></a></h3><p>网络上有很多方法，不展开，最终获取信息如下：</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">C</span>(<span class="hljs-params">a, n</span>) </span>&#123;
+    a = a[<span class="hljs-string">&quot;split&quot;</span>](<span class="hljs-string">&quot;&quot;</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> t = a[<span class="hljs-string">&quot;length&quot;</span>], e = n[<span class="hljs-string">&quot;length&quot;</span>], r = <span class="hljs-string">&quot;charCodeAt&quot;</span>, i = <span class="hljs-number">0</span>; i &lt; t; i++) a[i] = m(a[i][r](<span class="hljs-number">0</span>) ^ n[(i + <span class="hljs-number">10</span>) % e][r](<span class="hljs-number">0</span>));
+    <span class="hljs-keyword">return</span> a[<span class="hljs-string">&quot;join&quot;</span>](<span class="hljs-string">&quot;&quot;</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">m</span>(<span class="hljs-params">n</span>) </span>&#123;
+        <span class="hljs-keyword">var</span> t = <span class="hljs-string">&quot;fromCharCode&quot;</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>[t](n)
+    &#125;
+    <span class="hljs-comment">//上面是分析f(k)函数</span>
+    <span class="hljs-comment">//下面是f(e)函数</span>
+    <span class="hljs-comment">//函数v(n)就是f（e）函数的结果，m函数和上面的函数一样，只需要分析其中的n_fun函数的实现</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v</span>(<span class="hljs-params">n</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> n_fun(<span class="hljs-built_in">encodeURIComponent</span>(n)[<span class="hljs-string">&quot;replace&quot;</span>](<span class="hljs-regexp">/%([0-9A-F]&#123;2&#125;)/g</span>,
+        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, n</span>) </span>&#123;
+            <span class="hljs-keyword">return</span> m(<span class="hljs-string">&quot;0x&quot;</span> + n)
+        &#125;))
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">n_fun</span>(<span class="hljs-params">t</span>) </span>&#123;
+    <span class="hljs-keyword">var</span> n;
+    n = e_from(t.toString(), <span class="hljs-string">&quot;binary&quot;</span>) ;
+    <span class="hljs-keyword">return</span> q_fromByteArray(n) <span class="hljs-comment">// 这一处的代码相当于 n.toString(&quot;base64&quot;)</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">e_from</span>(<span class="hljs-params">t_str, b</span>) </span>&#123;
+    <span class="hljs-keyword">var</span> r = t_str.length;
+    t = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(r);
+    <span class="hljs-keyword">var</span> i = t_write(t, t_str, b, r);
+    <span class="hljs-keyword">return</span> t
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">t_write</span>(<span class="hljs-params">t, e, b, r</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> K(W(e), t, <span class="hljs-number">0</span>, r)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">K</span>(<span class="hljs-params">t, e, n, r</span>) </span>&#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; r &amp;&amp; !(j + n &gt;= e.length || j &gt;= t.length); ++j) e[j + n] = t[j];
+    <span class="hljs-keyword">return</span> j
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">W</span>(<span class="hljs-params">t</span>) </span>&#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> e = [], n = <span class="hljs-number">0</span>; n &lt; t.length; ++n) e.push(<span class="hljs-number">255</span> &amp; t.charCodeAt(n));
+    <span class="hljs-keyword">return</span> e
+&#125;
+l = <span class="hljs-string">&quot;A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9,+,/&quot;</span>
+l = l.split(<span class="hljs-string">&quot;,&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">q_fromByteArray</span>(<span class="hljs-params">t</span>) </span>&#123;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> e, n = t.length,
+        r = n % <span class="hljs-number">3</span>,
+        i = <span class="hljs-string">&quot;&quot;</span>,
+        o = [], a = <span class="hljs-number">16383</span>, u = <span class="hljs-number">0</span>, c = n - r; u &lt; c; u += a) o.push(s(t, u, u + a &gt; c ? c : u + a));
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> === r ? (e = t[n - <span class="hljs-number">1</span>], i += l[e &gt;&gt; <span class="hljs-number">2</span>], i += l[e &lt;&lt; <span class="hljs-number">4</span> &amp; <span class="hljs-number">63</span>], i += <span class="hljs-string">&quot;==&quot;</span>) : <span class="hljs-number">2</span> === r &amp;&amp; (e = (t[n - <span class="hljs-number">2</span>] &lt;&lt; <span class="hljs-number">8</span>) + t[n - <span class="hljs-number">1</span>], i += l[e &gt;&gt; <span class="hljs-number">10</span>], i += l[e &gt;&gt; <span class="hljs-number">4</span> &amp; <span class="hljs-number">63</span>], i += l[e &lt;&lt; <span class="hljs-number">2</span> &amp; <span class="hljs-number">63</span>], i += <span class="hljs-string">&quot;=&quot;</span>),
+        o.push(i),
+        o.join(<span class="hljs-string">&quot;&quot;</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">s</span>(<span class="hljs-params">t, e, n</span>) </span>&#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> r, i = [], o = e; o &lt; n; o += <span class="hljs-number">3</span>) r = (t[o] &lt;&lt; <span class="hljs-number">16</span> &amp; <span class="hljs-number">16711680</span>) + (t[o + <span class="hljs-number">1</span>] &lt;&lt; <span class="hljs-number">8</span> &amp; <span class="hljs-number">65280</span>) + (<span class="hljs-number">255</span> &amp; t[o + <span class="hljs-number">2</span>]),
+        i.push(a(r));
+    <span class="hljs-keyword">return</span> i.join(<span class="hljs-string">&quot;&quot;</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params">t</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> l[t &gt;&gt; <span class="hljs-number">18</span> &amp; <span class="hljs-number">63</span>] + l[t &gt;&gt; <span class="hljs-number">12</span> &amp; <span class="hljs-number">63</span>] + l[t &gt;&gt; <span class="hljs-number">6</span> &amp; <span class="hljs-number">63</span>] + l[<span class="hljs-number">63</span> &amp; t]
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get0analysis</span>(<span class="hljs-params">synct, params</span>) </span>&#123;
+    <span class="hljs-keyword">var</span> g = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() - <span class="hljs-number">1000</span> * synct;
+    <span class="hljs-keyword">var</span> e = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>() - g - <span class="hljs-number">1515125653845</span>;
+    <span class="hljs-keyword">var</span> analy = [];
+    <span class="hljs-keyword">var</span> palist = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> params) &#123;
+        palist.push(params[key])
+    &#125;
+    <span class="hljs-keyword">var</span> mm = palist[<span class="hljs-string">&quot;sort&quot;</span>]()[<span class="hljs-string">&quot;join&quot;</span>](<span class="hljs-string">&quot;&quot;</span>);
+    <span class="hljs-keyword">var</span> mmm = v(mm); <span class="hljs-comment">//参数mm先执行f(e)函数</span>
+    <span class="hljs-keyword">var</span> m_str1 = mmm + <span class="hljs-string">&#x27;@#/rank/indexPlus/brand_id/1@#57313212470@#1&#x27;</span>;
+    <span class="hljs-keyword">var</span> m_str0 = mmm + <span class="hljs-string">&#x27;@#/rank/indexPlus/brand_id/0@#57313212470@#0&#x27;</span>;
+    <span class="hljs-keyword">var</span> m_str2 = mmm + <span class="hljs-string">&#x27;@#/rank/indexPlus/brand_id/2@#57313212470@#2&#x27;</span>;
+    <span class="hljs-keyword">var</span> b_str = <span class="hljs-string">&quot;00000008d78d46a&quot;</span>;
+    <span class="hljs-keyword">var</span> r2 = v(C(m_str2, b_str));
+    <span class="hljs-keyword">var</span> r0 = v(C(m_str0, b_str));
+    <span class="hljs-keyword">var</span> r1 = v(C(m_str1, b_str)) ;
+    analy.push(r0, r1, r2);
+    <span class="hljs-keyword">return</span> analy
+&#125;</code></pre>
+
+<h3><span id="python-xia-zai-jiao-ben">python下载脚本</span><a href="#python-xia-zai-jiao-ben" class="header-anchor"></a></h3><pre><code class="hljs python"><span class="hljs-comment"># -*- coding:utf-8 -*-</span>
+
+<span class="hljs-keyword">import</span> requests, execjs,json
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> time, os
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+
+user_agent = [
+    <span class="hljs-string">&quot;Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5&quot;</span>,
+    <span class="hljs-string">&quot;Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5&quot;</span>,
+    <span class="hljs-string">&quot;Mozilla/5.0 (iPad; U; CPU OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5&quot;</span>,
+    <span class="hljs-string">&quot;Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&quot;</span>,
+    <span class="hljs-string">&quot;MQQBrowser/26 Mozilla/5.0 (Linux; U; Android 2.3.7; zh-cn; MB200 Build/GRJ22; CyanogenMod-7) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&quot;</span>,
+    <span class="hljs-string">&quot;Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.337 Mobile Safari/534.1+&quot;</span>,
+    <span class="hljs-string">&quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0; HTC; Titan)&quot;</span>,
+    <span class="hljs-string">&quot;Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25&quot;</span>,
+    ]
+
+headers = &#123;
+    <span class="hljs-string">&quot;User-Agent&quot;</span>: random.choice(user_agent),
+    <span class="hljs-string">&#x27;Origin&#x27;</span>: <span class="hljs-string">&#x27;https://www.qimai.cn&#x27;</span>,
+    <span class="hljs-string">&#x27;Referer&#x27;</span>: <span class="hljs-string">&#x27;https://www.qimai.cn/rank&#x27;</span>,
+    <span class="hljs-string">&quot;Accept&quot;</span>: <span class="hljs-string">&quot;application/json,text/plain,*/*&quot;</span>,
+&#125;
+
+params = &#123;<span class="hljs-string">&#x27;brand&#x27;</span>: <span class="hljs-string">&#x27;all&#x27;</span>,
+          <span class="hljs-string">&#x27;country&#x27;</span>: <span class="hljs-string">&#x27;cn&#x27;</span>,
+          <span class="hljs-string">&#x27;device&#x27;</span>: <span class="hljs-string">&#x27;iphone&#x27;</span>,
+          <span class="hljs-string">&#x27;genre&#x27;</span>: <span class="hljs-string">&#x27;5000&#x27;</span>,
+          <span class="hljs-string">&#x27;date&#x27;</span>: <span class="hljs-string">&#x27;2020-8-31&#x27;</span>,
+          <span class="hljs-string">&#x27;page&#x27;</span>: <span class="hljs-number">2</span>
+          &#125;
+
+TRY_TIMES = <span class="hljs-number">10</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getAnalysis</span>():</span>
+    resp = requests.get(<span class="hljs-string">&#x27;https://www.qimai.cn/rank&#x27;</span>, headers=headers, verify=<span class="hljs-literal">False</span>)
+    t = resp.cookies.get_dict()
+    synct = t.get(<span class="hljs-string">&#x27;synct&#x27;</span>)<span class="hljs-comment">#时间</span>
+    print(<span class="hljs-string">&quot;current time is : &quot;</span> + synct)
+    ana = getanaly(synct)
+    <span class="hljs-keyword">return</span> ana
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getanaly</span>(<span class="hljs-params">synct</span>):</span>
+    js_path = <span class="hljs-string">&quot;qimai.js&quot;</span>
+    <span class="hljs-keyword">try</span>:
+        new_pwd = <span class="hljs-string">&quot;dummy&quot;</span>
+        <span class="hljs-keyword">with</span> open(js_path, <span class="hljs-string">&#x27;r&#x27;</span>,encoding=<span class="hljs-string">&#x27;utf8&#x27;</span>) <span class="hljs-keyword">as</span> f:
+            js_content = f.read()
+            ctx = execjs.compile(js_content)
+            new_pwd = ctx.call(<span class="hljs-string">&quot;get0analysis&quot;</span>, synct, params)
+    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> ex:
+        print(<span class="hljs-string">&quot;Exception when run js file....., will return dummy pwd&quot;</span>)
+    <span class="hljs-keyword">finally</span>:
+        print(<span class="hljs-string">&quot;getanaly result is: &quot;</span>, new_pwd)
+        <span class="hljs-keyword">return</span> new_pwd
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">check_ana_valid</span>(<span class="hljs-params">ana</span>):</span>
+    params[<span class="hljs-string">&#x27;analysis&#x27;</span>] = ana[<span class="hljs-number">0</span>]
+    print(<span class="hljs-string">&quot;params[&#x27;analysis&#x27;] = &quot;</span> + params[<span class="hljs-string">&#x27;analysis&#x27;</span>] )
+    <span class="hljs-comment"># params[&#x27;analysis&#x27;] = ana</span>
+    <span class="hljs-comment"># print(&quot;params[&#x27;analysis&#x27;] = &quot; + params[&#x27;analysis&#x27;])</span>
+    url = <span class="hljs-string">&#x27;https://api.qimai.cn/userRequest/index?&#x27;</span>
+    <span class="hljs-comment"># print(url)</span>
+    res = requests.get(url=url,headers=headers,params=params)
+    <span class="hljs-comment"># print(&quot;check_ana_valid res.text: &quot;, res.text)</span>
+    <span class="hljs-keyword">try</span>:
+        resjson = json.loads(res.text)
+        print(<span class="hljs-string">&quot;check ana result: &quot;</span> , resjson)
+        <span class="hljs-keyword">return</span>(resjson)
+    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> ex:
+        <span class="hljs-keyword">return</span><span class="hljs-string">&quot;&quot;</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">check_specifykey_specifymarket_exist</span>(<span class="hljs-params">ana, market, searchkey</span>):</span>
+    params[<span class="hljs-string">&#x27;analysis&#x27;</span>] = ana[<span class="hljs-number">1</span>]
+    params[<span class="hljs-string">&#x27;market&#x27;</span>] = market <span class="hljs-comment">#&#x27;6&#x27;</span>
+    params[<span class="hljs-string">&#x27;search&#x27;</span>] = searchkey <span class="hljs-comment"># &#x27;每团‘</span>
+
+    url = <span class="hljs-string">&#x27;https://api.qimai.cn/search/checkHasBundleId?&#x27;</span>
+    print(url)
+    res = requests.get(url=url,headers=headers,params=params)
+    print(<span class="hljs-string">&quot;check_specifykey_specifymarket_exist res.txt: &quot;</span>+ res.text)
+    <span class="hljs-keyword">try</span>:
+        resjson = json.loads(res.text)
+        print(resjson)
+        <span class="hljs-keyword">return</span> (resjson)
+    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> ex:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>
+
+
+
+<span class="hljs-comment"># 查询pagenum页信息</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">search_specifykey_specifymarket</span>(<span class="hljs-params">ana, market, searchkey, outfilename, keys, pagenum</span>):</span>
+    params[<span class="hljs-string">&#x27;analysis&#x27;</span>] = ana[<span class="hljs-number">1</span>]
+    params[<span class="hljs-string">&#x27;market&#x27;</span>] = market <span class="hljs-comment">#&#x27;6&#x27;</span>
+    params[<span class="hljs-string">&#x27;search&#x27;</span>] = searchkey <span class="hljs-comment"># &#x27;每团‘</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,pagenum):
+        params[<span class="hljs-string">&#x27;page&#x27;</span>] = i
+        url = <span class="hljs-string">&#x27;https://api.qimai.cn/search/android?&#x27;</span>
+        print(url)
+        print(<span class="hljs-string">&quot;params: %s&quot;</span> % str(params))
+        res = requests.get(url=url,headers=headers,params=params)
+        print(<span class="hljs-string">&quot;search_specifykey_specifymarket res.txt: &quot;</span>+ res.text)
+        <span class="hljs-keyword">try</span>:
+            resjson = json.loads(res.text)
+            print(resjson)
+            <span class="hljs-keyword">if</span> str(resjson).strip() == <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">or</span> str(resjson).strip().find(<span class="hljs-string">&quot;10602&quot;</span>) != <span class="hljs-number">-1</span>:
+                ana = getAna(TRY_TIMES)
+                search_specifykey_specifymarket(ana, market, searchkey, outfilename, keys, pagenum)
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> resjson.get(<span class="hljs-string">&#x27;appList&#x27;</span>) <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+                    print(resjson.get(<span class="hljs-string">&#x27;appList&#x27;</span>)[<span class="hljs-number">0</span>])
+                    save_json_to_file(outfilename, resjson, keys)
+        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> ex:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>
+
+
+
+<span class="hljs-comment"># save json data to file</span>
+<span class="hljs-comment"># keys is filter, if keys value exist, don&#x27;t save</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">save_json_to_file</span>(<span class="hljs-params">outfilename, jsondata, keys</span>):</span>
+    <span class="hljs-keyword">with</span> open(outfilename, <span class="hljs-string">&#x27;a+&#x27;</span>, encoding=<span class="hljs-string">&#x27;UTF-8&#x27;</span>) <span class="hljs-keyword">as</span> f:
+        f.seek(<span class="hljs-number">0</span>)
+        lines = f.read().splitlines()
+        EXIST = <span class="hljs-literal">False</span>
+        newline = str(jsondata).strip()
+        <span class="hljs-keyword">try</span>:
+            newlinedict = eval(newline)
+        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> ex:
+            newlinedict = &#123;&#125;
+            print(<span class="hljs-string">&quot;newline is :&quot;</span> + newline)
+        <span class="hljs-keyword">if</span> len(lines) == <span class="hljs-number">0</span>:
+            f.writelines(newline + <span class="hljs-string">&#x27;\n&#x27;</span>)
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> EXIST:
+                <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> lines:
+                    <span class="hljs-keyword">try</span>:
+                        linedict = eval(line)
+                    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> ex:
+                        <span class="hljs-keyword">continue</span>
+                    <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> keys:
+                        cont = linedict.get(key)
+                        cont_newline = newlinedict.get(key)
+
+                        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> cont_newline == cont:
+                            EXIST = <span class="hljs-literal">False</span>
+                            <span class="hljs-keyword">break</span>
+                        EXIST = <span class="hljs-literal">True</span>
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> EXIST:
+                f.writelines(newline + <span class="hljs-string">&#x27;\n&#x27;</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">download</span>(<span class="hljs-params">searchkey, markets, capture_page_numbers</span>):</span>
+    ana = getAna(TRY_TIMES)
+    <span class="hljs-comment"># 共10个android应用市场</span>
+    <span class="hljs-comment"># markets = &#123;&#x27;360&#x27;: &#x27;1&#x27;, &#x27;百度&#x27;: &#x27;2&#x27;, &#x27;应用宝&#x27;: &#x27;3&#x27;, &#x27;小米&#x27;: &#x27;4&#x27;, &#x27;豌豆荚&#x27;: &#x27;5&#x27;, &#x27;华为&#x27;: &#x27;6&#x27;, &#x27;魅族&#x27;: &#x27;7&#x27;, &#x27;VIVO&#x27;: &#x27;8&#x27;, &#x27;OPPO&#x27;: &#x27;9&#x27;,</span>
+    <span class="hljs-comment">#            &#x27;gogoleplay&#x27;: &#x27;10&#x27;&#125;  #共10个android应用市场</span>
+    <span class="hljs-keyword">for</span> market_name <span class="hljs-keyword">in</span> markets.keys():
+        market_id = markets.get(market_name)
+        <span class="hljs-comment"># jsondata2 = check_specifykey_specifymarket_exist(ana, market, searchkey)</span>
+        <span class="hljs-comment"># save_json_to_file(&quot;test.txt&quot;, jsondata2, [&quot;code&quot;, &quot;msg&quot;])</span>
+        outfilename = searchkey + <span class="hljs-string">&quot;_market_&quot;</span> + market_name + <span class="hljs-string">&quot;.txt&quot;</span>
+        search_specifykey_specifymarket(ana, market_id, searchkey, outfilename, [], capture_page_numbers)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getAna</span>(<span class="hljs-params">trytimes</span>):</span>
+    ana = getAnalysis()
+    jsondata1 = check_ana_valid(ana)
+    <span class="hljs-comment"># newline = str(jsondata1).strip()</span>
+    <span class="hljs-keyword">while</span> str(jsondata1).strip() == <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">or</span> str(jsondata1).strip().find(<span class="hljs-string">&quot;10602&quot;</span>) != <span class="hljs-number">-1</span>:
+        <span class="hljs-keyword">if</span> str(jsondata1).strip().find(<span class="hljs-string">&#x27;Access Error&#x27;</span>) != <span class="hljs-number">-1</span>:
+            print(<span class="hljs-string">&quot;Current try time is No.: &quot;</span>, str(TRY_TIMES - trytimes), <span class="hljs-string">&quot;. Please wait 10 secs&quot;</span>)
+            time.sleep(<span class="hljs-number">10</span>)
+        <span class="hljs-keyword">elif</span> str(jsondata1).strip().find(<span class="hljs-string">&#x27;请半小时后重试&#x27;</span>) != <span class="hljs-number">-1</span>:
+            print(<span class="hljs-string">&quot;Current try time is No.: &quot;</span>, str(TRY_TIMES - trytimes), <span class="hljs-string">&quot;. Please wait 30 mins&quot;</span>)
+            time.sleep(<span class="hljs-number">1850</span>)
+        ana = getAnalysis()
+        jsondata1 = check_ana_valid(ana)
+        trytimes -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> trytimes == <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">break</span>
+    save_json_to_file(<span class="hljs-string">&quot;check_ana_valid.txt&quot;</span>, jsondata1, [<span class="hljs-string">&quot;code&quot;</span>, <span class="hljs-string">&quot;msg&quot;</span>])
+    <span class="hljs-keyword">return</span> ana
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">json_to_excel</span>(<span class="hljs-params">text</span>):</span>
+    df = pd.DataFrame()  <span class="hljs-comment"># 最后转换得到的结果</span>
+    df1 = pd.DataFrame([text])
+    df = df.append(df1)
+    df.to_excel(<span class="hljs-string">&#x27;data.xlsx&#x27;</span>, sheet_name=<span class="hljs-string">&#x27;Data&#x27;</span>, startcol=<span class="hljs-number">0</span>, index=<span class="hljs-literal">False</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">json_file_cont_to_excel_special</span>(<span class="hljs-params">inputdata, outputfile</span>):</span>
+    print(<span class="hljs-string">&quot;will generate &#123;outputfile&#125; base on &#123;inputdata&#125;&quot;</span>.format(outputfile=outputfile,inputdata=inputdata))
+    data = []  <span class="hljs-comment"># 用于存储每一行的数据</span>
+    <span class="hljs-keyword">with</span> open(inputdata, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;UTF-8&#x27;</span>) <span class="hljs-keyword">as</span> fr:
+        <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> fr:
+            data.append(line)
+    df = pd.DataFrame()  <span class="hljs-comment"># 最后转换得到的结果</span>
+    <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> data:
+        <span class="hljs-comment">#每行的数据转为json格式，再转为dataframe格式</span>
+        line_json = eval(line)
+        applist_cont_list = line_json.get(<span class="hljs-string">&#x27;appList&#x27;</span>)
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> applist_cont_list:
+            info = &#123;&#125;
+            <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;appInfo&#x27;</span> <span class="hljs-keyword">in</span> i.keys():
+                info.update(i.get(<span class="hljs-string">&#x27;appInfo&#x27;</span>))
+            <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;company&#x27;</span> <span class="hljs-keyword">in</span> i.keys():
+                info.update(i.get(<span class="hljs-string">&#x27;company&#x27;</span>))
+            <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;rankInfo&#x27;</span> <span class="hljs-keyword">in</span> i.keys():
+                info.update(i.get(<span class="hljs-string">&#x27;rankInfo&#x27;</span>))
+            df1 = pd.DataFrame(info,index=[<span class="hljs-number">0</span>])
+            <span class="hljs-comment"># df1 = pd.DataFrame.from_dict(info,orient=&#x27;index&#x27;).T</span>
+            df = df.append(df1)
+    sheet_name = inputdata[:inputdata.find(<span class="hljs-string">&#x27;.&#x27;</span>)]
+    df.to_excel(outputfile, sheet_name=sheet_name, startcol=<span class="hljs-number">0</span>, index=<span class="hljs-literal">False</span>)
+    print(<span class="hljs-string">&quot;generated &#123;outputfile&#125; base on &#123;inputdata&#125; finish&quot;</span>.format(outputfile =outputfile,inputdata=inputdata))
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">convert_result_to_one_excel</span>(<span class="hljs-params">excelfilename</span>):</span>
+    list_file = os.listdir(<span class="hljs-string">&#x27;./&#x27;</span>)
+    write = pd.ExcelWriter(excelfilename)
+    <span class="hljs-keyword">for</span> contentfile <span class="hljs-keyword">in</span> list_file:
+        name = os.path.splitext(contentfile)[<span class="hljs-number">0</span>]
+        suffix = os.path.splitext(contentfile)[<span class="hljs-number">1</span>]
+        <span class="hljs-keyword">if</span> suffix == <span class="hljs-string">&#x27;.txt&#x27;</span> <span class="hljs-keyword">and</span> name.find(<span class="hljs-string">&#x27;_market&#x27;</span>) != <span class="hljs-number">-1</span>:
+            json_file_cont_to_excel_special(contentfile, write)
+    write.save()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">convert_result_to_multi_excels</span>():</span>
+    list_file = os.listdir(<span class="hljs-string">&#x27;./&#x27;</span>)
+    <span class="hljs-keyword">for</span> contentfile <span class="hljs-keyword">in</span> list_file:
+        name = os.path.splitext(contentfile)[<span class="hljs-number">0</span>]
+        suffix = os.path.splitext(contentfile)[<span class="hljs-number">1</span>]
+        <span class="hljs-keyword">if</span> suffix == <span class="hljs-string">&#x27;.txt&#x27;</span> <span class="hljs-keyword">and</span> name.find(<span class="hljs-string">&#x27;_market&#x27;</span>) != <span class="hljs-number">-1</span>:
+            output_excel_name = name + <span class="hljs-string">&#x27;.xls&#x27;</span>
+            json_file_cont_to_excel_special(contentfile, output_excel_name)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    searchkeys = [<span class="hljs-string">&#x27;拜佛&#x27;</span>, <span class="hljs-string">&#x27;佛教&#x27;</span>]
+    markets = &#123;<span class="hljs-string">&#x27;360&#x27;</span>: <span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-string">&#x27;百度&#x27;</span>: <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&#x27;应用宝&#x27;</span>: <span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-string">&#x27;小米&#x27;</span>: <span class="hljs-string">&#x27;4&#x27;</span>, <span class="hljs-string">&#x27;豌豆荚&#x27;</span>: <span class="hljs-string">&#x27;5&#x27;</span>, <span class="hljs-string">&#x27;华为&#x27;</span>: <span class="hljs-string">&#x27;6&#x27;</span>, <span class="hljs-string">&#x27;魅族&#x27;</span>: <span class="hljs-string">&#x27;7&#x27;</span>, <span class="hljs-string">&#x27;VIVO&#x27;</span>: <span class="hljs-string">&#x27;8&#x27;</span>, <span class="hljs-string">&#x27;OPPO&#x27;</span>: <span class="hljs-string">&#x27;9&#x27;</span>,
+               <span class="hljs-string">&#x27;gogoleplay&#x27;</span>: <span class="hljs-string">&#x27;10&#x27;</span>&#125;  <span class="hljs-comment"># 共10个android应用市场</span>
+
+    capture_page_numbers = <span class="hljs-number">5</span>
+    <span class="hljs-keyword">for</span> searchkey <span class="hljs-keyword">in</span> searchkeys:
+        download(searchkey, markets, capture_page_numbers)
+
+
+    out_excel_filename = <span class="hljs-string">&quot;android.xls&quot;</span>
+    convert_result_to_one_excel(out_excel_filename)
+    <span class="hljs-comment"># convert_result_to_multi_excels()</span>
+
+</code></pre>
+
+<h3><span id="yun-xing-ri-zhi-xin-xi-ji-zui-zhong-jie-guo-zhan-shi">运行日志信息及最终结果展示</span><a href="#yun-xing-ri-zhi-xin-xi-ji-zui-zhong-jie-guo-zhan-shi" class="header-anchor"></a></h3><h4><span id="ri-zhi">日志:</span><a href="#ri-zhi" class="header-anchor"></a></h4><img src="/2020/09/17/2020-09-17-Spider-Qimai-Rank/2020-09-16-qimai_full_log.png" srcset="/img/loading.gif" class>
+
+<h4><span id="jie-guo-wen-jian">结果文件</span><a href="#jie-guo-wen-jian" class="header-anchor"></a></h4><img src="/2020/09/17/2020-09-17-Spider-Qimai-Rank/2020-09-16-qimai_sample_result_file.png" srcset="/img/loading.gif" class>
+
+<h4><span id="txt-jie-guo-nei-rong-shi-li">txt结果内容示例</span><a href="#txt-jie-guo-nei-rong-shi-li" class="header-anchor"></a></h4><pre><code class="hljs 1c">&#123;&#x27;code&#x27;: <span class="hljs-number">10000</span>, &#x27;msg&#x27;: &#x27;成功&#x27;, &#x27;isActualAndroid&#x27;: <span class="hljs-number">0</span>, &#x27;wechatList&#x27;: [], &#x27;isSearch&#x27;: True, &#x27;totalNum&#x27;: &#x27;20&#x27;, &#x27;maxPage&#x27;: <span class="hljs-number">1</span>, &#x27;offlineAppInfo&#x27;: False, &#x27;appList&#x27;: [&#123;&#x27;appInfo&#x27;: &#123;&#x27;appId&#x27;: &#x27;<span class="hljs-number">164404</span>&#x27;, &#x27;appName&#x27;: &#x27;拜佛&#x27;, &#x27;icon&#x27;: &#x27;https://static-cdn.qimai.cn/pic/view/type/android/source/aHR0cDovL3AyLnFoaW1nLmNvbS90MDE5ZjU2NTY3YWNkZmZjMmFmLndlYnA=&#x27;, &#x27;publisher&#x27;: &#x27;深圳市功德文化有限公司&#x27;, &#x27;comment_score&#x27;: <span class="hljs-number">1</span>, &#x27;comment_count&#x27;: <span class="hljs-number">260</span>, &#x27;version_time&#x27;: &#x27;<span class="hljs-number">2020-06-23</span>&#x27;, &#x27;app_download_num&#x27;: &#x27;<span class="hljs-number">196454</span>&#x27;&#125;, &#x27;genre&#x27;: &#x27;常用工具&#x27;, &#x27;isMyApp&#x27;: <span class="hljs-number">0</span>, &#x27;company&#x27;: &#123;&#x27;id&#x27;: &#x27;<span class="hljs-number">1186</span>3&#x27;, &#x27;name&#x27;: &#x27;深圳市聚英杰科技有限公司&#x27;&#125;, &#x27;rankInfo&#x27;: &#123;&#x27;ranking&#x27;: <span class="hljs-number">0</span>, &#x27;change&#x27;: <span class="hljs-number">0</span>, &#x27;genre&#x27;: &#x27;游戏&#x27;&#125;&#125;, &#123;&#x27;appInfo&#x27;: &#123;&#x27;appId&#x27;: &#x27;<span class="hljs-number">132294</span>&#x27;, &#x27;appName&#x27;: &#x27;怀恩菩提心&#x27;, &#x27;icon&#x27;: &#x27;https://static-cdn.qimai.cn/pic/view/type/android/source/aHR0cDovL3AyLnFoaW1nLmNvbS90MDE0NzVkNjRhMGRhM2M2Njc0LndlYnA=&#x27;, &#x27;publisher&#x27;: &#x27;上海怀恩网络科技有限公司&#x27;, &#x27;comment_score&#x27;: <span class="hljs-number">1</span>, &#x27;comment_count&#x27;: <span class="hljs-number">664</span>, &#x27;version_time&#x27;: &#x27;<span class="hljs-number">2019-12-11</span>&#x27;, &#x27;app_download_num&#x27;: &#x27;<span class="hljs-number">362645</span>&#x27;&#125;, &#x27;genre&#x27;: &#x27;常用工具&#x27;, &#x27;isMyApp&#x27;: <span class="hljs-number">0</span>, &#x27;company&#x27;: &#123;&#x27;id&#x27;: &#x27;<span class="hljs-number">4988</span>0&#x27;, &#x27;name&#x27;: &#x27;上海怀恩网络科技有限公司&#x27;&#125;, &#x27;rankInfo&#x27;: &#123;&#x27;ranking&#x27;: <span class="hljs-number">0</span>, &#x27;change&#x27;: <span class="hljs-number">0</span>, &#x27;genre&#x27;: &#x27;游戏&#x27;&#125;&#125;, &#123;&#x27;appInfo&#x27;: &#123;&#x27;appId&#x27;: &#x27;<span class="hljs-number">132096</span>&#x27;, &#x27;appName&#x27;: &#x27;修行者&#x27;, &#x27;icon&#x27;: &#x27;https://static-cdn.qimai.cn/pic/view/type/android/source/aHR0cDovL3AyLnFoaW1nLmNvbS90MDE2OTUxNmM5YTZjNWVhNzdjLndlYnA=&#x27;, &#x27;publisher&#x27;: &#x27;广东灵机文化传播有限公司&#x27;, &#x27;comment_score&#x27;: <span class="hljs-number">0.9</span>, &#x27;comment_count&#x27;: <span class="hljs-number">169</span>, &#x27;version_time&#x27;: &#x27;<span class="hljs-number">2018-07-19</span>&#x27;, &#x27;app_download_num&#x27;: &#x27;<span class="hljs-number">693930</span>&#x27;&#125;, &#x27;genre&#x27;: &#x27;生活服务&#x27;, &#x27;isMyApp&#x27;: <span class="hljs-number">0</span>, &#x27;company&#x27;: &#123;&#x27;id&#x27;: &#x27;863&#x27;, &#x27;name&#x27;: &#x27;广东亿俊计算机系统有限公司&#x27;&#125;, &#x27;rankInfo&#x27;: &#123;&#x27;ranking&#x27;: <span class="hljs-number">0</span>, &#x27;change&#x27;: <span class="hljs-number">0</span>, &#x27;genre&#x27;: &#x27;游戏&#x27;&#125;&#125;]&#125;
+</code></pre>
+
+
+
+<h4><span id="excel-jie-guo-nei-rong-shi-li">excel结果内容示例</span><a href="#excel-jie-guo-nei-rong-shi-li" class="header-anchor"></a></h4><img src="/2020/09/17/2020-09-17-Spider-Qimai-Rank/2020-09-16-qimai_sample_result_excel.png" srcset="/img/loading.gif" class>
+
+
+<h3><span id="shuo-ming">说明</span><a href="#shuo-ming" class="header-anchor"></a></h3><ol>
+<li>下载后，会根据关键字、平台把结果存入多个不同的txt文件中</li>
+<li>方便查看，最后会把txt格式转为excel格式：可以通过调整下面代码实现把结果存放到同一个excel或多个分开的excel</li>
+</ol>
+<pre><code class="hljs stylus">#存到同一个excel文件
+<span class="hljs-function"><span class="hljs-title">convert_result_to_one_excel</span><span class="hljs-params">(out_excel_filename)</span></span>
+#存到多个分开的excel文件
+<span class="hljs-function"><span class="hljs-title">convert_result_to_multi_excels</span><span class="hljs-params">()</span></span></code></pre>
+
+
+<ol start="3">
+<li>经常会下载是获取不到信息，多等一段时间即可。同时发现，没有获取到正确的analysis亦可爬取到结果</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://github.com/zhenzhang20/Qimai_Rank">Fork/Star on Github</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%B8%83%E9%BA%A6/">七麦</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/13/2021-08-13-XAMPP-Install/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">XAMPP安装</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/28/2020-08-28-Coding_Deploy/">
+                        <span class="hidden-mobile">Hexo使用攻略-Coding GitHub双解析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz",
+          app_key: "uHvLSWs7HqeJQ7pNWUgaJ4cL",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://fua79ccb.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2020/09/17/2020-09-17-Spider-Qimai-Rank/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = 'fUa79ccbtUkaAmbp1x9PBUDt-gzGzoHsz'
+    var app_key = 'uHvLSWs7HqeJQ7pNWUgaJ4cL'
+    var server_url = 'https://fua79ccb.lc-cn-n1-shared.com'
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "爬取七麦(Qimai)网应用下载量数据&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
